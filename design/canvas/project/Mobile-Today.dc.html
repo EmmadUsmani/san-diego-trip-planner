@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile — Today</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font-family:Inter,sans-serif;cursor:pointer}
+a{color:#11707F}a:hover{color:#0B5562}
+.hatch{background-image:repeating-linear-gradient(135deg,rgba(63,88,100,.10) 0,rgba(63,88,100,.10) 2px,transparent 2px,transparent 8px)}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:1620px;background:#F3F6F7;font-family:Inter,sans-serif;color:#0E2530;overflow:hidden;">
+
+  <!-- app header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 16px;box-sizing:border-box;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E2530" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;">La Jolla '26</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:#3F5864;"><span style="width:7px;height:7px;border-radius:999px;background:#11707F;display:inline-block;"></span>Synced</span>
+      <span style="display:flex;">
+        <span style="width:28px;height:28px;border-radius:999px;background:#11707F;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;">E</span>
+        <span style="width:28px;height:28px;border-radius:999px;background:#0E2530;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;margin-left:-8px;">Ö</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- date + status chips -->
+  <div style="padding:4px 16px 14px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;">
+      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.01em;">Sunday, Nov 1</h1>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;">11:14a <span style="font-size:12px;color:#56707C;">PST</span></span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;">
+      <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px 0 9px;border-radius:999px;background:#FBF0DC;border:1px solid #EBCF9B;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#7A4E0B;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B7791F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="9" rx="2"/><path d="M21 11v3"/><path d="M5 11v3" stroke-width="2.5"/></svg>
+        31% <span style="font-weight:400;font-size:12px;">~99 mi</span>
+      </span>
+      <span style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 11px;border-radius:999px;background:#fff;border:1px solid #D3DDE1;font-size:12px;color:#3F5864;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Clocks fell back at 2:00a
+      </span>
+    </div>
+  </div>
+
+  <div style="padding:0 16px;display:flex;flex-direction:column;gap:12px;">
+
+    <!-- NOW card -->
+    <section aria-label="Now" style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;padding:16px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span style="background:#C84A16;color:#fff;font-size:11px;font-weight:600;letter-spacing:.08em;padding:3px 9px;border-radius:999px;">NOW</span>
+        <span style="font-size:12px;color:#56707C;">Activity · indoor</span>
+      </div>
+      <h2 style="margin:10px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;line-height:34px;letter-spacing:-.015em;">Birch Aquarium</h2>
+      <div style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#0B5562;">until 1:45p <span style="color:#56707C;font-weight:400;font-size:13px;">· 2h 31m left</span></div>
+      <div aria-hidden="true" style="margin-top:12px;height:6px;border-radius:999px;background:#E8EEF0;position:relative;">
+        <div style="position:absolute;left:0;top:0;bottom:0;width:28%;border-radius:999px;background:#11707F;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:5px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;"><span>10:15a</span><span>1:45p</span></div>
+      <div style="margin-top:12px;font-size:13px;color:#3F5864;line-height:18px;">2300 Expedition Way, La Jolla<br><span style="font-family:'JetBrains Mono',monospace;font-size:12px;">6.1 mi from Airbnb · open 9–5</span></div>
+      <div style="display:flex;gap:6px;margin-top:10px;">
+        <span style="font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:#DDF0F2;color:#0B5562;">Indoor</span>
+        <span style="font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:#DDF0F2;color:#0B5562;">Rain-safe</span>
+      </div>
+      <button style="margin-top:14px;width:100%;height:48px;border:0;border-radius:10px;background:#C84A16;color:#fff;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l16-7-7 16-2-7z"/></svg>
+        Open in Maps
+      </button>
+      <div style="display:flex;gap:8px;margin-top:8px;">
+        <button style="flex:1;height:44px;border-radius:10px;border:1px solid #D3DDE1;background:#fff;color:#0E2530;font-size:14px;font-weight:500;">Mark done</button>
+        <button style="flex:1;height:44px;border-radius:10px;border:1px solid #D3DDE1;background:#fff;color:#0E2530;font-size:14px;font-weight:500;">Extend +30m</button>
+      </div>
+    </section>
+
+    <!-- NEXT card (travel) -->
+    <section aria-label="Next" class="hatch" style="background-color:#EEF1F3;border:1px solid #D3DDE1;border-radius:10px;padding:14px 16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span style="display:flex;align-items:center;gap:8px;">
+          <span style="background:#0E2530;color:#fff;font-size:11px;font-weight:600;letter-spacing:.08em;padding:3px 9px;border-radius:999px;">NEXT</span>
+          <span style="font-size:12px;color:#3F5864;">leave 1:45p</span>
+        </span>
+        <span style="font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;background:#fff;border:1px dashed #56707C;color:#3F5864;">optional</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3F5864" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16v-4l1.6-4.2A2 2 0 018.5 6.5h7a2 2 0 011.9 1.3L19 12v4M4 16h16v2.5H4z"/><circle cx="8" cy="13.5" r=".7"/><circle cx="16" cy="13.5" r=".7"/></svg>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:#0E2530;">Drive 15 mi · 24 min</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin-top:2px;">&rarr; Little Italy</div>
+        </div>
+      </div>
+      <div style="margin-top:6px;font-size:13px;color:#3F5864;">Devil's Dozen Donuts, arrive ~2:09p. Harbor Tour check-in is 3:45p.</div>
+      <div style="display:flex;gap:8px;margin-top:10px;">
+        <button style="flex:1;height:44px;border-radius:10px;border:1px solid #D3DDE1;background:#fff;color:#0E2530;font-size:14px;font-weight:500;">Skip stop</button>
+        <button style="flex:1;height:44px;border-radius:10px;border:1px solid #D3DDE1;background:#fff;color:#0E2530;font-size:14px;font-weight:500;">Swap in backup</button>
+      </div>
+    </section>
+
+    <!-- Prayer countdown -->
+    <section aria-label="Next prayer" style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="width:44px;height:44px;border-radius:999px;background:#E9EAF9;display:flex;align-items:center;justify-content:center;flex:none;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4B4FC4" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>
+        </span>
+        <div style="flex:1;">
+          <div style="font-size:12px;color:#56707C;font-weight:500;">Next prayer</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.01em;">Dhuhr <span style="font-family:'JetBrains Mono',monospace;font-weight:500;font-size:19px;">11:32a</span></div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:#4B4FC4;">18 min</div>
+          <div style="font-size:12px;color:#56707C;">from now</div>
+        </div>
+      </div>
+      <div aria-hidden="true" style="margin-top:12px;height:4px;border-radius:999px;background:#E9EAF9;position:relative;"><div style="position:absolute;left:0;top:0;bottom:0;width:72%;background:#4B4FC4;border-radius:999px;"></div></div>
+      <div style="display:flex;gap:14px;margin-top:10px;font-size:12px;color:#3F5864;">
+        <span style="color:#6366B8;">Asr <span style="font-family:'JetBrains Mono',monospace;">2:36p</span></span>
+        <span style="font-weight:600;color:#4B4FC4;">Maghrib <span style="font-family:'JetBrains Mono',monospace;">4:58p</span></span>
+        <span style="color:#6366B8;">Isha <span style="font-family:'JetBrains Mono',monospace;">6:07p</span></span>
+      </div>
+    </section>
+
+    <!-- Weather -->
+    <section aria-label="Weather" style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;padding:14px 16px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#2F6FDB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15a4 4 0 010-8 5.5 5.5 0 0110.5 1.5A3.3 3.3 0 0117 15z"/><path d="M8 18v2.5M12 18v2.5M16 18v2.5"/></svg>
+        <div style="flex:1;">
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;">Showers, clearing by evening</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864;margin-top:2px;">H 69° / L 61° · ~0.37 in · 25% from 5p</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;font-size:12px;font-weight:500;color:#56707C;">Rain chance, next 6 hours</div>
+      <div style="display:flex;align-items:flex-end;gap:6px;margin-top:6px;height:76px;">
+        <sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#1D4A9E;margin-bottom:3px;">{{b.pct}}</span>
+            <div style="{{b.style}}"></div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:6px;margin-top:4px;">
+        <sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+          <div style="flex:1;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;">{{b.hour}}</div>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Conflict -->
+    <section aria-label="Prayer conflict" style="background:#FCE9DF;border:1px solid #F1C3AA;border-radius:10px;padding:14px 16px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C84A16" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.4"/></svg>
+        <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:#6E2508;">Prayer conflict at 4:58p</h3>
+      </div>
+      <p style="margin:8px 0 0;font-size:14px;line-height:20px;color:#5A1F07;">Maghrib <span style="font-family:'JetBrains Mono',monospace;font-size:13px;">4:58p</span> falls during the booked Flagship South Harbor Tour <span style="font-family:'JetBrains Mono',monospace;font-size:13px;">4:15–5:15p</span>.</p>
+      <p style="margin:6px 0 0;font-size:14px;line-height:20px;color:#5A1F07;">Suggestion: pray right after the tour and combine Maghrib + Isha (Isha <span style="font-family:'JetBrains Mono',monospace;font-size:13px;">6:07p</span>), ahead of dinner at <span style="font-family:'JetBrains Mono',monospace;font-size:13px;">6:15p</span>.</p>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button style="flex:1.4;height:44px;border:0;border-radius:10px;background:#C84A16;color:#fff;font-size:14px;font-weight:600;">Add prayer block 5:20p</button>
+        <button style="flex:1;height:44px;border-radius:10px;border:1px solid #E3A98C;background:#fff;color:#6E2508;font-size:14px;font-weight:500;">Dismiss</button>
+      </div>
+    </section>
+
+    <!-- Rest of day -->
+    <section aria-label="Rest of today">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin:6px 0 8px;">
+        <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;">Rest of today</h3>
+        <span style="font-size:12px;color:#56707C;">6 left · 1 done</span>
+      </div>
+      <div style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;overflow:hidden;">
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:44px;padding:0 14px;border-bottom:1px solid #E8EEF0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#11707F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#56707C;width:62px;">9:00a</span>
+          <span style="font-size:14px;color:#56707C;text-decoration:line-through;">Brunch · Fig Tree Cafe</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:48px;padding:6px 14px;border-bottom:1px solid #E8EEF0;">
+          <span style="width:18px;height:18px;border-radius:999px;border:1.75px solid #56707C;flex:none;box-sizing:border-box;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;">2:00p</span>
+          <span style="flex:1;font-size:14px;font-weight:500;">Little Italy · Devil's Dozen</span>
+          <span style="font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;border:1px dashed #56707C;color:#3F5864;">optional</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:34px;padding:0 14px;border-bottom:1px solid #E8EEF0;">
+          <span style="width:18px;flex:none;display:flex;justify-content:center;"><span style="width:16px;border-top:2px dashed rgba(75,79,196,.45);display:block;"></span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;color:#6366B8;">2:36p</span>
+          <span style="font-size:13px;color:#6366B8;">Asr</span>
+        </div>
+
+        <div class="hatch" style="display:flex;align-items:center;gap:10px;min-height:34px;padding:0 14px;border-bottom:1px solid #E8EEF0;background-color:#EEF1F3;">
+          <span style="width:18px;flex:none;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;color:#3F5864;">3:45p</span>
+          <span style="font-size:13px;color:#3F5864;">Arrive at South Harbor</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:52px;padding:6px 14px;background:#0E2530;color:#fff;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;">4:15p</span>
+          <span style="flex:1;font-size:14px;font-weight:600;line-height:18px;">Flagship South Harbor Tour<br><span style="font-weight:400;font-size:12px;color:#C9D6DC;">booked · until 5:15p</span></span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:40px;padding:0 14px;background:#FCE9DF;border-bottom:1px solid #F1C3AA;">
+          <span style="width:18px;flex:none;display:flex;justify-content:center;"><span style="width:16px;border-top:2px solid #4B4FC4;display:block;"></span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;font-weight:500;color:#4B4FC4;">4:58p</span>
+          <span style="flex:1;font-size:14px;font-weight:600;color:#4B4FC4;">Maghrib</span>
+          <span style="font-size:11px;font-weight:600;color:#6E2508;">conflict</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:34px;padding:0 14px;border-bottom:1px solid #E8EEF0;">
+          <span style="width:18px;flex:none;display:flex;justify-content:center;"><span style="width:16px;border-top:2px dashed rgba(75,79,196,.45);display:block;"></span></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;color:#6366B8;">6:07p</span>
+          <span style="font-size:13px;color:#6366B8;">Isha</span>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:10px;min-height:52px;padding:6px 14px;">
+          <span style="width:18px;height:18px;border-radius:999px;border:1.75px solid #56707C;flex:none;box-sizing:border-box;"></span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;width:62px;">6:15p</span>
+          <span style="flex:1;font-size:14px;font-weight:500;line-height:18px;">Dinner · Aladdin Cafe<br><span style="font-weight:400;font-size:12px;color:#56707C;">5420 Clairemont Mesa Blvd · 3 mi</span></span>
+          <span style="font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:#FBEBD3;color:#8A4B07;">halal</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- bottom tab bar -->
+  <nav aria-label="Primary" style="position:absolute;left:0;right:0;bottom:0;height:64px;background:#fff;border-top:1px solid #D3DDE1;display:flex;">
+    <button aria-current="page" style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#11707F;font-size:11px;font-weight:600;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Today</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Schedule</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l-5 2v14l5-2 6 2 5-2V4l-5 2z"/><path d="M9 4v14M15 6v14"/></svg>Map</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Places</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1620}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const data = [["11a",53],["12p",53],["1p",53],["2p",53],["3p",53],["4p",53]];
+    const bars = data.map(([hour,p]) => ({
+      hour,
+      pct: p + "%",
+      style: "width:100%;border-radius:4px 4px 0 0;height:" + Math.round(p*0.5) + "px;background:rgba(47,111,219," + (0.14 + p/100*0.5).toFixed(2) + ")"
+    }));
+    return { bars };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile — Map</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font-family:Inter,sans-serif;cursor:pointer}
+a{color:#11707F}a:hover{color:#0B5562}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:844px;background:#DCE8EC;font-family:Inter,sans-serif;color:#0E2530;overflow:hidden;">
+
+  <!-- stylized chart (no tiles) -->
+  <svg width="390" height="844" viewBox="0 0 390 844" style="position:absolute;left:0;top:0;" role="img" aria-label="Stylized chart of San Diego with today's route">
+    <rect width="390" height="844" fill="#DCE8EC"/>
+    <!-- depth lines in the Pacific -->
+    <path d="M40,0 C38,60 28,110 22,170 C14,230 28,260 44,300 C56,340 70,380 92,430" fill="none" stroke="#C5D7DD" stroke-width="1"/>
+    <path d="M22,0 C20,60 8,110 2,170 C-6,230 8,260 24,300 C36,340 50,380 72,430" fill="none" stroke="#C5D7DD" stroke-width="1"/>
+    <!-- land -->
+    <path d="M72,0 L74,60 C72,80 66,92 70,108 L66,128 C52,140 46,160 52,175 C44,190 40,205 52,218 L64,232 C72,244 74,252 80,262 L82,276 L84,300 L92,332 L98,362 L108,402 L120,432 L128,452 L142,424 L152,408 L170,392 L186,384 L200,420 L214,470 L226,520 L238,844 L400,844 L400,0 Z" fill="#F3F6F7" stroke="#9FB4BD" stroke-width="1.5" stroke-linejoin="round"/>
+    <!-- Mission Bay -->
+    <path d="M82,276 C90,282 96,276 104,278 C124,270 142,278 146,292 C148,306 128,312 112,308 C98,306 90,300 84,300 Z" fill="#DCE8EC" stroke="#9FB4BD" stroke-width="1.2"/>
+    <!-- Balboa Park -->
+    <path d="M246,350 C258,342 286,342 300,350 C306,362 300,380 284,386 C266,390 250,382 246,370 Z" fill="#E1EEEA" stroke="#C3D8D1" stroke-width="1"/>
+    <!-- minor grid -->
+    <g stroke="#E3EAED" stroke-width="1" fill="none">
+      <path d="M100,120 L360,120M100,160 L360,160M100,200 L360,200M170,300 L360,300M200,340 L360,340"/>
+      <path d="M200,0 L200,260M240,0 L240,200M290,0 L290,330M330,0 L330,330"/>
+    </g>
+    <!-- freeways -->
+    <g fill="none" stroke="#C3D0D5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M76,110 C90,160 106,210 120,244 C140,290 166,330 204,372"/>
+      <path d="M132,30 C146,100 162,170 168,228 C170,280 180,330 212,368"/>
+      <path d="M92,268 C130,266 170,262 210,260 C270,256 330,244 400,226"/>
+      <path d="M92,334 C130,336 170,338 210,336 C280,330 340,320 400,300"/>
+      <path d="M214,366 C232,334 240,300 240,270 C242,230 262,190 284,120 L300,0"/>
+    </g>
+    <g fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M76,110 C90,160 106,210 120,244 C140,290 166,330 204,372"/>
+      <path d="M132,30 C146,100 162,170 168,228 C170,280 180,330 212,368"/>
+      <path d="M92,268 C130,266 170,262 210,260 C270,256 330,244 400,226"/>
+      <path d="M92,334 C130,336 170,338 210,336 C280,330 340,320 400,300"/>
+      <path d="M214,366 C232,334 240,300 240,270 C242,230 262,190 284,120 L300,0"/>
+    </g>
+    <!-- highway shields -->
+    <g font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" text-anchor="middle">
+      <g><rect x="95" y="176" width="26" height="15" rx="3" fill="#fff" stroke="#9FB4BD"/><text x="108" y="187" fill="#3F5864">I-5</text></g>
+      <g><rect x="150" y="176" width="32" height="15" rx="3" fill="#fff" stroke="#9FB4BD"/><text x="166" y="187" fill="#3F5864">I-805</text></g>
+      <g><rect x="296" y="232" width="32" height="15" rx="3" fill="#fff" stroke="#9FB4BD"/><text x="312" y="243" fill="#3F5864">SR-52</text></g>
+      <g><rect x="296" y="312" width="24" height="15" rx="3" fill="#fff" stroke="#9FB4BD"/><text x="308" y="323" fill="#3F5864">I-8</text></g>
+      <g><rect x="244" y="228" width="38" height="15" rx="3" fill="#fff" stroke="#9FB4BD"/><text x="263" y="239" fill="#3F5864">SR-163</text></g>
+    </g>
+    <!-- place labels -->
+    <g font-family="Inter, sans-serif" fill="#3F5864" font-size="12" font-weight="500">
+      <text x="82" y="82">Del Mar</text>
+      <text x="62" y="206" font-style="italic">La Jolla</text>
+      <text x="10" y="120" font-size="11" fill="#56707C" font-style="italic">Pacific</text><text x="10" y="133" font-size="11" fill="#56707C" font-style="italic">Ocean</text>
+      <text x="6" y="256" font-size="11" fill="#3F5864">Pacific Beach</text>
+      <text x="186" y="298">Clairemont</text>
+      <text x="96" y="292" font-size="10" fill="#56707C" font-style="italic" text-anchor="start">Mission Bay</text>
+      <text x="228" y="410">Downtown</text>
+      <text x="204" y="356" font-size="11">Little Italy</text>
+      <text x="252" y="372" font-size="11" fill="#2A5E69">Balboa Park</text>
+      <text x="340" y="292">El Cajon</text>
+      <text x="140" y="446" font-size="10" fill="#56707C" font-style="italic">Pt. Loma</text>
+      <text x="168" y="440" font-size="10" fill="#56707C" font-style="italic" transform="translate(30,-8)">San Diego Bay</text>
+    </g>
+
+    <!-- route: done legs -->
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M150,246 L104,248" stroke="#56707C" stroke-width="3"/>
+      <path d="M104,248 C112,222 82,192 64,154" stroke="#56707C" stroke-width="3"/>
+      <!-- upcoming -->
+      <path d="M64,154 C96,184 140,256 168,316 L206,368" stroke="#C84A16" stroke-width="4" stroke-dasharray="1 0"/>
+      <!-- optional leg to harbor -->
+      <path d="M206,368 L180,394" stroke="#C84A16" stroke-width="3.5" stroke-dasharray="7 5"/>
+      <path d="M180,394 C192,330 204,262 192,218" stroke="#C84A16" stroke-width="3.5" stroke-dasharray="7 5"/>
+    </g>
+
+    <!-- backup / charger markers -->
+    <g>
+      <rect x="152" y="266" width="18" height="18" rx="4" fill="#2F6FDB" stroke="#fff" stroke-width="1.5"/>
+      <path d="M162 269l-4 6h3l-1 5 4-6h-3z" fill="#fff"/>
+      <rect x="116" y="196" width="18" height="18" rx="4" fill="#2F6FDB" stroke="#fff" stroke-width="1.5"/>
+      <path d="M126 199l-4 6h3l-1 5 4-6h-3z" fill="#fff"/>
+      <circle cx="52" cy="198" r="6" fill="#fff" stroke="#11707F" stroke-width="2"/>
+      <circle cx="90" cy="238" r="6" fill="#fff" stroke="#11707F" stroke-width="2"/>
+    </g>
+
+    <!-- Airbnb start (house) -->
+    <g>
+      <circle cx="150" cy="246" r="13" fill="#0E2530" stroke="#fff" stroke-width="2"/>
+      <path d="M143.5 246.5L150 241l6.5 5.5M145 245.5v6h10v-6" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- numbered stops -->
+    <g font-family="JetBrains Mono, monospace" font-size="12" font-weight="500" text-anchor="middle">
+      <circle cx="104" cy="248" r="11" fill="#E8EEF0" stroke="#56707C" stroke-width="2"/><text x="104" y="252.5" fill="#3F5864">1</text>
+      <circle cx="64" cy="154" r="17" fill="#C84A16" fill-opacity=".18"/>
+      <circle cx="64" cy="154" r="14" fill="#0E2530" stroke="#fff" stroke-width="2.5"/><text x="64" y="158.5" fill="#fff" font-size="13">2</text>
+      <circle cx="206" cy="368" r="11" fill="#fff" stroke="#C84A16" stroke-width="2.5" stroke-dasharray="3 2"/><text x="206" y="372.5" fill="#6E2508">3</text>
+      <circle cx="180" cy="394" r="11" fill="#0E2530" stroke="#fff" stroke-width="2"/><text x="180" y="398.5" fill="#fff">4</text>
+      <circle cx="192" cy="218" r="11" fill="#fff" stroke="#C84A16" stroke-width="2.5"/><text x="192" y="222.5" fill="#6E2508">5</text>
+    </g>
+    <!-- compass -->
+    <g transform="translate(346,404)" fill="none" stroke="#56707C" stroke-width="1.2">
+      <circle r="13"/><path d="M0,-11 L3,0 L0,11 L-3,0 Z" fill="#fff"/><path d="M0,-11 L3,0 L-3,0 Z" fill="#56707C"/>
+      <text y="-17" text-anchor="middle" font-size="9" fill="#3F5864" stroke="none" font-family="Inter, sans-serif" font-weight="600">N</text>
+    </g>
+  </svg>
+
+  <!-- top controls -->
+  <div style="position:absolute;left:12px;right:12px;top:12px;display:flex;gap:8px;align-items:center;">
+    <div style="flex:1;height:44px;border-radius:999px;background:#fff;border:1px solid #D3DDE1;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);display:flex;align-items:center;gap:8px;padding:0 6px 0 14px;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;">Sun 11/1</span>
+      <span style="font-size:12px;color:#3F5864;">Route · 5 stops · 40 mi</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3F5864" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-left:auto;"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <button aria-label="Search places" style="width:44px;height:44px;border-radius:999px;background:#fff;border:1px solid #D3DDE1;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);display:flex;align-items:center;justify-content:center;color:#0E2530;padding:0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+    </button>
+  </div>
+
+  <!-- selected pin chip -->
+  <div style="position:absolute;left:14px;top:84px;">
+    <div style="background:#0E2530;color:#fff;border-radius:10px;padding:8px 12px;box-shadow:0 4px 14px rgba(14,37,48,.3);display:flex;align-items:center;gap:10px;">
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;line-height:18px;">Birch Aquarium</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#C9D6DC;line-height:16px;">6.1 mi from Airbnb</div>
+      </div>
+      <span style="width:1px;align-self:stretch;background:rgba(255,255,255,.2);"></span>
+      <button aria-label="Open in Maps" style="width:44px;height:44px;margin:-8px -8px -8px 0;border:0;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;padding:0;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l16-7-7 16-2-7z"/></svg>
+      </button>
+    </div>
+    <div aria-hidden="true" style="width:12px;height:12px;background:#0E2530;transform:rotate(45deg);margin:-6px 0 0 50px;"></div>
+  </div>
+
+  <!-- right-hand map controls -->
+  <div style="position:absolute;right:12px;top:72px;display:flex;flex-direction:column;gap:8px;">
+    <button aria-label="Map layers" style="width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid #D3DDE1;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);display:flex;align-items:center;justify-content:center;color:#0E2530;padding:0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12.5l9 5 9-5M3 16.5l9 5 9-5"/></svg>
+    </button>
+    <button aria-label="Measure distance" style="width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid #D3DDE1;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);display:flex;align-items:center;justify-content:center;color:#0E2530;padding:0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 17.5l14-14 3 3-14 14z"/><path d="M8 8l2 2M11 5l1.5 1.5M5 11l1.5 1.5M14 11l2 2"/></svg>
+    </button>
+    <button aria-label="Center on my location" style="width:44px;height:44px;border-radius:10px;background:#fff;border:1px solid #D3DDE1;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);display:flex;align-items:center;justify-content:center;color:#11707F;padding:0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+    </button>
+  </div>
+
+  <!-- legend / footnote -->
+  <div style="position:absolute;left:12px;top:394px;display:flex;align-items:center;gap:8px;font-size:11px;color:#3F5864;">
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:3px;background:#2F6FDB;display:inline-block;"></span>Supercharger</span>
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:999px;border:2px solid #11707F;box-sizing:border-box;background:#fff;display:inline-block;"></span>Backup</span>
+  </div>
+
+  <!-- bottom sheet (half height) -->
+  <section aria-label="Today's stops" style="position:absolute;left:0;right:0;top:426px;height:354px;background:#fff;border-radius:16px 16px 0 0;border-top:1px solid #D3DDE1;box-shadow:0 -4px 16px rgba(14,37,48,.12);overflow:hidden;">
+    <div aria-hidden="true" style="display:flex;justify-content:center;padding-top:8px;"><span style="width:36px;height:4px;border-radius:999px;background:#D3DDE1;"></span></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 16px 6px;">
+      <div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;">Today's route</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;">5 stops · ~40 mi · ~1h 40m driving</div>
+      </div>
+      <button style="height:44px;padding:0 14px;border:0;border-radius:10px;background:#C84A16;color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l16-7-7 16-2-7z"/></svg>
+        Start
+      </button>
+    </div>
+
+    <div>
+      <sc-for list="{{stops}}" as="s" hint-placeholder-count="6">
+        <div style="{{s.rowStyle}}">
+          <span style="{{s.badgeStyle}}">{{s.n}}</span>
+          <div style="flex:1;min-width:0;">
+            <div style="{{s.titleStyle}}">{{s.title}}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;">{{s.time}}</div>
+          </div>
+          <div style="text-align:right;flex:none;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;">{{s.leg}}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;">{{s.legSub}}</div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- footnote -->
+  <div style="position:absolute;left:0;right:0;top:760px;height:20px;background:#fff;text-align:center;font-size:11px;line-height:20px;color:#56707C;">Stylized chart. The built app uses real OpenStreetMap tiles.</div>
+
+  <!-- bottom tab bar -->
+  <nav aria-label="Primary" style="position:absolute;left:0;right:0;bottom:0;height:64px;background:#fff;border-top:1px solid #D3DDE1;display:flex;">
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Today</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Schedule</button>
+    <button aria-current="page" style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#11707F;font-size:11px;font-weight:600;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l-5 2v14l5-2 6 2 5-2V4l-5 2z"/><path d="M9 4v14M15 6v14"/></svg>Map</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Places</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    // n: badge label, leg: distance from previous stop
+    const raw = [
+      { n: "A", title: "Airbnb · 3225 Idlewild Way", time: "start", leg: "", legSub: "", kind: "home" },
+      { n: "1", title: "Fig Tree Cafe", time: "9:00–10:00a · done", leg: "5 mi", legSub: "12 min", kind: "done" },
+      { n: "2", title: "Birch Aquarium", time: "10:15a–1:45p · now", leg: "4.8 mi", legSub: "~11 min", kind: "now" },
+      { n: "3", title: "Little Italy (optional)", time: "2:00–3:30p", leg: "15 mi", legSub: "24 min", kind: "opt" },
+      { n: "4", title: "Flagship South Harbor Tour", time: "4:15–5:15p · booked", leg: "1 mi", legSub: "4 min", kind: "fixed" },
+      { n: "5", title: "Dinner · Aladdin Cafe", time: "6:15–7:30p", leg: "14 mi", legSub: "22 min", kind: "next" }
+    ];
+    const stops = raw.map((s) => {
+      const base = "display:flex;align-items:center;gap:12px;height:44px;padding:0 16px;box-sizing:border-box;";
+      let badge = "width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex:none;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;";
+      let title = "font-size:14px;font-weight:600;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;";
+      let row = base;
+      if (s.kind === "home") badge += "background:#0E2530;color:#fff;";
+      else if (s.kind === "done") { badge += "background:#E8EEF0;color:#3F5864;border:2px solid #56707C;"; title += "color:#56707C;"; }
+      else if (s.kind === "now") { badge += "background:#0E2530;color:#fff;box-shadow:0 0 0 3px rgba(217,84,30,.35);"; row += "background:#FCE9DF;"; }
+      else if (s.kind === "opt") { badge += "background:#fff;color:#6E2508;border:2px dashed #C84A16;"; }
+      else if (s.kind === "fixed") { badge += "background:#0E2530;color:#fff;"; }
+      else { badge += "background:#fff;color:#6E2508;border:2px solid #C84A16;"; }
+      return { n: s.n, title: s.title, time: s.time, leg: s.leg, legSub: s.legSub, rowStyle: row, badgeStyle: badge, titleStyle: title };
+    });
+    return { stops };
+  }
+}
+</script>
+</body>
+</html>

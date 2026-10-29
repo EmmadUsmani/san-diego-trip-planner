@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Mobile — Places</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+button{font-family:Inter,sans-serif;cursor:pointer}
+a{color:#11707F}a:hover{color:#0B5562}
+</style>
+</helmet>
+<div style="position:relative;width:390px;height:1060px;background:#F3F6F7;font-family:Inter,sans-serif;color:#0E2530;overflow:hidden;">
+
+  <!-- app header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 16px;box-sizing:border-box;">
+    <div style="display:flex;align-items:center;gap:8px;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E2530" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;">La Jolla '26</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:#3F5864;"><span style="width:7px;height:7px;border-radius:999px;background:#11707F;display:inline-block;"></span>Synced</span>
+      <span style="display:flex;">
+        <span style="width:28px;height:28px;border-radius:999px;background:#11707F;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;">E</span>
+        <span style="width:28px;height:28px;border-radius:999px;background:#0E2530;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;margin-left:-8px;">Ö</span>
+      </span>
+    </div>
+  </div>
+
+  <div style="padding:2px 16px 10px;display:flex;align-items:center;justify-content:space-between;">
+    <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.01em;">Places</h1>
+    <button aria-label="Search places" style="width:44px;height:44px;border-radius:999px;border:1px solid #D3DDE1;background:#fff;display:flex;align-items:center;justify-content:center;color:#0E2530;padding:0;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+    </button>
+  </div>
+
+  <!-- segmented control -->
+  <div role="tablist" aria-label="Place lists" style="margin:0 16px;padding:3px;border-radius:12px;background:#E8EEF0;display:flex;gap:2px;">
+    <sc-for list="{{segs}}" as="g" hint-placeholder-count="4">
+      <button role="tab" aria-selected="{{g.selected}}" onClick="{{g.pick}}" style="{{g.style}}">
+        <span>{{g.label}}</span>
+        <span style="{{g.countStyle}}">{{g.count}}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <!-- filter chips -->
+  <div style="display:flex;gap:8px;padding:12px 16px 4px;">
+    <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+      <button aria-pressed="{{f.pressed}}" onClick="{{f.pick}}" style="{{f.style}}">{{f.label}}</button>
+    </sc-for>
+  </div>
+
+  <!-- add-to target -->
+  <div style="margin:8px 16px 4px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:#3F5864;">
+    <span style="display:flex;align-items:center;gap:6px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3F5864" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+      Adding to <b style="font-weight:600;color:#0E2530;">Sun 11/1</b>
+    </span>
+    <span style="color:#56707C;">{{hint}}</span>
+  </div>
+
+  <!-- list -->
+  <div style="padding:6px 16px 0;display:flex;flex-direction:column;gap:8px;">
+    <sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+      <div style="display:contents;">
+
+        <sc-if value="{{r.isHeader}}" hint-placeholder-val="{{ false }}">
+          <button aria-expanded="{{r.expanded}}" onClick="{{r.toggle}}" style="display:flex;align-items:center;gap:10px;min-height:48px;width:100%;box-sizing:border-box;padding:0 14px;border-radius:10px;border:1px solid #D3DDE1;background:#fff;color:#0E2530;text-align:left;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;">{{r.label}}</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#56707C;">{{r.sub}}</span>
+            <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;padding:1px 8px;border-radius:999px;background:#E8EEF0;color:#3F5864;">{{r.count}}</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F5864" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="{{r.chev}}"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+        </sc-if>
+
+        <sc-if value="{{r.isTitle}}" hint-placeholder-val="{{ false }}">
+          <div style="font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#56707C;margin:8px 2px 0;">{{r.label}}</div>
+        </sc-if>
+
+        <sc-if value="{{r.isCard}}" hint-placeholder-val="{{ true }}">
+          <div style="{{r.wrapStyle}}">
+            <sc-if value="{{r.swiped}}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute;right:0;top:0;bottom:0;width:140px;display:flex;">
+                <button style="flex:1;border:0;background:#C84A16;color:#fff;font-size:13px;font-weight:600;line-height:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                  Add to today
+                </button>
+                <button style="width:56px;border:0;background:#3F5864;color:#fff;font-size:12px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                  Hide
+                </button>
+              </div>
+            </sc-if>
+            <div style="{{r.cardStyle}}">
+              <span style="{{r.tileStyle}}">
+                <sc-if value="{{r.iAct}}" hint-placeholder-val="{{ true }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19l6-10 4 6 2-3 6 7z"/></svg></sc-if>
+                <sc-if value="{{r.iFood}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8a2 2 0 002 2v8M11 3v6a2 2 0 01-2 2M17 21V3c-2 1-3 4-3 8h3"/></svg></sc-if>
+                <sc-if value="{{r.iCharge}}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"/></svg></sc-if>
+              </span>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:14px;font-weight:600;line-height:19px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{r.title}}</div>
+                <div style="font-size:12px;line-height:16px;color:#56707C;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{r.addr}}</div>
+                <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:5px;align-items:center;">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3F5864;">{{r.meta}}</span>
+                  <sc-if value="{{r.tHalal}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;background:#FBEBD3;color:#7A4306;">Halal</span></sc-if>
+                  <sc-if value="{{r.tUnconfirmed}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:500;padding:1px 7px;border-radius:999px;border:1px dashed #8A4B07;color:#7A4306;">Halal unconfirmed</span></sc-if>
+                  <sc-if value="{{r.tRain}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;background:#DEE9FB;color:#1D4A9E;">Rain-safe</span></sc-if>
+                  <sc-if value="{{r.tIndoor}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:500;padding:1px 7px;border-radius:999px;background:#DDF0F2;color:#0B5562;">Indoor</span></sc-if>
+                  <sc-if value="{{r.tOutdoor}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:500;padding:1px 7px;border-radius:999px;background:#E8EEF0;color:#3F5864;">Outdoor</span></sc-if>
+                  <sc-if value="{{r.tStatus}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;padding:1px 7px;border-radius:999px;background:#0E2530;color:#fff;">{{r.status}}</span></sc-if>
+                </div>
+              </div>
+              <sc-if value="{{r.bAdd}}" hint-placeholder-val="{{ true }}">
+                <button aria-label="{{r.addLabel}}" style="flex:none;width:44px;height:44px;border-radius:10px;border:1px solid #11707F;background:#fff;color:#11707F;display:flex;align-items:center;justify-content:center;padding:0;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+                </button>
+              </sc-if>
+              <sc-if value="{{r.bMore}}" hint-placeholder-val="{{ false }}">
+                <button aria-label="More actions" style="flex:none;width:44px;height:44px;border-radius:10px;border:0;background:transparent;color:#3F5864;display:flex;align-items:center;justify-content:center;padding:0;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="12" cy="19" r="1.7"/></svg>
+                </button>
+              </sc-if>
+              <sc-if value="{{r.bLock}}" hint-placeholder-val="{{ false }}">
+                <span style="flex:none;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#0E2530;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-label="Locked, fixed event" role="img"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+                </span>
+              </sc-if>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- bottom tab bar -->
+  <nav aria-label="Primary" style="position:absolute;left:0;right:0;bottom:0;height:64px;background:#fff;border-top:1px solid #D3DDE1;display:flex;">
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Today</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Schedule</button>
+    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l-5 2v14l5-2 6 2 5-2V4l-5 2z"/><path d="M9 4v14M15 6v14"/></svg>Map</button>
+    <button aria-current="page" style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#11707F;font-size:11px;font-weight:600;min-height:44px;">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Places</button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1060}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { seg: "backups", filter: "all", open: { sat: false, sun: true, mon: false, tue: false } };
+  }
+
+  renderVals() {
+    const seg = this.state.seg;
+    const filter = this.state.filter;
+    const open = this.state.open;
+
+    /* c: card builder. cat: act|food|charge. tags: halal,rain,indoor,outdoor,unconf */
+    const C = (cat, title, addr, meta, tags, extra) =>
+      Object.assign({ cat, title, addr, meta, tags: tags || [] }, extra || {});
+
+    const BACKUPS = [
+      C("act", "UCSD Geisel Library", "La Jolla · campus landmark", "~45 min", ["indoor", "rain"]),
+      C("act", "Museum of Contemporary Art San Diego", "La Jolla", "~1h 30m", ["indoor", "rain"], { swiped: true }),
+      C("food", "Little Italy", "Airbnb food tour: pizza, gelato", "~1h 30m", ["outdoor"]),
+      C("food", "Devil's Dozen Donuts", "Little Italy", "~30 min", []),
+      C("act", "Scripps Coastal Meander Trailhead", "Near Birch Aquarium", "~1h", ["outdoor"]),
+      C("act", "Coast Walk Trail La Jolla", "Scripps Park, Shell Beach, La Jolla Cove", "~1h 30m", ["outdoor"]),
+      C("act", "Rose Canyon Open Space Park", "Hike · 8 min from Airbnb", "~1h 30m", ["outdoor"]),
+      C("act", "Kingdom of Padel", "Pickleball", "~1h 30m", [])
+    ];
+
+    const FOOD = [
+      { t: "Dinner ideas" },
+      C("food", "Urban Skillet", "9254 Scranton Rd #105", "8 mi", ["halal"]),
+      C("food", "Akhi's Authentic Shawarma & Kebab", "747 Turquoise St Unit 200", "S. La Jolla / PB", []),
+      C("food", "Khyber Pass Zarparan", "University Ave, near Balboa Park", "near zoo", ["unconf"]),
+      C("food", "George's at the Cove", "La Jolla", "La Jolla", []),
+      C("food", "Urbane Cafe", "La Jolla · banh mi sandwiches", "La Jolla", []),
+      C("food", "Sultan Baklava", "El Cajon", "18 mi from Balboa", [], { status: "Mon dinner" }),
+      { t: "Brunch spots" },
+      C("food", "Sugar and Scribe", "7660 Fay Ave Unit I, La Jolla", "closes 2:30p", [], { status: "Sat brunch" }),
+      C("food", "Fig Tree Cafe", "5119 Cass St, Pacific Beach", "closes 3p", [], { status: "Sun brunch" }),
+      C("food", "Shorehouse Kitchen", "2236 Avenida De La Playa, La Jolla", "closes 3:30p wknd", [], { status: "Mon brunch" })
+    ];
+
+    const CHARGERS = [
+      C("charge", "Liberty Park Plaza", "4340 Genesee Ave, 92117", "8 stalls · 250 kW · 1.5 mi", [], { status: "Closest" }),
+      C("charge", "Villa La Jolla", "8657 Villa La Jolla Dr · mall with shops", "5 mi · ~10 min", [], { status: "Mon idea" }),
+      C("charge", "Independence Square", "7373 Clairemont Mesa Blvd", "12 stalls · 250 kW", []),
+      C("charge", "Kearny Office Park", "8344 Clairemont Mesa Blvd", "16 stalls", []),
+      C("charge", "Fashion Valley Mall", "7007 Friars Rd", "48 stalls · 250 kW", []),
+      C("charge", "Morena Blvd", "845 Morena Blvd", "16 stalls · 325 kW", [])
+    ];
+
+    const SCHED = {
+      sat: { label: "Sat 10/31", sub: "cloudy", items: [
+        C("food", "Brunch · Sugar and Scribe", "7660 Fay Ave Unit I, La Jolla", "12:30–1:45p", []),
+        C("act", "Hike · Sea Cliff Coastal Bluff Trail", "100 8th St, Del Mar", "2:00–3:30p", ["outdoor"]),
+        C("act", "Airbnb check-in", "3225 Idlewild Way · after 3:00p", "4:00p", [], { fixed: true }),
+        C("food", "Dinner · Zoya", "1000 Prospect St, La Jolla", "7:00–8:30p", ["halal", "indoor"]) ] },
+      sun: { label: "Sun 11/1", sub: "rain 87%", items: [
+        C("food", "Brunch · Fig Tree Cafe", "5119 Cass St, Pacific Beach", "9:00–10:00a", [], { status: "Done" }),
+        C("act", "Birch Aquarium", "2300 Expedition Way, La Jolla", "10:15a–1:45p", ["indoor", "rain"], { status: "Now" }),
+        C("act", "Flagship South Harbor Tour", "990 N Harbor Dr · booked", "4:15–5:15p", [], { fixed: true }),
+        C("food", "Dinner · Aladdin Cafe", "5420 Clairemont Mesa Blvd", "6:15–7:30p", ["halal"]) ] },
+      mon: { label: "Mon 11/2", sub: "sunny", items: [
+        C("food", "Brunch · Shorehouse Kitchen", "2236 Avenida De La Playa, La Jolla", "9:00–10:00a", []),
+        C("act", "San Diego Zoo", "Balboa Park", "10:30a–3:00p", ["outdoor"]),
+        C("act", "Balboa Park museum", "Modern Art or Natural History", "3:15–4:30p", [], { status: "Tentative" }),
+        C("food", "Dinner · Sultan Baklava", "El Cajon", "5:30–7:00p", []) ] },
+      tue: { label: "Tue 11/3", sub: "mostly sunny", items: [
+        C("act", "Airbnb check-out", "3225 Idlewild Way · before 10:00a", "by 10:00a", [], { fixed: true }),
+        C("food", "Brunch", "Shorehouse Kitchen or Sugar and Scribe", "10:15–11:15a", []) ] }
+    };
+
+    const passes = (c) => {
+      if (filter === "all") return true;
+      if (filter === "rain") return c.tags.indexOf("rain") >= 0 || c.tags.indexOf("indoor") >= 0;
+      if (filter === "halal") return c.tags.indexOf("halal") >= 0;
+      return true;
+    };
+
+    /* ---------- build flat rows ---------- */
+    const rows = [];
+    const addCard = (c, scheduled) => {
+      const swiped = !!c.swiped;
+      const tile = { act: "background:#DDF0F2;color:#0B5562;", food: "background:#FBEBD3;color:#7A4306;", charge: "background:#DEE9FB;color:#1D4A9E;" }[c.cat];
+      rows.push({
+        isCard: true, isHeader: false, isTitle: false,
+        title: c.title, addr: c.addr, meta: c.meta,
+        iAct: c.cat === "act", iFood: c.cat === "food", iCharge: c.cat === "charge",
+        tileStyle: "flex:none;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;" + (c.fixed ? "background:#0E2530;color:#fff;" : tile),
+        tHalal: c.tags.indexOf("halal") >= 0,
+        tUnconfirmed: c.tags.indexOf("unconf") >= 0,
+        tRain: c.tags.indexOf("rain") >= 0,
+        tIndoor: c.tags.indexOf("indoor") >= 0 && c.tags.indexOf("rain") < 0,
+        tOutdoor: c.tags.indexOf("outdoor") >= 0,
+        tStatus: !!c.status, status: c.status || "",
+        bAdd: !scheduled && !swiped, bMore: scheduled && !c.fixed, bLock: !!c.fixed,
+        addLabel: c.cat === "charge" ? "Add charge stop to today" : "Add to today",
+        swiped,
+        wrapStyle: "position:relative;overflow:hidden;border-radius:10px;" + (swiped ? "background:#C84A16;" : ""),
+        cardStyle: "display:flex;align-items:center;gap:10px;box-sizing:border-box;padding:10px 6px 10px 10px;min-height:76px;background:#fff;border:1px solid #D3DDE1;border-radius:10px;" +
+          (swiped ? "transform:translateX(-132px);box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.08);" : "") +
+          (c.tags.indexOf("tentative") >= 0 ? "border-style:dashed;" : "")
+      });
+    };
+    const addTitle = (label) => rows.push({ isTitle: true, isHeader: false, isCard: false, label });
+
+    if (seg === "scheduled") {
+      ["sat", "sun", "mon", "tue"].forEach((d) => {
+        const g = SCHED[d];
+        const items = g.items.filter(passes);
+        const isOpen = !!open[d];
+        rows.push({
+          isHeader: true, isCard: false, isTitle: false, label: g.label, sub: g.sub, count: String(items.length),
+          expanded: String(isOpen),
+          chev: "flex:none;transition:transform .15s;transform:rotate(" + (isOpen ? 180 : 0) + "deg);",
+          toggle: () => { const o = Object.assign({}, this.state.open); o[d] = !o[d]; this.setState({ open: o }); }
+        });
+        if (isOpen) items.forEach((c) => addCard(c, true));
+      });
+    } else if (seg === "backups") {
+      BACKUPS.filter(passes).forEach((c) => addCard(c, false));
+    } else if (seg === "food") {
+      let pending = null;
+      FOOD.forEach((c) => {
+        if (c.t) { pending = c.t; return; }
+        if (!passes(c)) return;
+        if (pending) { addTitle(pending); pending = null; }
+        addCard(c, false);
+      });
+    } else {
+      CHARGERS.filter(passes).forEach((c) => addCard(c, false));
+    }
+
+    /* ---------- controls ---------- */
+    const counts = { scheduled: 14, backups: 8, food: 9, chargers: 6 };
+    const SEGS = [["scheduled", "Scheduled"], ["backups", "Backups"], ["food", "Food"], ["chargers", "Chargers"]];
+    const segs = SEGS.map(([id, label]) => {
+      const on = id === seg;
+      return {
+        label, count: String(counts[id]), selected: on,
+        pick: () => this.setState({ seg: id }),
+        style: "flex:1;min-height:44px;border:0;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:0 2px;font-size:13px;line-height:16px;" +
+          (on ? "background:#fff;color:#0E2530;font-weight:600;box-shadow:0 1px 2px rgba(14,37,48,.12);" : "background:transparent;color:#3F5864;font-weight:500;"),
+        countStyle: "font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:400;color:" + (on ? "#11707F" : "#56707C") + ";"
+      };
+    });
+    const FILTERS = [["all", "All"], ["rain", "Rain-safe"], ["halal", "Halal"]];
+    const filters = FILTERS.map(([id, label]) => {
+      const on = id === filter;
+      return {
+        label, pressed: String(on),
+        pick: () => this.setState({ filter: id }),
+        style: "min-height:44px;padding:0 16px;border-radius:999px;font-size:13px;font-weight:500;" +
+          (on ? "background:#0E2530;color:#fff;border:1px solid #0E2530;" : "background:#fff;color:#0E2530;border:1px solid #D3DDE1;")
+      };
+    });
+
+    return {
+      segs, filters, rows,
+      hint: seg === "backups" ? "Swipe left for actions" : seg === "scheduled" ? "Tap a day to expand" : ""
+    };
+  }
+}
+</script>
+</body>
+</html>

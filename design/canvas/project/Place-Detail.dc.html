@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Place detail — Zoya</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#11707F}a:hover{color:#0B5562}
+button{font-family:Inter,sans-serif;cursor:pointer}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid #11707F;outline-offset:1px}
+.fld{width:100%;box-sizing:border-box;border:1px solid #D3DDE1;border-radius:8px;padding:9px 11px;font:inherit;font-size:14px;color:#0E2530;background:#fff}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F5864;margin-bottom:5px}
+</style>
+</helmet>
+<div style="position:relative;min-height:1640px;overflow:hidden;background:#F3F6F7;color:#0E2530;font-family:Inter,sans-serif;font-size:14px">
+
+  <!-- Background: simplified Places screen -->
+  <div aria-hidden="true">
+    <header style="background:#fff;border-bottom:1px solid #D3DDE1;display:flex;align-items:center;gap:28px;padding:0 32px;height:60px">
+      <div style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D9541E" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.5" fill="#D9541E"/></svg>La Jolla '26
+      </div>
+      <nav style="display:flex;gap:4px;height:60px">
+        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Today</span>
+        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Schedule</span>
+        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Map</span>
+        <span style="display:flex;align-items:center;padding:0 14px;font-weight:600;border-bottom:3px solid #D9541E;box-sizing:border-box">Places</span>
+        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Range</span>
+      </nav>
+    </header>
+    <div style="padding:28px 32px;max-width:1376px;box-sizing:border-box">
+      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px">Places</h1>
+      <div style="margin-top:20px;height:56px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
+      <h2 style="margin:32px 0 12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Scheduled</h2>
+      <div style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;overflow:hidden">
+        <div style="padding:10px 16px;background:#E8EEF0;font-weight:600">Sat 10/31</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">12:30–1:45p</span><span style="font-weight:600">Brunch · Sugar and Scribe</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">2:00–3:30p</span><span style="font-weight:600">Hike · Sea Cliff Coastal Bluff Trail</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px;background:#DDF0F2"><span style="font-family:'JetBrains Mono',monospace">7:00–8:30p</span><span style="font-weight:600">Dinner · Zoya</span></div>
+        <div style="padding:10px 16px;background:#E8EEF0;font-weight:600">Sun 11/1</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">9:00–10:00a</span><span style="font-weight:600">Brunch · Fig Tree Cafe</span></div>
+        <div style="padding:14px 16px;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">10:15a–1:45p</span><span style="font-weight:600">Birch Aquarium</span></div>
+      </div>
+      <h2 style="margin:36px 0 12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Backup restaurants</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
+        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
+        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
+        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scrim -->
+  <div style="position:absolute;inset:0;background:rgba(14,37,48,0.52)"></div>
+
+  <!-- Drawer -->
+  <aside role="dialog" aria-modal="true" aria-labelledby="dr-title" style="position:absolute;top:0;right:0;bottom:0;width:480px;max-width:100%;background:#fff;box-shadow:-12px 0 40px rgba(14,37,48,.25);display:flex;flex-direction:column">
+
+    <div style="padding:20px 24px 16px;border-bottom:1px solid #D3DDE1">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:12px;font-weight:600;color:#56707C;letter-spacing:.04em;text-transform:uppercase">Place details</span>
+        <button type="button" aria-label="Close drawer" style="background:none;border:0;color:#3F5864;padding:4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap">
+        <h2 id="dr-title" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.01em">Zoya</h2>
+        <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;background:#0B5562;color:#fff;border-radius:999px;padding:3px 10px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Halal</span>
+        <span style="font-size:12px;font-weight:500;background:#FBEBD3;color:#8A4B07;border-radius:6px;padding:3px 9px">Restaurant</span>
+      </div>
+      <div style="color:#3F5864;margin-top:4px">1000 Prospect St, La Jolla, CA 92037</div>
+      <div style="margin-top:12px;display:flex;align-items:center;gap:10px;background:#DDF0F2;border-radius:8px;padding:10px 12px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B5562" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
+        <span style="font-weight:600;color:#0B5562">Scheduled</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#0B5562">Sat 10/31 · 7:00–8:30p</span>
+        <a href="#" style="margin-left:auto;font-size:13px;font-weight:500">Open in Schedule</a>
+      </div>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;padding:20px 24px;display:grid;gap:18px;align-content:start">
+
+      <!-- quick facts -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:#F3F6F7;border-radius:8px;padding:10px 12px">
+          <div style="font-size:12px;color:#56707C;font-weight:500">From Airbnb</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:14px;margin-top:2px">5.0 mi · 13 min</div>
+        </div>
+        <div style="background:#F3F6F7;border-radius:8px;padding:10px 12px">
+          <div style="font-size:12px;color:#56707C;font-weight:500">Rain-safe</div>
+          <div style="font-size:14px;margin-top:2px;font-weight:500;color:#0B5562">Indoor <span style="font-family:'JetBrains Mono',monospace;font-weight:400;color:#56707C;font-size:12px">· Sat eve 69%</span></div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div>
+        <label class="lbl" for="f-name">Name</label>
+        <input id="f-name" class="fld" type="text" value="Zoya">
+      </div>
+
+      <div>
+        <label class="lbl" for="f-addr">Address</label>
+        <input id="f-addr" class="fld" type="text" value="1000 Prospect St, La Jolla, CA 92037">
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#1F5A35"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Verified, geocoded</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864">32.8472, -117.2741</span>
+          <a href="#" style="font-size:12px;margin-left:auto">Show on map</a>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div>
+          <label class="lbl" for="f-cat">Category</label>
+          <select id="f-cat" class="fld"><option>Restaurant</option><option>Activity</option><option>Lodging</option><option>Supercharger</option><option>Home</option></select>
+        </div>
+        <div>
+          <label class="lbl" for="f-dur">Est. duration (min)</label>
+          <input id="f-dur" class="fld" type="number" value="90" min="5" step="5" style="font-family:'JetBrains Mono',monospace">
+        </div>
+      </div>
+
+      <div>
+        <label class="lbl" for="f-hours">Hours</label>
+        <input id="f-hours" class="fld" type="text" value="Dinner service, check Google for tonight's hours">
+      </div>
+
+      <fieldset style="border:0;margin:0;padding:0">
+        <legend class="lbl" style="padding:0">Tags</legend>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{tags}}" as="t" hint-placeholder-count="6">
+            <button type="button" onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" style="{{t.style}}">{{t.label}}</button>
+          </sc-for>
+        </div>
+      </fieldset>
+
+      <div>
+        <label class="lbl" for="f-notes">Notes</label>
+        <textarea id="f-notes" class="fld" rows="3" style="resize:vertical">Reserve via Google. Rain 69% Sat evening, so indoor dinner works. Maghrib is 5:58p, so pray before heading over.</textarea>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <div class="lbl">Links</div>
+        <div style="display:grid;gap:8px">
+          <a href="#" style="display:flex;align-items:center;gap:10px;border:1px solid #D3DDE1;border-radius:8px;padding:9px 12px;text-decoration:none;font-weight:500">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>
+            Reserve via Google<span style="margin-left:auto;font-size:12px;color:#56707C;font-weight:400">google.com</span>
+          </a>
+          <a href="#" style="display:flex;align-items:center;gap:10px;border:1px solid #D3DDE1;border-radius:8px;padding:9px 12px;text-decoration:none;font-weight:500">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>
+            Menu (halal)<span style="margin-left:auto;font-size:12px;color:#56707C;font-weight:400">Halal options marked</span>
+          </a>
+          <button type="button" style="display:inline-flex;align-items:center;gap:6px;justify-self:start;background:none;border:0;color:#11707F;font-size:13px;font-weight:600;padding:2px 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add link</button>
+        </div>
+      </div>
+
+      <!-- Alternates -->
+      <div>
+        <label class="lbl" for="f-alt">Alternates</label>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;border:1px solid #D3DDE1;border-radius:8px;padding:7px 9px">
+          <span style="display:inline-flex;align-items:center;gap:6px;background:#E8EEF0;border-radius:999px;padding:4px 6px 4px 11px;font-size:13px;font-weight:500">Swap with Aladdin Cafe
+            <button type="button" aria-label="Remove alternate Aladdin Cafe" style="background:none;border:0;color:#3F5864;padding:0;display:inline-flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          </span>
+          <input id="f-alt" type="text" placeholder="Add another place" style="flex:1;min-width:120px;border:0;font:inherit;font-size:14px;padding:4px;color:#0E2530;background:transparent">
+        </div>
+        <div style="font-size:12px;color:#56707C;margin-top:5px">Aladdin Cafe is halal, 3.0 mi · 8 min from the Airbnb.</div>
+      </div>
+
+      <!-- Activity -->
+      <div>
+        <div class="lbl">Activity</div>
+        <ol style="list-style:none;margin:0;padding:0;display:grid;gap:10px">
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
+            <span style="width:22px;height:22px;border-radius:50%;background:#D9541E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">Ö</span>
+            <span><strong style="font-weight:600">Ömer</strong> moved this from Sun to Sat <span style="color:#56707C;font-family:'JetBrains Mono',monospace;font-size:12px">· 2h ago</span></span>
+          </li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
+            <span style="width:22px;height:22px;border-radius:50%;background:#11707F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">E</span>
+            <span><strong style="font-weight:600">Emmad</strong> added tag Halal <span style="color:#56707C;font-family:'JetBrains Mono',monospace;font-size:12px">· yesterday</span></span>
+          </li>
+          <li style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
+            <span style="width:22px;height:22px;border-radius:50%;background:#11707F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">E</span>
+            <span><strong style="font-weight:600">Emmad</strong> created this place <span style="color:#56707C;font-family:'JetBrains Mono',monospace;font-size:12px">· 3 days ago</span></span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Footer actions -->
+    <div style="border-top:1px solid #D3DDE1;padding:14px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff">
+      <button type="button" style="background:#D9541E;color:#fff;border:0;border-radius:10px;padding:10px 20px;font-size:14px;font-weight:600">Save</button>
+      <button type="button" style="background:#fff;color:#0E2530;border:1px solid #D3DDE1;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:500">Move to backups</button>
+      <button type="button" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#fff;color:#B42318;border:1px solid #F0C5BF;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>Delete</button>
+    </div>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1640}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = {tags:{Halal:true, Indoor:true, 'Rain-safe':true, Reservation:true, Outdoor:false, Free:false}};
+  }
+  renderVals() {
+    const on = 'border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500;background:#0E2530;color:#fff;border:1px solid #0E2530';
+    const off = 'border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500;background:#fff;color:#3F5864;border:1px solid #D3DDE1';
+    const tags = Object.keys(this.state.tags).map(k => ({
+      label:k, pressed:this.state.tags[k]?'true':'false', style:this.state.tags[k]?on:off,
+      toggle: () => this.setState({tags:Object.assign({}, this.state.tags, {[k]:!this.state.tags[k]})})
+    }));
+    return {tags};
+  }
+}
+</script>
+</body>
+</html>

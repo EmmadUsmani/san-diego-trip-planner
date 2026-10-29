@@ -1,0 +1,6 @@
+node_modules/
+.DS_Store
+design/.shots/
+.playwright-mcp/
+.wrangler/
+.dev.vars

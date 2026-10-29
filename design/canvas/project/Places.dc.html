@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Places — list view</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#11707F}a:hover{color:#0B5562}
+button{font-family:Inter,sans-serif;cursor:pointer}
+button:hover{filter:brightness(0.97)}
+input:focus,select:focus,button:focus-visible{outline:2px solid #11707F;outline-offset:1px}
+</style>
+</helmet>
+<div style="min-height:100vh;background:#F3F6F7;color:#0E2530;font-family:Inter,sans-serif;font-size:14px">
+
+  <!-- App chrome -->
+  <header style="background:#FFFFFF;border-bottom:1px solid #D3DDE1;display:flex;align-items:center;gap:28px;padding:0 32px;height:60px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D9541E" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.5" fill="#D9541E"/></svg>
+      La Jolla '26
+    </div>
+    <nav aria-label="Primary" style="display:flex;gap:4px;height:60px">
+      <a href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500">Today</a>
+      <a href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500">Schedule</a>
+      <a href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500">Map</a>
+      <a href="#" aria-current="page" style="display:flex;align-items:center;padding:0 14px;color:#0E2530;text-decoration:none;font-weight:600;border-bottom:3px solid #D9541E;box-sizing:border-box">Places</a>
+      <a href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500">Range</a>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#56707C"><span style="width:8px;height:8px;border-radius:50%;background:#11707F;display:inline-block"></span>Synced just now</span>
+      <div style="display:flex;align-items:center;gap:10px;background:#F3F6F7;border:1px solid #D3DDE1;border-radius:999px;padding:5px 6px 5px 14px;font-size:13px;font-weight:500">
+        <span>Oct 31 – Nov 3</span><span style="color:#56707C">·</span><span style="color:#3F5864">2 travelers</span>
+        <span style="display:flex"><span style="width:26px;height:26px;border-radius:50%;background:#11707F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600">E</span><span style="width:26px;height:26px;border-radius:50%;background:#D9541E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;margin-left:-6px;border:2px solid #F3F6F7;box-sizing:content-box">Ö</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main style="max-width:1376px;margin:0 auto;padding:28px 32px 56px;box-sizing:border-box">
+
+    <!-- Title row -->
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>
+        <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px;letter-spacing:-0.02em">Places</h1>
+        <p style="margin:6px 0 0;color:#3F5864">Everything in the plan and the idea pool. Distances are from the Airbnb, 3225 Idlewild Way (Clairemont).</p>
+      </div>
+      <button type="button" style="display:inline-flex;align-items:center;gap:8px;background:#D9541E;color:#fff;border:0;border-radius:10px;padding:11px 18px;font-weight:600;font-size:14px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        Add place
+      </button>
+    </div>
+
+    <!-- Toolbar -->
+    <div style="margin-top:20px;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 1px 2px rgba(14,37,48,.06)">
+      <div style="position:relative;flex:1 1 260px;max-width:340px">
+        <label for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search places</label>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#56707C" stroke-width="1.75" stroke-linecap="round" style="position:absolute;left:11px;top:11px" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Search name or neighborhood" onInput="{{onSearch}}" style="width:100%;box-sizing:border-box;border:1px solid #D3DDE1;border-radius:8px;padding:9px 12px 9px 34px;font:inherit;font-size:14px;color:#0E2530;background:#fff">
+      </div>
+
+      <div role="group" aria-label="View" style="display:inline-flex;background:#E8EEF0;border-radius:9px;padding:3px">
+        <button type="button" onClick="{{setCards}}" aria-pressed="{{cardsPressed}}" style="{{cardsBtn}}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></svg>Cards
+        </button>
+        <button type="button" onClick="{{setCompact}}" aria-pressed="{{compactPressed}}" style="{{compactBtn}}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Compact list
+        </button>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px">
+        <label for="sort" style="font-size:12px;color:#56707C;font-weight:500">Sort</label>
+        <select id="sort" onChange="{{onSort}}" style="border:1px solid #D3DDE1;border-radius:8px;padding:8px 10px;font:inherit;font-size:13px;background:#fff;color:#0E2530">
+          <option value="distance">Distance from Airbnb</option>
+          <option value="category">Category</option>
+        </select>
+      </div>
+
+      <div style="width:1px;height:26px;background:#D3DDE1"></div>
+
+      <div role="group" aria-label="Filters" style="display:flex;gap:8px;flex-wrap:wrap">
+        <sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+          <button type="button" onClick="{{c.toggle}}" aria-pressed="{{c.pressed}}" style="{{c.style}}">
+            <sc-if value="{{c.on}}" hint-placeholder-val="{{ true }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></sc-if>
+            {{c.label}}
+          </button>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- SCHEDULED -->
+    <section style="margin-top:32px" aria-labelledby="h-sched">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px">
+        <h2 id="h-sched" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Scheduled</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#DDF0F2;color:#0B5562;border-radius:999px;padding:2px 9px">{{schedCount}}</span>
+        <span style="color:#56707C;font-size:13px">Grouped by day. Drag the handle to reorder, or move into another day in Schedule.</span>
+      </div>
+      <div style="overflow-x:auto;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05)">
+        <div style="min-width:1040px">
+          <sc-for list="{{days}}" as="d" hint-placeholder-count="4">
+            <div>
+              <div style="display:flex;align-items:center;gap:12px;padding:10px 16px;background:#E8EEF0;border-top:1px solid #D3DDE1;border-bottom:1px solid #D3DDE1">
+                <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px">{{d.label}}</span>
+                <span style="font-size:12px;color:#3F5864">{{d.wx}}</span>
+                <span style="margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864">{{d.count}}</span>
+              </div>
+              <sc-for list="{{d.rows}}" as="r" hint-placeholder-count="3">
+                <div style="{{r.style}}">
+                  <div>
+                    <sc-if value="{{r.movable}}" hint-placeholder-val="{{ true }}"><span role="img" aria-label="Drag to reorder" style="color:#56707C;display:inline-flex;cursor:grab"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.6"/><circle cx="15" cy="6" r="1.6"/><circle cx="9" cy="12" r="1.6"/><circle cx="15" cy="12" r="1.6"/><circle cx="9" cy="18" r="1.6"/><circle cx="15" cy="18" r="1.6"/></svg></span></sc-if>
+                    <sc-if value="{{r.fixed}}" hint-placeholder-val="{{ false }}"><span role="img" aria-label="Locked" style="color:#0E2530;display:inline-flex"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></span></sc-if>
+                  </div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#0E2530">{{r.time}}</div>
+                  <div style="min-width:0">
+                    <span style="font-weight:600;font-size:14px">{{r.name}}</span>
+                    <sc-if value="{{r.halal}}" hint-placeholder-val="{{ false }}"><span style="margin-left:6px;font-size:11px;font-weight:600;background:#0B5562;color:#fff;border-radius:999px;padding:2px 8px">Halal</span></sc-if>
+                    <sc-if value="{{r.swapping}}" hint-placeholder-val="{{ false }}"><span style="margin-left:6px;font-size:11px;font-weight:600;background:#D9541E;color:#fff;border-radius:999px;padding:2px 8px">Swapping out</span></sc-if>
+                  </div>
+                  <div><span style="{{r.catStyle}}">{{r.cat}}</span></div>
+                  <div style="color:#3F5864;font-size:13px">{{r.addr}}</div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#0E2530">{{r.dist}}</div>
+                  <div style="text-align:right">
+                    <sc-if value="{{r.movable}}" hint-placeholder-val="{{ true }}"><button type="button" style="background:#fff;color:#3F5864;border:1px solid #D3DDE1;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:500">Unschedule</button></sc-if>
+                    <sc-if value="{{r.fixed}}" hint-placeholder-val="{{ false }}"><span style="font-size:12px;color:#56707C">Fixed event</span></sc-if>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </sc-for>
+          <sc-if value="{{noSched}}" hint-placeholder-val="{{ false }}"><div style="padding:24px;color:#56707C">No scheduled places match the current filters.</div></sc-if>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKUP ACTIVITIES + RESTAURANTS -->
+    <sc-for list="{{sections}}" as="sec" hint-placeholder-count="2">
+      <section style="margin-top:36px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+          <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">{{sec.title}}</h2>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#E8EEF0;color:#3F5864;border-radius:999px;padding:2px 9px">{{sec.count}}</span>
+          <span style="color:#56707C;font-size:13px">{{sec.sub}}</span>
+        </div>
+        <sc-if value="{{sec.empty}}" hint-placeholder-val="{{ false }}"><div style="background:#fff;border:1px dashed #D3DDE1;border-radius:10px;padding:24px;color:#56707C">No places match the current filters.</div></sc-if>
+
+        <!-- cards -->
+        <sc-if value="{{sec.cards}}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px">
+            <sc-for list="{{sec.items}}" as="it" hint-placeholder-count="4">
+              <article style="position:relative;background:#fff;border:1px solid #D3DDE1;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:9px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05)">
+                <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
+                  <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;line-height:1.25">{{it.name}}</h3>
+                  <sc-if value="{{it.halalYes}}" hint-placeholder-val="{{ false }}"><span style="flex:none;display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;background:#0B5562;color:#fff;border-radius:999px;padding:3px 9px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Halal</span></sc-if>
+                  <sc-if value="{{it.halalMaybe}}" hint-placeholder-val="{{ false }}"><span style="flex:none;font-size:11px;font-weight:600;background:#FCE9DF;color:#9A3412;border:1px dashed #D9541E;border-radius:999px;padding:2px 8px;white-space:nowrap">Halal unconfirmed</span></sc-if>
+                </div>
+                <div style="color:#56707C;font-size:12.5px;margin-top:-4px">{{it.hood}}</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;display:flex;gap:10px;flex-wrap:wrap;color:#0E2530">
+                  <span>{{it.dist}}</span><span style="color:#56707C">~{{it.dur}}</span>
+                </div>
+                <div style="display:flex;gap:6px;flex-wrap:wrap">
+                  <sc-for list="{{it.tags}}" as="t" hint-placeholder-count="3"><span style="{{t.style}}">{{t.label}}</span></sc-for>
+                </div>
+                <div style="font-size:12px;color:#56707C">{{it.hours}}</div>
+                <div style="display:flex;gap:8px;margin-top:auto;padding-top:6px;flex-wrap:wrap">
+                  <sc-if value="{{it.sched}}" hint-placeholder-val="{{ false }}">
+                    <span style="display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;background:#DDF0F2;color:#0B5562;border-radius:8px;padding:7px 10px">Scheduled · {{it.schedLabel}}</span>
+                    <a href="Place-Detail.dc.html" style="font-size:13px;font-weight:500;padding:7px 4px;text-decoration:none">Edit</a>
+                  </sc-if>
+                  <sc-if value="{{it.backup}}" hint-placeholder-val="{{ true }}">
+                    <button type="button" style="display:inline-flex;align-items:center;gap:5px;background:#0E2530;color:#fff;border:0;border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600">Add to day<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+                    <button type="button" onClick="{{it.onSwap}}" aria-expanded="{{it.swapOpen}}" style="{{it.swapBtn}}">Swap with…</button>
+                  </sc-if>
+                </div>
+                <sc-if value="{{it.swapOpen}}" hint-placeholder-val="{{ false }}">
+                  <div role="dialog" aria-label="Swap with a scheduled place" style="position:absolute;left:12px;top:calc(100% - 52px);width:352px;z-index:20;background:#fff;border:1px solid #0E2530;border-radius:10px;padding:14px;box-shadow:0 8px 28px rgba(14,37,48,.22);font-size:13px">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                      <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px">Swap in progress</span>
+                      <button type="button" onClick="{{it.onSwap}}" aria-label="Close" style="background:none;border:0;color:#56707C;padding:2px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+                    </div>
+                    <p style="margin:8px 0 10px;line-height:1.45">Swap <strong style="font-family:'JetBrains Mono',monospace;font-weight:500">Sat 2:00p</strong> Sea Cliff Trail with <span aria-hidden="true">→</span> <strong>Rose Canyon</strong></p>
+                    <div style="background:#F3F6F7;border-radius:8px;padding:10px;display:grid;gap:6px;font-size:12.5px">
+                      <div style="display:flex;justify-content:space-between;gap:8px"><span style="color:#56707C">Sea Cliff Trail</span><span style="font-family:'JetBrains Mono',monospace">11 mi → backups</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:8px"><span style="color:#56707C">Rose Canyon</span><span style="font-family:'JetBrains Mono',monospace">8 min from Airbnb</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:8px"><span style="color:#56707C">Weather Sat 2p</span><span style="font-family:'JetBrains Mono',monospace">19% rain</span></div>
+                    </div>
+                    <div style="margin-top:8px;font-size:12px;color:#3F5864">Rain-safe-ish: dirt trail, dries fast. Check-in at 4:00p is unaffected.</div>
+                    <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:12px">
+                      <button type="button" onClick="{{it.onSwap}}" style="background:#fff;border:1px solid #D3DDE1;border-radius:8px;padding:7px 12px;font-size:13px;font-weight:500;color:#3F5864">Cancel</button>
+                      <button type="button" onClick="{{it.onSwap}}" style="background:#D9541E;color:#fff;border:0;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:600">Confirm swap</button>
+                    </div>
+                  </div>
+                </sc-if>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <!-- compact -->
+        <sc-if value="{{sec.compact}}" hint-placeholder-val="{{ false }}">
+          <div style="overflow-x:auto;background:#fff;border:1px solid #D3DDE1;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06)">
+            <div style="min-width:1060px">
+              <sc-for list="{{sec.items}}" as="it" hint-placeholder-count="4">
+                <div style="position:relative;display:grid;grid-template-columns:1.7fr 1.2fr 140px 1.4fr 1.2fr 230px;gap:14px;align-items:center;padding:10px 16px;border-bottom:1px solid #E8EEF0">
+                  <div style="min-width:0">
+                    <span style="font-weight:600">{{it.name}}</span>
+                    <sc-if value="{{it.halalYes}}" hint-placeholder-val="{{ false }}"><span style="margin-left:6px;font-size:11px;font-weight:600;background:#0B5562;color:#fff;border-radius:999px;padding:2px 8px">Halal</span></sc-if>
+                    <sc-if value="{{it.halalMaybe}}" hint-placeholder-val="{{ false }}"><span style="margin-left:6px;font-size:11px;font-weight:600;background:#FCE9DF;color:#9A3412;border:1px dashed #D9541E;border-radius:999px;padding:1px 7px">Halal unconfirmed</span></sc-if>
+                    <div style="color:#56707C;font-size:12px">{{it.hood}}</div>
+                  </div>
+                  <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px">{{it.dist}}<div style="color:#56707C">~{{it.dur}}</div></div>
+                  <div></div>
+                  <div style="display:flex;gap:6px;flex-wrap:wrap">
+                    <sc-for list="{{it.tags}}" as="t" hint-placeholder-count="3"><span style="{{t.style}}">{{t.label}}</span></sc-for>
+                  </div>
+                  <div style="font-size:12px;color:#56707C">{{it.hours}}</div>
+                  <div style="display:flex;gap:8px;justify-content:flex-end">
+                    <sc-if value="{{it.sched}}" hint-placeholder-val="{{ false }}"><span style="font-size:12.5px;font-weight:600;background:#DDF0F2;color:#0B5562;border-radius:8px;padding:6px 10px">Scheduled · {{it.schedLabel}}</span></sc-if>
+                    <sc-if value="{{it.backup}}" hint-placeholder-val="{{ true }}">
+                      <button type="button" style="background:#0E2530;color:#fff;border:0;border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600">Add to day</button>
+                      <button type="button" onClick="{{it.onSwap}}" style="{{it.swapBtn}}">Swap with…</button>
+                    </sc-if>
+                  </div>
+                  <sc-if value="{{it.swapOpen}}" hint-placeholder-val="{{ false }}">
+                    <div role="dialog" aria-label="Swap with a scheduled place" style="position:absolute;right:16px;top:calc(100% - 4px);width:340px;z-index:20;background:#fff;border:1px solid #0E2530;border-radius:10px;padding:14px;box-shadow:0 8px 28px rgba(14,37,48,.22);font-size:13px">
+                      <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px">Swap in progress</div>
+                      <p style="margin:8px 0 10px;line-height:1.45">Swap <strong style="font-family:'JetBrains Mono',monospace;font-weight:500">Sat 2:00p</strong> Sea Cliff Trail with <span aria-hidden="true">→</span> <strong>Rose Canyon</strong> (8 min from Airbnb, rain-safe-ish)</p>
+                      <div style="display:flex;justify-content:flex-end;gap:8px">
+                        <button type="button" onClick="{{it.onSwap}}" style="background:#fff;border:1px solid #D3DDE1;border-radius:8px;padding:6px 12px;font-size:13px;color:#3F5864">Cancel</button>
+                        <button type="button" onClick="{{it.onSwap}}" style="background:#D9541E;color:#fff;border:0;border-radius:8px;padding:6px 14px;font-size:13px;font-weight:600">Confirm swap</button>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+      </section>
+    </sc-for>
+
+    <!-- BRUNCH -->
+    <section style="margin-top:36px">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+        <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Brunch spots</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#E8EEF0;color:#3F5864;border-radius:999px;padding:2px 9px">{{brunchCount}}</span>
+        <span style="color:#56707C;font-size:13px">Closing times matter. Bar spans 7a to 5p; orange is the planned slot.</span>
+      </div>
+      <sc-if value="{{brunchEmpty}}" hint-placeholder-val="{{ false }}"><div style="background:#fff;border:1px dashed #D3DDE1;border-radius:10px;padding:24px;color:#56707C">No places match the current filters.</div></sc-if>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+        <sc-for list="{{brunch}}" as="b" hint-placeholder-count="3">
+          <article style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;padding:14px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05)">
+            <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
+              <h3 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px">{{b.name}}</h3>
+              <span style="flex:none;font-size:11px;font-weight:600;background:#DDF0F2;color:#0B5562;border-radius:999px;padding:3px 9px">{{b.slot}}</span>
+            </div>
+            <div style="color:#56707C;font-size:12.5px;margin-top:2px">{{b.addr}}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;margin-top:8px">{{b.dist}}</div>
+            <div style="margin-top:12px">
+              <div style="position:relative;height:14px;background:#E8EEF0;border-radius:4px;overflow:hidden" role="img" aria-label="{{b.aria}}">
+                <div style="{{b.openStyle}}"></div>
+                <div style="{{b.extStyle}}"></div>
+                <div style="{{b.slotStyle}}"></div>
+              </div>
+              <div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#56707C;margin-top:3px"><span>7a</span><span>9a</span><span>11a</span><span>1p</span><span>3p</span><span>5p</span></div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:8px;flex-wrap:wrap">
+              <span style="font-size:12.5px;font-weight:600;color:#9A3412">{{b.closes}}</span>
+              <span style="display:flex;gap:8px">
+                <button type="button" style="background:#0E2530;color:#fff;border:0;border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600">Add to day</button>
+                <button type="button" style="background:#fff;color:#0E2530;border:1px solid #D3DDE1;border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:500">Swap with…</button>
+              </span>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- SUPERCHARGERS -->
+    <section style="margin-top:36px">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+        <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Superchargers</h2>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#E8EEF0;color:#3F5864;border-radius:999px;padding:2px 9px">{{scCount}}</span>
+        <span style="color:#56707C;font-size:13px">Suggested: Mon morning, 20 to 80% in about 25 min. Source: DCFC Tracker.</span>
+      </div>
+      <div style="overflow-x:auto;background:#fff;border:1px solid #D3DDE1;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06)">
+        <div style="min-width:900px">
+          <sc-for list="{{chargers}}" as="s" hint-placeholder-count="6">
+            <div style="display:grid;grid-template-columns:28px 1.4fr 1.6fr 130px 150px 130px;gap:14px;align-items:center;padding:10px 16px;border-bottom:1px solid #E8EEF0">
+              <span style="color:#2F6FDB;display:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></svg></span>
+              <div><span style="font-weight:600">{{s.name}}</span><sc-if value="{{s.closest}}" hint-placeholder-val="{{ false }}"><span style="margin-left:6px;font-size:11px;font-weight:600;background:#DDF0F2;color:#0B5562;border-radius:999px;padding:2px 8px">Closest</span></sc-if></div>
+              <div style="color:#3F5864;font-size:13px">{{s.addr}}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px">{{s.dist}}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#3F5864">{{s.stalls}}</div>
+              <div style="text-align:right"><button type="button" style="background:#fff;color:#2F6FDB;border:1px solid #2F6FDB;border-radius:8px;padding:6px 10px;font-size:12.5px;font-weight:600">Add stop</button></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+
+    <p style="margin:28px 0 0;color:#56707C;font-size:12px">Distances and drive times are straight-line heuristics, marked ~ where estimated. Changes sync to both travelers.</p>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3180}}'>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = {view:'cards', filters:{halal:false, rain:false, open:false, near:false}, sort:'distance', q:'', swap:'rose'};
+  }
+  renderVals() {
+    const s = this.state, q = s.q.trim().toLowerCase();
+    const pass = i => (!s.filters.halal || i.halal==='yes') && (!s.filters.rain || i.rain) && (!s.filters.open || i.open) && (!s.filters.near || i.mi<5) && (!q || (i.name+' '+(i.hood||i.addr||'')).toLowerCase().indexOf(q)>=0);
+    const set = (k,v) => () => this.setState({[k]:v});
+    const toggle = k => () => this.setState({filters:Object.assign({}, s.filters, {[k]:!s.filters[k]})});
+    const segOn = 'display:inline-flex;align-items:center;gap:6px;border:0;border-radius:7px;padding:6px 12px;font-size:13px;font-weight:600;background:#fff;color:#0E2530;box-shadow:0 1px 2px rgba(14,37,48,.12)';
+    const segOff = 'display:inline-flex;align-items:center;gap:6px;border:0;border-radius:7px;padding:6px 12px;font-size:13px;font-weight:500;background:transparent;color:#3F5864';
+    const chipBase = 'display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:500;';
+    const chipDefs = [['halal','Halal'],['rain','Rain-safe'],['open','Open now'],['near','Near Airbnb <5 mi']];
+    const chips = chipDefs.map(([k,label]) => ({label, on:s.filters[k], pressed:s.filters[k]?'true':'false', toggle:toggle(k),
+      style: chipBase + (s.filters[k] ? 'background:#0E2530;color:#fff;border:1px solid #0E2530' : 'background:#fff;color:#3F5864;border:1px solid #D3DDE1')}));
+
+    const catStyle = c => {
+      const m = {Food:['#FBEBD3','#8A4B07'], Activity:['#DDF0F2','#0B5562'], Booked:['#0E2530','#FFFFFF'], Lodging:['#E8EEF0','#3F5864']}[c] || ['#E8EEF0','#3F5864'];
+      return 'display:inline-block;font-size:12px;font-weight:500;border-radius:6px;padding:3px 9px;background:'+m[0]+';color:'+m[1];
+    };
+    const rowBase = 'display:grid;grid-template-columns:32px 150px 1.5fr 100px 1.9fr 140px 120px;gap:14px;align-items:center;padding:11px 16px;border-bottom:1px solid #E8EEF0;';
+    const R = (time,name,cat,addr,mi,min,o={}) => Object.assign({time,name,cat,addr,mi,rain:true,open:true,halal:'',fixed:false}, o, {dist: mi===0 ? 'At Airbnb' : (o.est?'~':'')+mi.toFixed(1)+' mi · '+min+' min'});
+    const sched = [
+      {label:'Sat 10/31', wx:'Cloudy, 71°/63° · rain moves in after 6p', rows:[
+        R('12:30–1:45p','Brunch · Sugar and Scribe','Food','7660 Fay Ave Unit I, La Jolla',6.0,14,{est:1}),
+        R('2:00–3:30p','Hike · Sea Cliff Coastal Bluff Trail','Activity','100 8th St, Del Mar',11,20,{id:'sea',rain:false}),
+        R('4:00p','Check-in · Airbnb (after 3:00p)','Lodging','3225 Idlewild Way, San Diego 92117',0,0,{fixed:true}),
+        R('7:00–8:30p','Dinner · Zoya','Food','1000 Prospect St, La Jolla',5.0,13,{halal:'yes'}) ]},
+      {label:'Sun 11/1', wx:'Rain, 69°/61° · clocks fall back at 2:00a', rows:[
+        R('9:00–10:00a','Brunch · Fig Tree Cafe','Food','5119 Cass St, Pacific Beach',5.0,12),
+        R('10:15a–1:45p','Birch Aquarium','Activity','2300 Expedition Way, La Jolla',7.0,15,{est:1}),
+        R('4:15–5:15p','Flagship South Harbor Tour','Booked','990 N Harbor Dr, San Diego',15,22,{fixed:true,est:1}),
+        R('6:15–7:30p','Dinner · Aladdin Cafe','Food','5420 Clairemont Mesa Blvd, San Diego',3.0,8,{halal:'yes'}) ]},
+      {label:'Mon 11/2', wx:'Sunny, 79°/64°', rows:[
+        R('9:00–10:00a','Brunch · Shorehouse Kitchen','Food','2236 Avenida De La Playa, La Jolla',5.5,12,{est:1}),
+        R('10:30a–3:00p','San Diego Zoo','Activity','Balboa Park, San Diego',13,20,{rain:false,est:1}),
+        R('3:15–4:30p','Balboa Park museum (tentative)','Activity','Balboa Park, San Diego',13,20,{est:1}),
+        R('5:30–7:00p','Dinner · Sultan Baklava','Food','El Cajon, CA',22,30,{halal:'yes',est:1}) ]},
+      {label:'Tue 11/3', wx:'Mostly sunny, 80°/67°', rows:[
+        R('before 10:00a','Check-out · Airbnb','Lodging','3225 Idlewild Way, San Diego 92117',0,0,{fixed:true}),
+        R('10:15–11:15a','Brunch · Shorehouse Kitchen','Food','2236 Avenida De La Playa, La Jolla',5.5,12,{est:1}) ]}
+    ];
+    let schedCount = 0;
+    const days = sched.map(d => {
+      const rows = d.rows.filter(pass).map(r => {
+        const swapping = r.id==='sea' && s.swap==='rose';
+        return {time:r.time, name:r.name, cat:r.cat, addr:r.addr, dist:r.dist, halal:r.halal==='yes', fixed:r.fixed, movable:!r.fixed, swapping,
+          catStyle:catStyle(r.cat), style: rowBase + (swapping?'background:#FCE9DF':'background:#fff')};
+      });
+      schedCount += rows.length;
+      return {label:d.label, wx:d.wx, count: rows.length+(rows.length===1?' item':' items'), rows};
+    }).filter(d => d.rows.length);
+
+    const tagStyle = t => {
+      const m = {'Rain-safe':['#DDF0F2','#0B5562'], 'Rain-safe-ish':['#FBEBD3','#8A4B07'], 'Indoor':['#DDF0F2','#0B5562'], 'Outdoor':['#E8EEF0','#3F5864'], 'Free':['#E3F1E6','#1F5A35'], 'Paid':['#E8EEF0','#3F5864']}[t] || ['#E8EEF0','#3F5864'];
+      return 'font-size:11.5px;font-weight:500;border-radius:999px;padding:2px 9px;background:'+m[0]+';color:'+m[1];
+    };
+    const swapBtnOn = 'background:#FCE9DF;color:#9A3412;border:1px solid #D9541E;border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600';
+    const swapBtnOff = 'background:#fff;color:#0E2530;border:1px solid #D3DDE1;border-radius:8px;padding:7px 11px;font-size:13px;font-weight:500';
+    const A = (id,name,hood,mi,min,dur,tags,hours,o={}) => Object.assign({id,name,hood,mi,min,dur,tags,hours,halal:'',rain:tags.indexOf('Rain-safe')>=0||tags.indexOf('Rain-safe-ish')>=0||tags.indexOf('Indoor')>=0,open:true,cat:tags[0],sched:''}, o);
+    const acts = [
+      A('rose','Rose Canyon Open Space Park','Hike · Clairemont',3.6,8,'1.5–2 h',['Outdoor','Rain-safe-ish','Free'],'Open daily, dawn to dusk',{}),
+      A('coast','Coast Walk Trail','La Jolla · Scripps Park to the Cove',6.0,14,'1–1.5 h',['Outdoor','Free'],'Open daily, dawn to dusk · tide pools',{rain:false}),
+      A('meander','Scripps Coastal Meander Trailhead','La Jolla · near Birch',7.0,15,'1 h',['Outdoor','Free'],'Open daily, dawn to dusk',{rain:false}),
+      A('geisel','UCSD Geisel Library','La Jolla · UCSD',6.0,13,'45 min',['Indoor','Rain-safe','Free'],'Hours vary by term · check before going',{}),
+      A('padel','Kingdom of Padel','Pickleball · San Diego',10,18,'1–2 h',['Indoor','Rain-safe','Paid'],'Book a court ahead',{}),
+      A('littleitaly','Little Italy','Downtown · food tour',11,17,'2–3 h',['Outdoor','Free'],'Shops and food stalls · evenings busiest',{rain:false}),
+      A('devil','Devil’s Dozen Donuts','Little Italy · on the way',11,17,'20 min',['Paid'],'Morning to early afternoon',{rain:true}),
+      A('mcasd','Museum of Contemporary Art San Diego','La Jolla',6.0,13,'1–1.5 h',['Indoor','Rain-safe','Paid'],'Check hours · closed some weekdays',{})
+    ];
+    const rests = [
+      A('zoya','Zoya','Restaurant · La Jolla',5.0,13,'1.5 h',['Indoor','Rain-safe'],'Dinner · reserve via Google',{halal:'yes',sched:'Sat 7:00p',cat:'Restaurant'}),
+      A('aladdin','Aladdin Cafe','Restaurant · Clairemont Mesa',3.0,8,'1.25 h',['Indoor','Rain-safe'],'Dinner',{halal:'yes',sched:'Sun 6:15p',cat:'Restaurant'}),
+      A('akhis','Akhi’s Authentic Shawarma & Kebab','747 Turquoise St Unit 200 · south La Jolla/PB',3.5,9,'1 h',['Indoor','Rain-safe'],'Lunch and dinner',{halal:'yes',cat:'Restaurant'}),
+      A('urban','Urban Skillet','9254 Scranton Rd #105',8.0,14,'1 h',['Indoor','Rain-safe'],'Breakfast and lunch',{halal:'yes',cat:'Restaurant'}),
+      A('khyber','Khyber Pass Zarparan','University Ave · near Balboa Park',10,17,'1.25 h',['Indoor','Rain-safe'],'Confirm halal before booking',{halal:'maybe',cat:'Restaurant'}),
+      A('georges','George’s at the Cove','La Jolla Cove',5.5,12,'1.5 h',['Indoor','Paid'],'Lunch and dinner · reservations',{cat:'Restaurant'}),
+      A('urbane','Urbane Cafe','La Jolla · banh mi sandwiches',5.5,12,'45 min',['Indoor','Rain-safe'],'Lunch',{cat:'Restaurant'}),
+      A('sultan','Sultan Baklava','El Cajon',17,22,'1.5 h',['Indoor','Rain-safe'],'Far from the coast · may skip a museum',{halal:'yes',cat:'Restaurant'})
+    ];
+    const cmp = (a,b) => s.sort==='category' ? ((a.cat||'').localeCompare(b.cat||'') || a.mi-b.mi) : a.mi-b.mi;
+    const fmtMin = m => m;
+    const build = list => list.filter(pass).sort(cmp).map(i => {
+      const open = s.swap===i.id;
+      return {name:i.name, hood:i.hood, dist:i.mi.toFixed(1)+' mi · '+i.min+' min', dur:i.dur, hours:i.hours,
+        tags:i.tags.map(t => ({label:t, style:tagStyle(t)})),
+        halalYes:i.halal==='yes', halalMaybe:i.halal==='maybe', sched:!!i.sched, backup:!i.sched, schedLabel:i.sched,
+        swapOpen:open, swapBtn: open?swapBtnOn:swapBtnOff,
+        onSwap: () => this.setState({swap: open ? null : i.id})};
+    });
+    const mk = (title, sub, list) => { const items = build(list); return {title, sub, items, count:items.length, empty:items.length===0, cards:s.view==='cards' && items.length>0, compact:s.view==='compact' && items.length>0}; };
+    const sections = [
+      mk('Backup activities', 'Idea pool. Add to a day, or swap with something already scheduled.', acts),
+      mk('Backup restaurants', 'Halal status shown per place. Zoya and Aladdin Cafe are already on the schedule.', rests)
+    ];
+
+    // Brunch hours bar: 7a..5p => 600 min span from 7:00
+    const pct = h => Math.max(0,Math.min(100,(h-7)/10*100));
+    const B = (name,addr,mi,min,open,close,ext,slot,sh,eh,closes,o={}) => Object.assign({name,addr,mi,min,close,ext,slot,sh,eh,closes,rain:false,open:true,halal:'',hood:addr}, o, {open:true});
+    const bl = [
+      B('Sugar and Scribe','7660 Fay Ave Unit I, La Jolla',6.0,14,8,14.5,14.5,'Sat 12:30p',12.5,13.75,'Closes 2:30p',{}),
+      B('Fig Tree Cafe','5119 Cass St, Pacific Beach',5.0,12,8,15,15,'Sun 9:00a',9,10,'Closes 3:00p',{}),
+      B('Shorehouse Kitchen','2236 Avenida De La Playa, La Jolla',5.5,12,8,14.5,15.5,'Mon 9:00a · Tue 10:15a',9,10,'Closes 2:30p weekdays · 3:30p weekends',{})
+    ];
+    const brunchF = bl.filter(pass);
+    const brunch = brunchF.sort(cmp).map(b => ({
+      name:b.name, addr:b.addr, dist:b.mi.toFixed(1)+' mi · '+b.min+' min', slot:b.slot, closes:b.closes,
+      aria:b.name+' open until '+b.closes.replace('Closes ',''),
+      openStyle:'position:absolute;top:0;bottom:0;left:'+pct(8)+'%;width:'+(pct(b.close)-pct(8))+'%;background:#11707F;opacity:.35',
+      extStyle:'position:absolute;top:0;bottom:0;left:'+pct(b.close)+'%;width:'+(pct(b.ext)-pct(b.close))+'%;background:repeating-linear-gradient(45deg,#11707F 0 3px,transparent 3px 6px);opacity:.35',
+      slotStyle:'position:absolute;top:2px;bottom:2px;left:'+pct(b.sh)+'%;width:'+(pct(b.eh)-pct(b.sh))+'%;background:#D9541E;border-radius:3px'
+    }));
+
+    const chargersAll = [
+      {name:'Liberty Park Plaza', addr:'4340 Genesee Ave, 92117', mi:1.5, min:5, stalls:'8 stalls · 250 kW', closest:true},
+      {name:'Independence Square', addr:'7373 Clairemont Mesa Blvd', mi:3.0, min:8, stalls:'12 stalls · 250 kW'},
+      {name:'Kearny Office Park', addr:'8344 Clairemont Mesa Blvd', mi:3.5, min:9, stalls:'16 stalls'},
+      {name:'Villa La Jolla', addr:'8657 Villa La Jolla Dr · in mall w/ shops & restaurants', mi:5.0, min:10, stalls:'Stalls n/a'},
+      {name:'Fashion Valley Mall', addr:'7007 Friars Rd', mi:7.0, min:14, stalls:'48 stalls · 250 kW'},
+      {name:'Morena Blvd', addr:'845 Morena Blvd', mi:8.0, min:15, stalls:'16 stalls · 325 kW'}
+    ];
+    const chargers = chargersAll.filter(c => (!q || c.name.toLowerCase().indexOf(q)>=0) && (!s.filters.near || c.mi<5)).map(c => ({name:c.name, addr:c.addr, closest:!!c.closest, dist:(c.mi<2||c.mi===3||c.mi===3.5||c.mi===7||c.mi===8?'~':'')+c.mi.toFixed(1)+' mi · '+c.min+' min', stalls:c.stalls}));
+
+    return {
+      chips, days, schedCount, noSched: days.length===0, sections,
+      brunch, brunchCount: brunch.length, brunchEmpty: brunch.length===0,
+      chargers, scCount: chargers.length,
+      cardsBtn: s.view==='cards'?segOn:segOff, compactBtn: s.view==='compact'?segOn:segOff,
+      cardsPressed: s.view==='cards'?'true':'false', compactPressed: s.view==='compact'?'true':'false',
+      setCards: set('view','cards'), setCompact: set('view','compact'),
+      onSort: e => this.setState({sort: e.target.value}),
+      onSearch: e => this.setState({q: e.target.value})
+    };
+  }
+}
+</script>
+</body>
+</html>
