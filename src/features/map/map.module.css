@@ -1,0 +1,301 @@
+.root {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--gap);
+  height: calc(100dvh - var(--header-h) - 48px);
+  min-height: 520px;
+}
+.mapWrap {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--chip-off);
+  min-height: 0;
+}
+.mapBox,
+.mapEl {
+  position: absolute;
+  inset: 0;
+}
+.measuring .mapEl {
+  cursor: crosshair;
+}
+.mapFail {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.toolbar {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  pointer-events: auto;
+}
+.chips :global(.chip) {
+  box-shadow: var(--shadow-pill);
+  background-color: rgba(255, 255, 255, 0.92);
+}
+.chips :global(.chip[aria-pressed="true"]) {
+  background-color: var(--ink);
+}
+.count {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.floatCard {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  width: min(360px, calc(100% - 24px));
+  background: var(--card);
+  border-radius: var(--radius-block);
+  padding: 14px 16px;
+  box-shadow: 0 6px 24px rgba(31, 35, 40, 0.18);
+  font-size: 14px;
+  z-index: 3;
+}
+.floatCard p {
+  margin: 4px 0;
+}
+.popupName {
+  margin: 0 28px 2px 0;
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+}
+.popupActions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+.err {
+  color: var(--low);
+}
+
+/* markers */
+.pin {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 4px rgba(31, 35, 40, 0.35);
+  font: 700 13px var(--font-text);
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0;
+}
+.plan {
+  background: var(--ink);
+  color: #fff;
+}
+.idea {
+  background: #7fd1b9;
+  width: 20px;
+  height: 20px;
+}
+.food {
+  background: #ffa77a;
+  width: 20px;
+  height: 20px;
+}
+.charger {
+  background: var(--sunshine);
+  width: 20px;
+  height: 20px;
+}
+.pinSel {
+  outline: 3px solid var(--link);
+}
+.pinAirbnb {
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 4px;
+  transform: rotate(-45deg);
+  background: var(--sunset);
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(31, 35, 40, 0.4);
+}
+.pinMeasure {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  background: var(--sunset);
+  color: #fff;
+  font: 700 12px var(--font-text);
+  display: grid;
+  place-items: center;
+  border: 2px solid #fff;
+}
+
+/* side panel */
+.panel {
+  background: var(--card);
+  border-radius: var(--radius-card);
+  padding: var(--pad-card);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.handle {
+  display: none;
+}
+.panelTitle {
+  margin: 0 0 12px;
+  font-family: var(--font-display);
+  font-size: 20px;
+}
+.stopScroll {
+  overflow-y: auto;
+  min-height: 0;
+}
+.dayHead {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+.stops {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stop {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-block);
+  padding: 8px;
+  cursor: pointer;
+  font: inherit;
+  color: var(--ink);
+}
+.stop:hover,
+.stopSel {
+  background: var(--page);
+}
+.stopText {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+}
+.stopTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+.num {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+.num:empty {
+  width: 10px;
+  height: 10px;
+  background: var(--ink);
+}
+.numFood {
+  background: var(--food-ink);
+}
+
+@media (max-width: 719px) {
+  .root {
+    display: block;
+    position: relative;
+    margin: -24px calc(-1 * var(--page-pad)) calc(-1 * (var(--tabbar-h) + 32px));
+    height: calc(100dvh - var(--header-h) - var(--tabbar-h));
+    min-height: 0;
+  }
+  .mapWrap {
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+  }
+  .toolbar {
+    right: 12px;
+  }
+  .floatCard {
+    bottom: 120px;
+  }
+  .panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    border-radius: 20px 20px 0 0;
+    padding: 6px 16px 12px;
+    max-height: 60%;
+    box-shadow: 0 -4px 20px rgba(31, 35, 40, 0.15);
+  }
+  .handle {
+    display: block;
+    border: 0;
+    background: transparent;
+    padding: 8px 0 10px;
+    cursor: pointer;
+  }
+  .handle span {
+    display: block;
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    margin: 0 auto;
+  }
+  .panelTitle {
+    font-size: 17px;
+    margin-bottom: 6px;
+  }
+  .stopScroll {
+    max-height: 0;
+    overflow: hidden;
+  }
+  .sheetOpen .stopScroll {
+    max-height: 40dvh;
+    overflow-y: auto;
+  }
+}
