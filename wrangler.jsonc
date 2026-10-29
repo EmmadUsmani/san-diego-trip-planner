@@ -13,7 +13,7 @@
     {
       "binding": "DB",
       "database_name": "sd-trip-planner",
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "05a6d766-9865-4d61-9fd1-f2bf6abe6bcf",
       "migrations_dir": "db/migrations"
     }
   ],
