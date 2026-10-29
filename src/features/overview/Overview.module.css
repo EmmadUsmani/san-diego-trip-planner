@@ -1,0 +1,99 @@
+.page { display: flex; flex-direction: column; gap: 32px; }
+.desktop { display: flex; flex-direction: column; gap: 32px; }
+.mobile { display: none; }
+@media (max-width: 719px) {
+  .desktop { display: none; }
+  .mobile { display: flex; flex-direction: column; gap: 12px; }
+}
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1fr auto minmax(340px, 420px); gap: 24px; align-items: center; }
+.pill { display: inline-block; background: #ffeeb5; color: #5a4a1a; font-weight: 600; font-size: 14px; padding: 6px 14px; border-radius: 999px; margin-bottom: 18px; }
+.title { font-size: 72px; line-height: 1; letter-spacing: -0.03em; margin: 0 0 20px; font-family: var(--font-display); font-weight: 800; }
+.dates { display: flex; align-items: center; gap: 12px; font-size: 20px; flex-wrap: wrap; }
+.who { display: flex; align-items: center; gap: 10px; font-size: 15px; color: var(--muted); }
+.avatars { display: flex; }
+.av { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 700; border: 2px solid var(--page); }
+.av + .av { margin-left: -8px; }
+.avE { background: var(--avatar-e-bg); color: var(--avatar-e-ink); }
+.avO { background: var(--avatar-o-bg); color: var(--avatar-o-ink); }
+.art { display: flex; justify-content: center; }
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr minmax(320px, 420px); }
+  .art { display: none; }
+  .title { font-size: 56px; }
+}
+
+/* airbnb */
+.airbnb { padding: var(--pad-card); display: flex; flex-direction: column; gap: 14px; }
+.airbnb h2 { margin: 0; font-size: 22px; }
+.addr { color: var(--muted); font-size: 16px; margin-top: 4px; }
+.times { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+.times b { display: block; color: var(--ink); font-size: 16px; }
+.codeRow { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.dark { background: var(--ink); color: #fff; border: 0; border-radius: 999px; padding: 12px 20px; font-weight: 700; font-size: 15px; cursor: pointer; }
+.dark:hover { background: #000; }
+.dark:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.code { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.2em; font-size: 20px; }
+.codeHint { color: var(--muted); font-size: 14px; }
+.guide { margin-left: auto; font-weight: 600; font-size: 15px; }
+
+/* day cards */
+.days { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); align-items: stretch; }
+@media (max-width: 1100px) { .days { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.day { padding: var(--pad-card); display: flex; flex-direction: column; }
+.dayHead { display: flex; justify-content: space-between; align-items: flex-start; min-height: 46px; }
+.dayHead h3 { margin: 0; font-size: 24px; }
+.dayHead small { display: block; color: var(--muted); font-size: 14px; }
+.wx { display: flex; align-items: center; gap: 10px; padding: 14px 0 16px; border-bottom: 1px solid var(--hairline); }
+.hi { font: 800 28px var(--font-display); }
+.lo { color: var(--muted); font-size: 17px; }
+.rain { margin-left: auto; background: var(--sky); color: var(--sky-ink); font-weight: 600; font-size: 13px; padding: 5px 10px; border-radius: 999px; }
+.plan { list-style: none; margin: 0; padding: 14px 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.item { display: flex; align-items: center; gap: 10px; padding: 7px 0; font-size: 16px; }
+.item .t { margin-left: auto; color: var(--muted); font-size: 14px; white-space: nowrap; }
+.item.skipped .n { text-decoration: line-through; color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: #aaa; }
+.dot.food { background: #f9a98a; }
+.dot.activity { background: #6fcfb0; }
+.dot.fixed { background: var(--fixed); }
+.dot.booked { background: var(--sunshine); }
+.empty { color: var(--muted); font-size: 14px; padding: 7px 0; }
+.prayers { display: flex; justify-content: space-between; border-top: 1px solid var(--hairline); padding: 14px 0 12px; gap: 4px; }
+.pr { display: flex; flex-direction: column; align-items: center; font-size: 12px; color: var(--muted); gap: 2px; }
+.pr span:last-child { font-size: 13px; }
+.pr.em { color: var(--ink); font-weight: 700; }
+.pr.em span:last-child { font-size: 14px; }
+.battery { font-size: 14px; color: var(--muted); }
+.battery.low { color: var(--low); font-weight: 600; }
+.wxErr { color: var(--muted); font-size: 13px; padding: 14px 0 16px; border-bottom: 1px solid var(--hairline); }
+
+/* mobile today */
+.mHead { display: flex; justify-content: space-between; align-items: flex-start; }
+.mHead h1 { margin: 0; font-size: 32px; }
+.mHead small { color: var(--muted); }
+.batt { background: var(--card); border-radius: 999px; padding: 10px 16px; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; }
+.bar { width: 22px; height: 10px; border-radius: 3px; background: #e6e3de; overflow: hidden; }
+.bar i { display: block; height: 100%; background: #2fa77d; }
+.bar.low i { background: var(--low); }
+.tile { border-radius: 24px; padding: 22px 24px; }
+.now { background: #d9f2ea; color: #1c4a3a; }
+.next { background: #fff0c2; color: #5a4a1a; }
+.k { font-weight: 700; font-size: 15px; }
+.now .k { color: #1c6b50; }
+.next .k { color: #7a5f00; }
+.tile .big { font: 800 32px/1.1 var(--font-display); margin: 6px 0 4px; color: var(--ink); }
+.tile .sub { font-size: 17px; }
+.maps { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; background: var(--ink); color: #fff; font-weight: 700; padding: 12px 20px; border-radius: 999px; text-decoration: none; }
+.maps:hover { color: #fff; }
+.mini { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mini > div { border-radius: 20px; padding: 16px 18px; font-size: 14px; }
+.mini b { display: block; font: 800 28px var(--font-display); margin-top: 4px; }
+.pray { background: var(--prayer-pill); color: var(--prayer-pill-ink); }
+.rainTile { background: var(--sky); color: var(--sky-ink); }
+.list { list-style: none; margin: 0; padding: 8px 22px; background: var(--card); border-radius: 24px; }
+.list li { display: flex; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--hairline); font-size: 16px; }
+.list li:last-child { border-bottom: 0; }
+.list .when { color: var(--muted); width: 44px; }
+.list .pn { color: var(--prayer); }
+.list .pn.em { font-weight: 700; color: var(--prayer-pill-ink); }
