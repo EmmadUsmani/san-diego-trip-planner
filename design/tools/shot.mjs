@@ -36,7 +36,7 @@ const server = http.createServer((req, res) => {
 const port = server.address().port;
 
 const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width, height: 900 }, deviceScaleFactor: 1 });
+const page = await browser.newPage({ viewport: { width, height: 200 }, deviceScaleFactor: 1 });
 const consoleErrors = [];
 page.on('console', (m) => { if (m.type() === 'error' && !m.text().includes('{{')) consoleErrors.push(m.text()); });
 page.on('pageerror', (e) => consoleErrors.push(e.message));

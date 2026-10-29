@@ -8,379 +8,120 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0}
-button{font-family:Inter,sans-serif;cursor:pointer}
-a{color:#11707F}a:hover{color:#0B5562}
-.hatch{background-image:repeating-linear-gradient(135deg,rgba(63,88,100,.10) 0,rgba(63,88,100,.10) 2px,transparent 2px,transparent 8px)}
+body{margin:0;background:#F7F6F3}
+a{color:#2C6E91}
+button{font-family:Figtree,system-ui,sans-serif;cursor:pointer}
 </style>
 </helmet>
-<div style="position:relative;width:390px;height:1320px;background:#F3F6F7;font-family:Inter,sans-serif;color:#0E2530;overflow:hidden;">
-
-  <!-- app header -->
-  <div style="display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 16px;box-sizing:border-box;">
-    <div style="display:flex;align-items:center;gap:8px;">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E2530" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
-      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;letter-spacing:-.01em;">La Jolla '26</span>
+<div style="min-height: 897px; display: flex; flex-direction: column; font-family: Figtree, system-ui, sans-serif; color: #1F2328; font-variant-numeric: tabular-nums; background: #F7F6F3; width: 390px; box-sizing: border-box">
+  <main style="flex: 1; padding: 24px 20px 32px; display: flex; flex-direction: column; gap: 16px">
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; letter-spacing: -0.03em; font-size: 32px; line-height: 1">Schedule</h1>
+    <div role="group" aria-label="Day" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px">
+      <sc-for list="{{days}}" as="d" hint-placeholder-count="4">
+        <button type="button" onClick="{{d.pick}}" aria-pressed="{{d.pressed}}" style="{{d.style}}">
+          <span style="font-size: 15px; font-weight: 700">{{d.name}}</span>
+          <span style="font-size: 12px; opacity: .8">{{d.wx}}</span>
+        </button>
+      </sc-for>
     </div>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <span style="display:flex;align-items:center;gap:5px;font-size:12px;color:#3F5864;"><span style="width:7px;height:7px;border-radius:999px;background:#11707F;display:inline-block;"></span>Synced</span>
-      <span style="display:flex;">
-        <span style="width:28px;height:28px;border-radius:999px;background:#11707F;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;">E</span>
-        <span style="width:28px;height:28px;border-radius:999px;background:#0E2530;color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;margin-left:-8px;">Ö</span>
-      </span>
-    </div>
-  </div>
-
-  <!-- title + travel toggle -->
-  <div style="display:flex;align-items:center;justify-content:space-between;padding:2px 16px 10px;">
-    <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.01em;">Schedule</h1>
-    <button role="switch" aria-checked="{{travelOn}}" onClick="{{toggleTravel}}" style="display:flex;align-items:center;gap:8px;height:44px;padding:0 4px 0 8px;border:0;background:transparent;color:#3F5864;font-size:13px;font-weight:500;">
-      Auto travel
-      <span style="{{switchStyle}}"><span style="{{knobStyle}}"></span></span>
-    </button>
-  </div>
-
-  <!-- day picker -->
-  <div role="tablist" aria-label="Day" style="display:flex;gap:8px;padding:0 16px;">
-    <sc-for list="{{days}}" as="d" hint-placeholder-count="4">
-      <button role="tab" aria-selected="{{d.selected}}" onClick="{{d.pick}}" style="{{d.style}}">
-        <span style="{{d.dowStyle}}">{{d.dow}}</span>
-        <span style="{{d.dateStyle}}">{{d.date}}</span>
-        <sc-if value="{{d.isCloud}}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 010-8 5.5 5.5 0 0110.5 1.5A3.3 3.3 0 0117 18z"/></svg></sc-if>
-        <sc-if value="{{d.isRain}}" hint-placeholder-val="{{ true }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15a4 4 0 010-8 5.5 5.5 0 0110.5 1.5A3.3 3.3 0 0117 15z"/><path d="M8 18v2.5M12 18v2.5M16 18v2.5"/></svg></sc-if>
-        <sc-if value="{{d.isSun}}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></svg></sc-if>
-        <sc-if value="{{d.isPart}}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8.5" cy="8.5" r="2.8"/><path d="M8.5 2.5v1M2.5 8.5h1M4.3 4.3l.7.7M12.7 4.3l-.7.7"/><path d="M9 21a3.5 3.5 0 010-7 4.8 4.8 0 019 1.3A3 3 0 0117 21z"/></svg></sc-if>
-        <span style="{{d.hlStyle}}">{{d.hl}}</span>
-        <span style="{{d.pStyle}}">{{d.precip}}</span>
-      </button>
-    </sc-for>
-  </div>
-
-  <!-- day summary -->
-  <div style="margin:12px 16px 4px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
-    <div>
-      <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;">{{dayTitle}}</div>
-      <div style="font-size:12px;color:#3F5864;margin-top:2px;">{{daySummary}}</div>
-    </div>
-    <div style="text-align:right;flex:none;">
-      <span style="{{battStyle}}">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="8" width="16" height="9" rx="2"/><path d="M21 11v3"/></svg>
-        {{battText}}
-      </span>
-      <div style="font-size:11px;color:#56707C;margin-top:3px;">est. end of day</div>
-    </div>
-  </div>
-
-  <!-- agenda -->
-  <div style="padding:8px 16px 0;display:flex;flex-direction:column;gap:6px;">
-    <sc-for list="{{rows}}" as="r" hint-placeholder-count="12">
-      <div style="display:contents;">
-
-        <sc-if value="{{r.isEvent}}" hint-placeholder-val="{{ true }}">
-          <div style="{{r.wrapStyle}}">
-            <div style="display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding-top:3px;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;">{{r.time}}</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;">{{r.endTime}}</span>
-              <span style="{{r.rainStyle}}">
-                <svg width="9" height="11" viewBox="0 0 10 12" fill="currentColor" aria-hidden="true"><path d="M5 0C5 0 0.5 5 0.5 8a4.5 4.5 0 009 0C9.5 5 5 0 5 0z"/></svg>{{r.rainTxt}}
-              </span>
-            </div>
-            <div style="{{r.cardStyle}}">
-              <div style="flex:1;min-width:0;">
-                <div style="{{r.titleStyle}}">{{r.title}}</div>
-                <div style="{{r.metaStyle}}">{{r.meta}}</div>
-                <div style="{{r.chipsStyle}}">
-                  <sc-if value="{{r.tNow}}" hint-placeholder-val="{{ false }}"><span style="font-size:11px;font-weight:600;letter-spacing:.06em;padding:2px 8px;border-radius:999px;background:#C84A16;color:#fff;">NOW</span></sc-if>
-                  <sc-if value="{{r.tDone}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Done</span></sc-if>
-                  <sc-if value="{{r.tHalal}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Halal</span></sc-if>
-                  <sc-if value="{{r.tIndoor}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Indoor</span></sc-if>
-                  <sc-if value="{{r.tRainSafe}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Rain-safe</span></sc-if>
-                  <sc-if value="{{r.tOutdoor}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Outdoor</span></sc-if>
-                  <sc-if value="{{r.tOptional}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Optional</span></sc-if>
-                  <sc-if value="{{r.tTentative}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Tentative</span></sc-if>
-                  <sc-if value="{{r.tSuggested}}" hint-placeholder-val="{{ false }}"><span style="{{r.chip}}">Suggested</span></sc-if>
-                </div>
+    <sc-if value="{{showNote}}" hint-placeholder-val="{{ true }}">
+      <span style="font-size: 14px; color: #5F656D">Clocks fall back 1 hr at 2:00 am</span>
+    </sc-if>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+        <div style="{{r.rowStyle}}">
+          <span style="width: 44px; flex: none; font-size: 13px; color: #5F656D">{{r.time}}</span>
+          <sc-if value="{{r.isBlock}}" hint-placeholder-val="{{ true }}">
+            <div style="{{r.blockStyle}}">
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+                <span style="font-weight: 600; font-size: 16px; line-height: 1.25">{{r.name}}</span>
+                <span style="font-size: 13px; color: {{r.subColor}}">{{r.sub}}</span>
               </div>
-              <sc-if value="{{r.lock}}" hint-placeholder-val="{{ false }}">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-label="Locked, fixed event" role="img" style="flex:none;margin-top:2px;"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+              <sc-if value="{{r.booked}}" hint-placeholder-val="{{ false }}">
+                <span style="display: flex; align-items: center; gap: 6px; flex: none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8A6A00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-label="Booked ticket" role="img"><path d="M4 8a2 2 0 0 0 2-2h12a2 2 0 0 0 2 2v8a2 2 0 0 0-2 2H6a2 2 0 0 0-2-2z"></path><path d="M10 6v12" stroke-dasharray="2 2"></path></svg><button type="button" style="font: inherit; font-size: 13px; font-weight: 600; background: #FFFFFF; color: #1F2328; border: 0; border-radius: 999px; height: 32px; padding: 0 12px">Skip</button></span>
               </sc-if>
-              <sc-if value="{{r.grip}}" hint-placeholder-val="{{ false }}">
-                <svg width="18" height="24" viewBox="0 0 18 24" fill="{{r.gripColor}}" aria-label="Reorder handle" role="img" style="flex:none;margin-top:0;"><circle cx="6" cy="6" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="6" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="6" cy="18" r="1.6"/><circle cx="12" cy="18" r="1.6"/></svg>
+              <sc-if value="{{r.locked}}" hint-placeholder-val="{{ false }}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-label="Locked" role="img" style="flex: none"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>
+              </sc-if>
+              <sc-if value="{{r.movable}}" hint-placeholder-val="{{ true }}">
+                <button type="button" aria-label="Reorder" style="flex: none; width: 36px; height: 44px; margin-right: -8px; border: 0; background: transparent; color: #5F656D; display: grid; place-items: center; padding: 0"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="9" cy="6" r="1.7"></circle><circle cx="15" cy="6" r="1.7"></circle><circle cx="9" cy="12" r="1.7"></circle><circle cx="15" cy="12" r="1.7"></circle><circle cx="9" cy="18" r="1.7"></circle><circle cx="15" cy="18" r="1.7"></circle></svg></button>
               </sc-if>
             </div>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{r.isSlot}}" hint-placeholder-val="{{ false }}">
-          <div style="display:grid;grid-template-columns:58px 1fr;gap:10px;">
-            <div></div>
-            <div style="height:50px;border:2px dashed #C84A16;border-radius:8px;background:#FCE9DF;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#6E2508;">Drop here to move 2:00p stop</div>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{r.isDrive}}" hint-placeholder-val="{{ false }}">
-          <div style="display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:center;">
-            <div></div>
-            <div class="hatch" style="height:30px;border-radius:8px;background-color:#EEF1F3;display:flex;align-items:center;gap:8px;padding:0 10px;color:#3F5864;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16v-4l1.6-4.2A2 2 0 018.5 6.5h7a2 2 0 011.9 1.3L19 12v4M4 16h16v2.5H4z"/></svg>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;">{{r.text}}</span>
+          </sc-if>
+          <sc-if value="{{r.isDrive}}" hint-placeholder-val="{{ false }}">
+            <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #5F656D; padding-left: 4px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14v-5l-2-5H7l-2 5z"></path><circle cx="8" cy="17" r="1.6"></circle><circle cx="16" cy="17" r="1.6"></circle></svg><span>{{r.name}}</span></span>
+          </sc-if>
+          <sc-if value="{{r.isPrayer}}" hint-placeholder-val="{{ false }}">
+            <div style="flex: 1; display: flex; align-items: center; gap: 10px">
+              <span style="{{r.pill}}">{{r.name}}</span>
+              <span style="{{r.line}}"></span>
             </div>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{r.isPray}}" hint-placeholder-val="{{ false }}">
-          <div style="{{r.prayWrap}}">
-            <div style="{{r.prayTime}}">{{r.time}}</div>
-            <div>
-              <div style="display:flex;align-items:center;gap:8px;">
-                <span style="{{r.chipStyle}}">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z"/></svg>
-                  {{r.label}}
-                </span>
-                <div style="{{r.lineStyle}}"></div>
-              </div>
-              <div style="{{r.noteStyle}}">{{r.note}}</div>
-            </div>
-          </div>
-        </sc-if>
-
-        <sc-if value="{{r.isNote}}" hint-placeholder-val="{{ false }}">
-          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;margin:2px 0;background:#fff;border:1px solid #D3DDE1;border-radius:8px;font-size:13px;color:#3F5864;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3F5864" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-            {{r.text}}
-          </div>
-        </sc-if>
-
-      </div>
-    </sc-for>
-  </div>
-
-  <!-- reorder hint -->
-  <sc-if value="{{showHint}}" hint-placeholder-val="{{ true }}">
-    <div style="position:absolute;left:16px;right:16px;bottom:76px;background:#0E2530;color:#fff;border-radius:999px;height:40px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;font-weight:500;box-shadow:0 4px 12px rgba(14,37,48,.25);">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M7 8l5-5 5 5M7 16l5 5 5-5"/></svg>
-      Drag to reorder within the day. Locked events stay put.
+          </sc-if>
+        </div>
+      </sc-for>
     </div>
-  </sc-if>
-
-  <!-- bottom tab bar -->
-  <nav aria-label="Primary" style="position:absolute;left:0;right:0;bottom:0;height:64px;background:#fff;border-top:1px solid #D3DDE1;display:flex;">
-    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>Today</button>
-    <button aria-current="page" style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#11707F;font-size:11px;font-weight:600;min-height:44px;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Schedule</button>
-    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4l-5 2v14l5-2 6 2 5-2V4l-5 2z"/><path d="M9 4v14M15 6v14"/></svg>Map</button>
-    <button style="flex:1;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#56707C;font-size:11px;font-weight:500;min-height:44px;">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Places</button>
-  </nav>
+  </main>
+<nav aria-label="Main" style="display: flex; background: #FFFFFF; border-top: 1px solid #ECEAE6; padding: 8px 12px 20px; box-sizing: border-box">
+  <a href="#" style="flex: 1; min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5F656D; font-size: 12px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"></path></svg><span>Today</span></a>
+  <a href="#" style="flex: 1; min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #1F2328; font-size: 12px; font-weight: 700"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg><span>Schedule</span></a>
+  <a href="#" style="flex: 1; min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5F656D; font-size: 12px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"></path><circle cx="12" cy="10" r="2.3"></circle></svg><span>Map</span></a>
+  <a href="#" style="flex: 1; min-height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-decoration: none; color: #5F656D; font-size: 12px; font-weight: 500"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v17l-6-4-6 4z"></path></svg><span>Places</span></a>
+</nav>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1320}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":897}}'>
 class Component extends DCLogic {
-  constructor(props) {
-    super(props);
-    this.state = { day: "sun", travel: true };
-  }
-
+  constructor(props) { super(props); this.state = { day: 'sun' }; }
   renderVals() {
-    const sel = this.state.day;
-    const travelOn = this.state.travel;
-
-    /* ---------- builders ---------- */
-    const E = (cat, t, e, title, meta, rain, tags, extra) =>
-      Object.assign({ k: "e", cat, t, e, title, meta, rain, tags: tags || [] }, extra || {});
-    const D = (text) => ({ k: "d", text });
-    const P = (label, t, strong, note, conflict) => ({ k: "p", label, t, strong, note: note || "", conflict: !!conflict });
-    const N = (text) => ({ k: "n", text });
-    const SLOT = { k: "s" };
-
-    /* ---------- agenda per day (real trip data) ---------- */
-    const AGENDA = {
-      sat: [
-        E("stop", "9:30a", "", "Leave Valencia", "27579 N Weeping Willow Dr", 3, []),
-        D("13 mi · 20 min"),
-        E("stop", "9:55a", "", "Pick up Ömer", "16638 Nicklaus Dr, Unit 98, Sylmar", 3, []),
-        D("Sylmar to Del Mar · ~125 mi · 2h 25m"),
-        P("Dhuhr", "12:32p", true, "At brunch"),
-        E("food", "12:30p", "1:45p", "Brunch · Sugar and Scribe", "7660 Fay Ave Unit I, La Jolla · closes 2:30p", 19, []),
-        D("~6 mi · 12 min"),
-        E("act", "2:00p", "3:30p", "Hike · Sea Cliff Coastal Bluff Trail", "100 8th St, Del Mar · 11 mi from Airbnb", 19, ["outdoor"]),
-        P("Asr", "3:36p", false),
-        D("11 mi · 20 min"),
-        E("fixed", "4:00p", "", "Airbnb check-in", "3225 Idlewild Way · after 3:00p · door 8038", 19, []),
-        P("Maghrib", "5:58p", true, "Rain moves in after 6p"),
-        D("5 mi · 12 min"),
-        E("food", "7:00p", "8:30p", "Dinner · Zoya", "1000 Prospect St, La Jolla · reserve via Google", 69, ["halal", "indoor"]),
-        P("Isha", "7:08p", false),
-        N("Clocks fall back tonight at 2:00a. You gain an hour.")
-      ],
-      sun: [
-        N("Daylight saving ended at 2:00a. Times below are PST."),
-        E("food", "9:00a", "10:00a", "Brunch · Fig Tree Cafe", "5119 Cass St, Pacific Beach", 84, [], { done: true }),
-        D("~5 mi · 12 min"),
-        E("act", "10:15a", "1:45p", "Birch Aquarium", "2300 Expedition Way, La Jolla · open 9–5", 84, ["indoor", "rainsafe"], { now: true }),
-        P("Dhuhr", "11:32a", true, "During Birch Aquarium"),
-        D("15 mi · 24 min"),
-        SLOT,
-        E("act", "2:00p", "3:30p", "Little Italy · Devil's Dozen", "Backup stop, on the way to the harbor", 53, ["optional"], { lifted: true }),
-        P("Asr", "2:36p", false),
-        D("~1 mi · 4 min · arrive 3:45p"),
-        E("fixed", "4:15p", "5:15p", "Flagship South Harbor Tour", "990 N Harbor Dr · booked · arrive 3:45p", 53, []),
-        P("Maghrib", "4:58p", true, "Falls during the tour. Pray after and combine with Isha.", true),
-        D("~14 mi · 22 min"),
-        P("Isha", "6:07p", false),
-        E("food", "6:15p", "7:30p", "Dinner · Aladdin Cafe", "5420 Clairemont Mesa Blvd · 3 mi from Airbnb", 25, ["halal"])
-      ],
-      mon: [
-        E("charge", "8:30a", "8:55a", "Supercharge · Liberty Park Plaza", "4340 Genesee Ave · 20 to 80% · ~25 min", 2, ["suggested"]),
-        D("~8 mi · 15 min"),
-        E("food", "9:00a", "10:00a", "Brunch · Shorehouse Kitchen", "2236 Avenida De La Playa, La Jolla · closes 3:30p", 2, []),
-        D("~17 mi · 25 min"),
-        E("act", "10:30a", "3:00p", "San Diego Zoo", "Balboa Park", 2, ["outdoor"]),
-        P("Dhuhr", "11:32a", true, "During the zoo"),
-        P("Asr", "2:35p", false),
-        D("~1 mi · 5 min"),
-        E("act", "3:15p", "4:30p", "Balboa Park museum", "Modern Art or Natural History", 2, ["tentative"]),
-        P("Maghrib", "4:57p", true),
-        D("~18 mi · 28 min"),
-        E("food", "5:30p", "7:00p", "Dinner · Sultan Baklava", "El Cajon · far. Could skip the museum.", 2, []),
-        P("Isha", "6:06p", false)
-      ],
-      tue: [
-        E("fixed", "by 10:00a", "", "Airbnb check-out", "3225 Idlewild Way · before 10:00a", 3, []),
-        D("~8 mi · 15 min"),
-        E("food", "10:15a", "11:15a", "Brunch", "Shorehouse Kitchen or Sugar and Scribe", 3, []),
-        P("Dhuhr", "11:32a", true, "Pray before leaving"),
-        D("To Sylmar · ~135 mi · 2h 30m"),
-        E("stop", "2:15p", "", "Drop off Ömer", "Sylmar", 3, []),
-        P("Asr", "2:34p", false),
-        D("13 mi · 20 min"),
-        E("stop", "2:40p", "", "Home in Valencia", "Arrive with ~12% battery", 3, [])
-      ]
-    };
-
-    const DAYS = [
-      { id: "sat", dow: "Sat", date: "10/31 PDT", icon: "cloud", hl: "71°/63°", precip: "69%", pv: 69, title: "Saturday, Oct 31 · PDT", summary: "Cloudy · rain from 6p (69%) · sunset 5:58p", batt: 38 },
-      { id: "sun", dow: "Sun", date: "11/1 PST", icon: "rain", hl: "69°/61°", precip: "87%", pv: 87, title: "Sunday, Nov 1 · Today · PST", summary: "Rain until ~4p (53% midday) · ~0.37 in · sunset 4:57p", batt: 25, today: true },
-      { id: "mon", dow: "Mon", date: "11/2 PST", icon: "sun", hl: "79°/64°", precip: "11%", pv: 11, title: "Monday, Nov 2 · PST", summary: "Sunny · dry daytime (0–2%) · sunset 4:57p", batt: 62 },
-      { id: "tue", dow: "Tue", date: "11/3 PST", icon: "part", hl: "80°/67°", precip: "5%", pv: 5, title: "Tuesday, Nov 3 · PST", summary: "Mostly sunny · sunset 4:57p · drive home", batt: 12 }
+    const D = [
+      { id: 'sat', name: 'Sat', wx: '71° · 69%' },
+      { id: 'sun', name: 'Sun', wx: '69° · 87%' },
+      { id: 'mon', name: 'Mon', wx: '79° · 11%' },
+      { id: 'tue', name: 'Tue', wx: '80° · 5%' }
     ];
-
-    /* ---------- day picker ---------- */
-    const days = DAYS.map((d) => {
-      const on = d.id === sel;
-      return {
-        dow: d.dow, date: d.date, hl: d.hl, precip: "rain " + d.precip,
-        selected: on,
-        isCloud: d.icon === "cloud", isRain: d.icon === "rain", isSun: d.icon === "sun", isPart: d.icon === "part",
-        pick: () => this.setState({ day: d.id }),
-        style: "flex:1;min-height:104px;box-sizing:border-box;border-radius:10px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;" +
-          (on ? "background:#0E2530;color:#fff;border:1px solid #0E2530;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);" : "background:#fff;color:#0E2530;border:1px solid #D3DDE1;"),
-        dowStyle: "font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;",
-        dateStyle: "font-family:'JetBrains Mono',monospace;font-size:11px;" + (on ? "color:#C9D6DC;" : "color:#56707C;"),
-        hlStyle: "font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;",
-        pStyle: "font-family:'JetBrains Mono',monospace;font-size:11px;" + (on ? "color:#A9C4F5;" : "color:#1D4A9E;")
-      };
-    });
-    const cur = DAYS.find((d) => d.id === sel);
-
-    /* battery chip */
-    const b = cur.batt;
-    let bb = "#DDF0F2", bc = "#0B5562", bd = "#B5DDE2";
-    if (b < 20) { bb = "#FBE3DA"; bc = "#8F2A06"; bd = "#F0B9A3"; }
-    else if (b < 50) { bb = "#FBF0DC"; bc = "#7A4E0B"; bd = "#EBCF9B"; }
-    const battStyle = "display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 10px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;background:" + bb + ";color:" + bc + ";border:1px solid " + bd + ";";
-
-    /* ---------- category styles ---------- */
-    const CAT = {
-      act: { bg: "#DDF0F2", t: "#0B5562", m: "#2A5E69", bd: "#DDF0F2", grip: "#2A5E69" },
-      food: { bg: "#FBEBD3", t: "#7A4306", m: "#7A4306", bd: "#FBEBD3", grip: "#7A4306" },
-      fixed: { bg: "#0E2530", t: "#FFFFFF", m: "#C9D6DC", bd: "#0E2530", grip: "#C9D6DC" },
-      stop: { bg: "#FFFFFF", t: "#0E2530", m: "#3F5864", bd: "#D3DDE1", grip: "#56707C" },
-      charge: { bg: "#DEE9FB", t: "#1D4A9E", m: "#264E96", bd: "#DEE9FB", grip: "#264E96" }
+    const A = (time, name, sub) => ({ k: 'act', time, name, sub });
+    const F = (time, name, sub) => ({ k: 'food', time, name, sub });
+    const B = (time, name, sub) => ({ k: 'book', time, name, sub });
+    const X = (time, name, sub) => ({ k: 'fix', time, name, sub });
+    const N = (time, name, sub) => ({ k: 'plain', time, name, sub });
+    const V = (time, name) => ({ k: 'drive', time, name });
+    const P = (time, name, strong) => ({ k: 'prayer', time, name, strong });
+    const S = {
+      sat: [P('5:57', 'Fajr', true), V('9:30', 'Valencia to Sylmar · 20 min'), V('9:55', 'To La Jolla · ~2h 30'), F('12:30', 'Sugar and Scribe', 'until 1:45'), P('12:32', 'Dhuhr', true), V('', '~15 min'), A('2:00', 'Sea Cliff Trail', 'until 3:30'), P('3:36', 'Asr', false), V('', '~25 min'), X('4:00', 'Check in', 'after 3:00'), P('5:58', 'Maghrib', true), V('', '~20 min'), F('7:00', 'Zoya', 'until 8:30'), P('7:08', 'Isha', false)],
+      sun: [P('4:58', 'Fajr', true), F('9:00', 'Fig Tree Cafe', 'until 10:00'), V('', '~12 min'), A('10:15', 'Birch Aquarium', 'until 1:45'), P('11:32', 'Dhuhr', true), P('2:36', 'Asr', false), V('', '24 min'), B('4:15', 'Harbor Tour', 'until 5:15'), V('', '~22 min'), P('4:58', 'Maghrib', true), P('6:07', 'Isha', false), F('6:15', 'Aladdin Cafe', 'until 7:30')],
+      mon: [P('4:58', 'Fajr', true), F('9:00', 'Shorehouse Kitchen', 'until 10:00'), V('', '~25 min'), A('10:30', 'San Diego Zoo', 'until 3:00'), P('11:32', 'Dhuhr', true), P('2:35', 'Asr', false), V('', '~10 min'), A('3:15', 'Balboa Park museum', 'until 4:30 · tentative'), V('', '~18 mi'), P('4:57', 'Maghrib', true), F('5:30', 'Sultan Baklava', 'until 7:00'), P('6:06', 'Isha', false)],
+      tue: [P('4:59', 'Fajr', true), X('by 10', 'Check out', 'before 10:00'), V('', '~10 min'), F('10:15', 'Brunch', 'until 11:15'), P('11:32', 'Dhuhr', true), V('11:45', 'Drive home'), N('2:15', 'Drop Ömer', ''), P('2:34', 'Asr', false), V('', '~25 min'), N('2:40', 'Home', '')]
     };
-
-    /* ---------- rows ---------- */
-    const rows = [];
-    AGENDA[sel].forEach((it) => {
-      const r = { isEvent: false, isSlot: false, isDrive: false, isPray: false, isNote: false };
-      if (it.k === "d") {
-        if (!travelOn) return;
-        r.isDrive = true; r.text = it.text;
-      } else if (it.k === "n") {
-        r.isNote = true; r.text = it.text;
-      } else if (it.k === "s") {
-        r.isSlot = true;
-      } else if (it.k === "p") {
-        r.isPray = true;
-        r.label = it.label; r.time = it.t; r.note = it.note;
-        const base = "display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:600;flex:none;";
-        r.prayWrap = "display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:start;min-height:28px;" + (it.conflict ? "background:#FCE9DF;border-radius:8px;padding:6px 0;margin:2px 0;" : "");
-        if (it.strong) {
-          r.chipStyle = base + "background:#4B4FC4;color:#fff;";
-          r.lineStyle = "flex:1;border-top:2px solid #4B4FC4;";
-          r.prayTime = "font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#4B4FC4;padding:" + (it.conflict ? "3px 0 0 6px" : "3px 0 0 0") + ";";
-        } else {
-          r.chipStyle = base + "background:transparent;color:#6366B8;border:1px dashed rgba(75,79,196,.45);font-weight:500;";
-          r.lineStyle = "flex:1;border-top:2px dashed rgba(75,79,196,.35);";
-          r.prayTime = "font-family:'JetBrains Mono',monospace;font-size:12px;color:#6366B8;padding:3px 0 0 0;";
-        }
-        r.noteStyle = it.note ? "margin-top:4px;font-size:12px;line-height:16px;font-weight:" + (it.conflict ? 600 : 400) + ";color:" + (it.conflict ? "#6E2508" : "#56707C") + ";padding-right:" + (it.conflict ? 8 : 0) + "px;" : "display:none;";
+    const fill = { act: ['#D9F2EA', '#3E4A45'], food: ['#FFE3D3', '#5C4033'], book: ['#FFF0C2', '#5A4A1A'], fix: ['#1F2328', '#C9CDD2'], plain: ['#EFEDE9', '#4A4F56'] };
+    const day = this.state.day;
+    const rows = S[day].map((e) => {
+      const base = 'display: flex; align-items: center; gap: 8px; ';
+      const o = { time: e.time, name: e.name, isBlock: false, isDrive: false, isPrayer: false, booked: false, locked: false, movable: false, sub: e.sub || '', subColor: '', blockStyle: '', pill: '', line: '' };
+      if (e.k === 'drive') { o.isDrive = true; o.rowStyle = base + 'min-height: 32px'; }
+      else if (e.k === 'prayer') {
+        o.isPrayer = true; o.rowStyle = base + 'min-height: 36px';
+        o.pill = e.strong ? 'font-size: 13px; font-weight: 600; background: #ECE9FB; color: #4A3FB0; padding: 4px 12px; border-radius: 999px' : 'font-size: 13px; color: #6A62B8; padding: 4px 0';
+        o.line = e.strong ? 'flex: 1; border-top: 2px solid #7B6FDB' : 'flex: 1; border-top: 1px dashed rgba(123,111,219,.5)';
       } else {
-        const c = CAT[it.cat];
-        r.isEvent = true;
-        r.time = it.t; r.endTime = it.e ? "to " + it.e : "";
-        r.title = it.title; r.meta = it.meta;
-        const p = it.rain;
-        const al = (0.07 + (p / 100) * 0.25).toFixed(2);
-        r.rainTxt = p + "%";
-        r.rainStyle = "display:inline-flex;align-items:center;gap:3px;padding:1px 6px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#1D4A9E;font-weight:" + (p >= 50 ? 600 : 500) + ";background:rgba(47,111,219," + al + ");";
-        const lifted = !!it.lifted;
-        r.wrapStyle = "display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:start;" +
-          (lifted ? "position:relative;z-index:2;margin-top:-34px;transform:translate(6px,0) rotate(-1.2deg);" : "") +
-          (it.done ? "opacity:.62;" : "");
-        r.cardStyle = "display:flex;align-items:flex-start;gap:8px;box-sizing:border-box;padding:10px 10px 10px 12px;border-radius:8px;min-height:56px;background:" + c.bg + ";border:1px solid " + c.bd + ";" +
-          (it.cat === "stop" ? "" : "") +
-          (it.tags.indexOf("tentative") >= 0 ? "border:1px dashed #0B5562;" : "") +
-          (it.now ? "box-shadow:0 0 0 2px #C84A16;" : "") +
-          (lifted ? "box-shadow:0 14px 28px rgba(14,37,48,.28),0 0 0 2px #C84A16;background:#DDF0F2;" : "");
-        r.titleStyle = "font-size:14px;font-weight:600;line-height:19px;color:" + c.t + ";";
-        r.metaStyle = "font-size:12px;line-height:16px;margin-top:1px;color:" + c.m + ";";
-        const has = it.tags.length > 0 || it.now || it.done;
-        r.chipsStyle = "display:flex;flex-wrap:wrap;gap:6px;margin-top:" + (has ? 6 : 0) + "px;";
-        r.chip = it.cat === "fixed"
-          ? "font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.14);color:#fff;"
-          : "font-size:11px;font-weight:500;padding:2px 8px;border-radius:999px;background:rgba(255,255,255,.78);color:" + c.t + ";border:1px solid rgba(14,37,48,.10);";
-        r.tNow = !!it.now; r.tDone = !!it.done;
-        r.tHalal = it.tags.indexOf("halal") >= 0;
-        r.tIndoor = it.tags.indexOf("indoor") >= 0;
-        r.tRainSafe = it.tags.indexOf("rainsafe") >= 0;
-        r.tOutdoor = it.tags.indexOf("outdoor") >= 0;
-        r.tOptional = it.tags.indexOf("optional") >= 0;
-        r.tTentative = it.tags.indexOf("tentative") >= 0;
-        r.tSuggested = it.tags.indexOf("suggested") >= 0;
-        r.lock = it.cat === "fixed";
-        r.grip = it.cat !== "fixed" && !it.done;
-        r.gripColor = lifted ? "#C84A16" : c.grip;
+        const f = fill[e.k];
+        o.isBlock = true; o.rowStyle = base + 'min-height: 64px; padding: 4px 0'; o.subColor = f[1];
+        o.blockStyle = 'flex: 1; min-width: 0; min-height: 64px; box-sizing: border-box; border-radius: 14px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; background: ' + f[0] + '; color: ' + (e.k === 'fix' ? '#FFFFFF' : '#1F2328');
+        o.booked = e.k === 'book'; o.locked = e.k === 'fix'; o.movable = e.k !== 'fix' && e.k !== 'plain';
+        if (!e.sub) o.sub = '';
       }
-      rows.push(r);
+      return o;
     });
-
     return {
-      days,
-      rows,
-      dayTitle: cur.title,
-      daySummary: cur.summary,
-      battStyle,
-      battText: b + "%",
-      showHint: sel === "sun",
-      travelOn: String(travelOn),
-      toggleTravel: () => this.setState({ travel: !this.state.travel }),
-      switchStyle: "display:inline-flex;align-items:center;width:40px;height:24px;border-radius:999px;box-sizing:border-box;padding:2px;background:" + (travelOn ? "#11707F" : "#B8C6CC") + ";justify-content:" + (travelOn ? "flex-end" : "flex-start") + ";",
-      knobStyle: "width:20px;height:20px;border-radius:999px;background:#fff;display:block;"
+      showNote: day === 'sun',
+      days: D.map((d) => {
+        const on = d.id === day;
+        return { name: d.name, wx: d.wx, pressed: on ? 'true' : 'false', pick: () => this.setState({ day: d.id }),
+          style: 'font: inherit; border: 0; border-radius: 16px; min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 0 2px; ' + (on ? 'background: #1F2328; color: #FFFFFF' : 'background: #EFEDE9; color: #1F2328') };
+      }),
+      rows
     };
   }
 }

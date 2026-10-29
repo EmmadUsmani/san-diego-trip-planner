@@ -2,678 +2,355 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Map — day routes</title>
+<title>Map</title>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0}
-a{color:#11707F}a:hover{color:#0B5562}
-button{font-family:Inter,system-ui,sans-serif;cursor:pointer}
-button:hover{filter:brightness(0.97)}
-.tabl:hover{color:#0E2530}
+body{margin:0;background:#F7F6F3}
+a{color:#2C6E91}a:hover{color:#1F5370}
+button{font-family:inherit}
 </style>
 </helmet>
-<div style="min-width:0;background:#F3F6F7;font-family:Inter,system-ui,sans-serif;color:#0E2530;">
+<div style="min-height: 900px; background: #F7F6F3; font-family: Figtree, system-ui, sans-serif; color: #1F2328; font-variant-numeric: tabular-nums">
 
-  <!-- ===== App chrome ===== -->
-  <header style="height:60px;box-sizing:border-box;background:#FFFFFF;border-bottom:1px solid #D3DDE1;display:flex;align-items:center;gap:28px;padding:0 24px;flex-wrap:wrap;">
-    <div style="display:flex;align-items:center;gap:10px;">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><circle cx="14" cy="14" r="12.5" stroke="#0E2530" stroke-width="1.75"/><path d="M14 4.5 L16.6 14 L14 23.5 L11.4 14 Z" fill="#D9541E"/><path d="M4.5 14 H23.5" stroke="#0E2530" stroke-width="1.5"/></svg>
-      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em;">La Jolla '26</span>
-    </div>
-    <nav aria-label="Primary" style="display:flex;align-items:stretch;height:60px;gap:4px;">
-      <a class="tabl" href="#" style="display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:500;color:#3F5864;text-decoration:none;">Today</a>
-      <a class="tabl" href="#" style="display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:500;color:#3F5864;text-decoration:none;">Schedule</a>
-      <a href="#" aria-current="page" style="display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:600;color:#0E2530;text-decoration:none;box-shadow:inset 0 -3px 0 #D9541E;">Map</a>
-      <a class="tabl" href="#" style="display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:500;color:#3F5864;text-decoration:none;">Places</a>
-      <a class="tabl" href="#" style="display:flex;align-items:center;padding:0 14px;font-size:14px;font-weight:500;color:#3F5864;text-decoration:none;">Range</a>
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 40px; max-width: 1360px; margin: 0 auto; box-sizing: border-box">
+    <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1F2328">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="12" r="6" fill="#FFB547"></circle><path d="M3 19c3-2 5-2 8 0s5 2 8 0 5-2 6-1" fill="none" stroke="#2C6E91" stroke-width="2.2" stroke-linecap="round"></path><path d="M3 24c3-2 5-2 8 0s5 2 8 0 5-2 6-1" fill="none" stroke="#2C6E91" stroke-width="2.2" stroke-linecap="round" opacity=".45"></path></svg>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.02em">la jolla ’26</span>
+    </a>
+    <nav aria-label="Main" style="max-width: 100%; overflow-x: auto; box-sizing: border-box; display: flex; gap: 4px; background: #FFFFFF; border-radius: 999px; padding: 4px; box-shadow: 0 1px 2px rgba(31,35,40,.06)">
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Overview</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Schedule</a>
+      <a href="#" aria-current="page" style="padding: 8px 16px; border-radius: 999px; background: #1F2328; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 14px">Map</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Places</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Range</a>
     </nav>
-    <div style="flex:1 1 20px;"></div>
-    <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:#3F5864;">
-      <span style="width:8px;height:8px;border-radius:999px;background:#11707F;display:inline-block;"></span>
-      <span>Synced</span><span style="font-family:'JetBrains Mono',monospace;color:#56707C;">12:41p</span>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;border:1px solid #D3DDE1;border-radius:999px;padding:5px 14px 5px 6px;background:#F3F6F7;">
-      <div style="display:flex;">
-        <span style="width:24px;height:24px;border-radius:999px;background:#0E2530;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;">E</span>
-        <span style="width:24px;height:24px;border-radius:999px;background:#11707F;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #F3F6F7;margin-left:-8px;">Ö</span>
-      </div>
-      <span style="font-size:13px;font-weight:500;">Oct 31 – Nov 3</span>
-      <span style="font-size:12px;color:#56707C;">2 travelers</span>
+    <div style="display: flex">
+      <span title="Emmad" style="width: 32px; height: 32px; border-radius: 999px; background: #FFE3D3; color: #8A3A14; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px solid #F7F6F3">E</span>
+      <span title="Ömer" style="width: 32px; height: 32px; border-radius: 999px; background: #D9F2EA; color: #1C6B50; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px solid #F7F6F3; margin-left: -8px">Ö</span>
     </div>
   </header>
 
-  <!-- ===== Main: panel + map ===== -->
-  <div style="display:flex;flex-wrap:wrap;align-items:flex-start;">
+  <main style="max-width: 1360px; margin: 0 auto; padding: 8px 40px 48px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
 
-    <!-- Left panel -->
-    <aside style="flex:0 0 360px;width:360px;max-width:100%;height:950px;box-sizing:border-box;background:#FFFFFF;border-right:1px solid #D3DDE1;display:flex;flex-direction:column;">
-
-      <div style="padding:16px 18px 12px;">
-        <div style="display:flex;align-items:baseline;justify-content:space-between;">
-          <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em;">Route map</h1>
-          <span style="font-size:12px;color:#56707C;">Highlight a day</span>
-        </div>
-        <div role="group" aria-label="Day selector" style="margin-top:12px;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;background:#E8EEF0;padding:4px;border-radius:10px;">
-          <sc-for list="{{dayBtns}}" as="b" hint-placeholder-count="5">
-            <button type="button" aria-pressed="{{b.pressed}}" onClick="{{b.click}}" style="{{b.style}}">
-              <span style="font-size:13px;font-weight:600;">{{b.label}}</span>
-              <span style="{{b.subStyle}}">{{b.sub}}</span>
-              <span style="{{b.dotStyle}}"></span>
-            </button>
-          </sc-for>
-        </div>
+    <!-- left panel -->
+    <section style="flex: 0 0 340px; max-width: 100%; height: 760px; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{dayChips}}" as="d" hint-placeholder-count="5">
+          <button type="button" aria-pressed="{{d.pressed}}" onClick="{{d.pick}}" style="{{d.style}}">{{d.label}}</button>
+        </sc-for>
       </div>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">{{dayTitle}}</h2>
 
-      <div style="margin:0 18px;padding:10px 12px;border:1px solid #D3DDE1;border-radius:10px;background:#F3F6F7;display:flex;flex-direction:column;gap:3px;">
-        <div style="display:flex;justify-content:space-between;align-items:center;">
-          <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;">{{dayTitle}}</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:11.5px;color:#3F5864;">{{dayWx}}</span>
-        </div>
-        <div style="font-size:12px;color:#56707C;">{{daySub}}</div>
-      </div>
-
-      <!-- Itinerary -->
-      <div style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:12px 18px 8px;">
-        <sc-for list="{{items}}" as="it" hint-placeholder-count="8">
-          <sc-if value="{{it.isHead}}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin:10px 0 6px;padding-top:6px;border-top:1px solid #D3DDE1;">
-              <span style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#56707C;text-transform:uppercase;">{{it.title}}</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#3F5864;">{{it.meta}}</span>
-            </div>
-          </sc-if>
-          <sc-if value="{{it.isStop}}" hint-placeholder-val="{{ true }}">
-            <div style="display:flex;align-items:center;gap:10px;min-height:38px;">
-              <div style="{{it.bstyle}}">
-                <sc-if value="{{it.isHouse}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 L12 3 L21 11"/><path d="M5.5 9.5 V20 H18.5 V9.5"/></svg></sc-if>
-                <sc-if value="{{it.isLetter}}" hint-placeholder-val="{{ true }}"><span>{{it.badge}}</span></sc-if>
-                <sc-if value="{{it.isHomeBadge}}" hint-placeholder-val="{{ false }}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19 V5"/><path d="M6 11 L12 5 L18 11"/></svg></sc-if>
+      <div style="flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column">
+        <sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
+          <div style="{{r.style}}">
+            <sc-if value="{{r.isStop}}" hint-placeholder-val="{{ true }}">
+              <span style="{{r.numStyle}}">
+                <sc-if value="{{r.isHouse}}" hint-placeholder-val="{{ false }}">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"></path><path d="M6 10v9h12v-9"></path></svg>
+                </sc-if>
+                <sc-if value="{{r.isNum}}" hint-placeholder-val="{{ true }}">{{r.num}}</sc-if>
+              </span>
+              <div style="display: flex; flex-direction: column; gap: 1px; min-width: 0">
+                <span style="font-weight: 600; font-size: 15px; line-height: 1.3">{{r.name}}</span>
+                <span style="font-size: 13px; color: #5F656D">{{r.time}}</span>
               </div>
-              <div style="flex:1;min-width:0;">
-                <div style="font-size:13.5px;font-weight:600;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{it.name}}</div>
-                <div style="font-size:11.5px;color:#56707C;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{it.sub}}</div>
-              </div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#0E2530;text-align:right;white-space:nowrap;">{{it.time}}</div>
-            </div>
-          </sc-if>
-          <sc-if value="{{it.isLeg}}" hint-placeholder-val="{{ true }}">
-            <div style="margin-left:12px;border-left:2px dashed #B8C9D0;padding:5px 0 5px 22px;display:flex;align-items:center;gap:7px;font-family:'JetBrains Mono',monospace;font-size:11px;color:#56707C;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16 V11 L7 6 H17 L19 11 V16"/><path d="M3.5 11 H20.5"/><circle cx="8" cy="16" r="1.4"/><circle cx="16" cy="16" r="1.4"/></svg>
-              <span>{{it.text}}</span>
-            </div>
-          </sc-if>
+            </sc-if>
+            <sc-if value="{{r.isDrive}}" hint-placeholder-val="{{ false }}">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14v-5l-2-5H7l-2 5z"></path><circle cx="8" cy="17" r="1.6"></circle><circle cx="16" cy="17" r="1.6"></circle></svg>
+              <span>{{r.drive}}</span>
+            </sc-if>
+          </div>
         </sc-for>
       </div>
 
-      <!-- Layers -->
-      <div style="padding:12px 18px;border-top:1px solid #D3DDE1;">
-        <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#56707C;text-transform:uppercase;margin-bottom:8px;">Layers</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-          <sc-for list="{{layerBtns}}" as="l" hint-placeholder-count="6">
-            <button type="button" role="switch" aria-checked="{{l.on}}" onClick="{{l.click}}" style="{{l.style}}">
-              <span style="{{l.dotStyle}}"></span>
-              <span style="flex:1;text-align:left;font-size:12.5px;font-weight:500;white-space:nowrap;">{{l.label}}</span>
-              <span style="{{l.trackStyle}}"><span style="{{l.knobStyle}}"></span></span>
-            </button>
+      <div style="border-top: 1px solid #ECEAE6; padding-top: 16px; display: flex; flex-direction: column; gap: 12px">
+        <span style="font-weight: 600; font-size: 15px">Show on map</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{layerChips}}" as="l" hint-placeholder-count="4">
+            <button type="button" aria-pressed="{{l.pressed}}" onClick="{{l.toggle}}" style="{{l.style}}">{{l.label}}</button>
           </sc-for>
         </div>
       </div>
+    </section>
 
-      <!-- Totals -->
-      <div style="padding:12px 18px 16px;border-top:1px solid #D3DDE1;background:#F3F6F7;">
-        <div style="display:flex;gap:18px;align-items:flex-end;">
-          <div>
-            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#56707C;text-transform:uppercase;">{{milesLabel}}</div>
-            <div style="font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:500;line-height:1.1;margin-top:2px;">{{miles}}<span style="font-size:13px;color:#56707C;"> mi</span></div>
-          </div>
-          <div style="flex:1;">
-            <div style="font-size:11px;font-weight:600;letter-spacing:0.08em;color:#56707C;text-transform:uppercase;">Battery</div>
-            <div style="display:flex;align-items:center;gap:8px;margin-top:5px;">
-              <span style="{{b0Style}}">{{b0}}%</span>
-              <svg width="16" height="10" viewBox="0 0 16 10" fill="none" stroke="#56707C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 5 H14 M10 1.5 L14 5 L10 8.5"/></svg>
-              <span style="{{b1Style}}">{{b1}}%</span>
-            </div>
-          </div>
+    <!-- map card -->
+    <section style="flex: 1 1 560px; min-width: 0; height: 760px; border-radius: 20px; overflow: auto; background: #D6E8F2">
+      <div style="position: relative; width: 924px; height: 760px; overflow: hidden; background: #D6E8F2">
+<div style="position: absolute; left: -40px; top: 0; width: 1004px; height: 760px">
+
+        <div style="{{baseStyle}}">
+          <svg width="1004" height="760" viewBox="0 0 1004 760" aria-hidden="true" style="display: block">
+            <rect width="1004" height="760" fill="#D6E8F2"></rect>
+            <path d="M372,0 C350,50 330,90 300,125 C270,155 235,170 215,195 C195,215 188,240 190,265 C192,300 178,340 188,395 C194,430 182,470 190,505 C200,550 225,600 235,650 C242,690 262,730 300,760 L1004,760 L1004,0 Z" fill="#EFEDE6" stroke="#E4E1D8" stroke-width="2"></path>
+            <path d="M200,440 C215,410 260,405 295,420 C325,435 320,475 285,490 C250,500 215,490 205,470 Z" fill="#D6E8F2"></path>
+            <path d="M345,600 C390,585 445,598 472,640 C497,678 515,722 524,760 L360,760 C350,700 340,650 345,600 Z" fill="#D6E8F2"></path>
+            <path d="M520,560 C540,525 600,520 640,545 C665,570 650,610 610,622 C565,632 525,610 520,560 Z" fill="#DDEADB"></path>
+            <path d="M250,95 C275,85 300,100 305,125 C285,140 255,135 248,115 Z" fill="#DDEADB"></path>
+            <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M395,0 C380,80 340,150 330,200 S300,330 330,420 S400,520 450,600 S480,640 500,700 S520,740 530,760" stroke-width="8"></path>
+              <path d="M610,0 C595,150 575,260 568,400 S548,520 548,520" stroke-width="6"></path>
+              <path d="M200,525 C300,508 420,522 560,512 S800,492 1004,502" stroke-width="7"></path>
+              <path d="M330,352 C450,342 560,336 1004,322" stroke-width="5"></path>
+              <path d="M250,360 C300,375 340,420 330,420" stroke-width="4"></path>
+            </g>
+            <g font-family="Figtree, sans-serif" font-size="14" font-weight="600" fill="#68707A">
+              <text x="372" y="40">Del Mar</text>
+              <text x="282" y="250">La Jolla</text>
+              <text x="204" y="398">Pacific Beach</text>
+              <text x="478" y="448">Clairemont</text>
+              <text x="582" y="508">Balboa Park</text>
+              <text x="545" y="700">Downtown</text>
+              <text x="890" y="574">El Cajon</text>
+              <text x="364" y="714" font-weight="500" fill="#3F6C86" font-style="italic">San Diego Bay</text>
+              <text x="52" y="300" font-weight="500" fill="#3F6C86" font-style="italic" font-size="16">Pacific Ocean</text>
+            </g>
+          </svg>
         </div>
-        <div style="position:relative;height:6px;border-radius:999px;background:#D3DDE1;margin-top:10px;">
-          <div style="{{barStartStyle}}"></div>
-          <div style="{{barEndStyle}}"></div>
-        </div>
-        <div style="{{noteStyle}}">{{batNote}}</div>
-      </div>
-    </aside>
 
-    <!-- Map canvas -->
-    <section aria-label="Trip map" style="flex:1 1 560px;min-width:0;height:950px;overflow:auto;background:#D6E6EC;">
-      <div style="position:relative;width:1080px;height:950px;">
-
-        <svg width="1080" height="950" viewBox="0 0 1080 950" role="img" aria-label="Stylized chart of the San Diego coast with the selected day's route" style="display:block;">
-          <defs>
-            <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#CBDCE3" stroke-width="1"/></pattern>
-          </defs>
-          <rect x="0" y="0" width="1080" height="950" fill="#D6E6EC"/>
-          <rect x="0" y="0" width="1080" height="950" fill="url(#hatch)" opacity="0.35"/>
-
-          <!-- graticule -->
-          <g stroke="#9DB5BE" stroke-width="0.75" stroke-dasharray="2 5" opacity="0.7">
-            <sc-for list="{{gridV}}" as="g" hint-placeholder-count="6"><line x1="{{g.p}}" y1="0" x2="{{g.p}}" y2="950"/></sc-for>
-            <sc-for list="{{gridH}}" as="g" hint-placeholder-count="4"><line x1="0" y1="{{g.p}}" x2="1080" y2="{{g.p}}"/></sc-for>
-          </g>
-          <g font-family="JetBrains Mono, monospace" font-size="9" fill="#56707C">
-            <sc-for list="{{gridV}}" as="g" hint-placeholder-count="6"><text x="{{g.tx}}" y="944">{{g.label}}</text></sc-for>
-            <sc-for list="{{gridH}}" as="g" hint-placeholder-count="4"><text x="6" y="{{g.ty}}">{{g.label}}</text></sc-for>
-          </g>
-
-          <text x="34" y="560" font-family="Inter, sans-serif" font-size="12" font-weight="600" letter-spacing="7" fill="#6C909E">PACIFIC OCEAN</text>
-
-          <g transform="translate(70,0)">
-            <!-- bathymetry -->
-            <g fill="none" stroke="#9DBBC6" stroke-width="1" stroke-linejoin="round">
-              <sc-for list="{{contours}}" as="c" hint-placeholder-count="4"><path d="{{c.d}}" opacity="{{c.o}}"/></sc-for>
-            </g>
-            <g font-family="JetBrains Mono, monospace" font-size="8" font-style="italic" fill="#6C909E">
-              <sc-for list="{{contours}}" as="c" hint-placeholder-count="4"><text x="{{c.lx}}" y="{{c.ly}}">{{c.label}}</text></sc-for>
-            </g>
-
-            <!-- land -->
-            <path d="{{landD}}" fill="#F7F9F9"/>
-            <path d="{{coastD}}" fill="none" stroke="#8FAAB4" stroke-width="1.5" stroke-linejoin="round"/>
-            <path d="M262,500 C290,488 340,492 372,508 L380,548 C340,560 295,552 268,540 Z" fill="#D6E6EC" stroke="#8FAAB4" stroke-width="1.25"/>
-            <path d="{{bayD}}" fill="#D6E6EC" stroke="#8FAAB4" stroke-width="1.25"/>
-            <path d="M292,845 C320,830 352,840 366,880 L380,945 L340,960 C330,920 305,880 292,845 Z" fill="#F7F9F9" stroke="#8FAAB4" stroke-width="1.25"/>
-
-            <!-- roads -->
-            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <sc-for list="{{roads}}" as="r" hint-placeholder-count="10"><path d="{{r.d}}" stroke="#C3D3D9" stroke-width="{{r.wc}}"/></sc-for>
-              <sc-for list="{{roads}}" as="r" hint-placeholder-count="10"><path d="{{r.d}}" stroke="#FFFFFF" stroke-width="{{r.w}}"/></sc-for>
-            </g>
-            <g font-family="JetBrains Mono, monospace" font-size="9" font-weight="500" fill="#3F5864" text-anchor="middle">
-              <sc-for list="{{shields}}" as="s" hint-placeholder-count="5"><g transform="{{s.t}}"><rect x="-13" y="-8" width="26" height="15" rx="4" fill="#FFFFFF" stroke="#56707C" stroke-width="1"/><text x="0" y="3">{{s.n}}</text></g></sc-for>
-            </g>
-
-            <!-- neighborhood labels -->
-            <g font-family="Inter, sans-serif" font-size="10.5" font-weight="600" letter-spacing="1.6" fill="#56707C" style="paint-order:stroke" stroke="#F7F9F9" stroke-width="3">
-              <text x="346" y="52">DEL MAR</text>
-              <text x="236" y="382">LA JOLLA</text>
-              <text x="268" y="473">PACIFIC BEACH</text>
-              <text x="418" y="516">CLAIREMONT</text>
-              <text x="580" y="432">KEARNY MESA</text>
-              <text x="408" y="744">DOWNTOWN</text>
-              <text x="444" y="718">BALBOA PARK</text>
-              <text x="930" y="668">EL CAJON</text>
-              <text transform="translate(238,690) rotate(90)" text-anchor="middle">POINT LOMA</text>
-              <text x="322" y="262">UCSD</text>
-              <text x="478" y="325" font-size="9.5">MIRAMAR</text>
-            </g>
-            <g font-family="Inter, sans-serif" font-size="10" font-style="italic" fill="#56707C" letter-spacing="1.2">
-              <text x="274" y="158" text-anchor="end">Torrey Pines</text>
-              <text x="296" y="532">Mission Bay</text>
-              <text x="287" y="778">San Diego Bay</text>
-              <text x="332" y="905">CORONADO</text>
-            </g>
-
-            <!-- Rain-safe / layer-driven backups -->
-            <sc-for list="{{backupPins}}" as="p" hint-placeholder-count="12">
-              <g transform="{{p.t}}" opacity="{{p.o}}" style="cursor:pointer">
-                <ellipse cx="0" cy="0" rx="6" ry="2.2" fill="rgba(14,37,48,0.18)"/>
-                <path d="M0,0 C-3,-8 -12,-13 -12,-22 A12,12 0 1 1 12,-22 C12,-13 3,-8 0,0 Z" fill="#FFFFFF" stroke="{{p.stroke}}" stroke-width="2.25"/>
-                <circle cx="0" cy="-22" r="{{p.dotR}}" fill="{{p.stroke}}"/>
-                <path d="{{p.fork}}" fill="none" stroke="{{p.stroke}}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-              </g>
-            </sc-for>
-            <g font-family="Inter, sans-serif" font-size="9.5" font-weight="500" fill="#3F5864" style="paint-order:stroke" stroke="#F7F9F9" stroke-width="3" stroke-linejoin="round">
-              <sc-for list="{{backupPins}}" as="p" hint-placeholder-count="12"><text x="{{p.lx}}" y="{{p.ly}}" text-anchor="{{p.a}}" opacity="{{p.lo}}">{{p.label}}</text></sc-for>
-            </g>
-
-            <!-- Route lines -->
-            <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <sc-for list="{{routes}}" as="r" hint-placeholder-count="5"><path d="{{r.d}}" stroke="#FFFFFF" stroke-width="{{r.hw}}" opacity="0.92"/></sc-for>
-              <sc-for list="{{routes}}" as="r" hint-placeholder-count="5"><path d="{{r.d}}" stroke="{{r.col}}" stroke-width="{{r.w}}" stroke-dasharray="{{r.dash}}"/></sc-for>
-            </g>
-            <g fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <sc-for list="{{chevrons}}" as="c" hint-placeholder-count="6"><path d="M-3.5,-4.5 L1.5,0 L-3.5,4.5" transform="{{c.t}}"/></sc-for>
-            </g>
-
-            <!-- Superchargers -->
-            <sc-for list="{{chargerPins}}" as="p" hint-placeholder-count="6">
-              <g transform="{{p.t}}">
-                <ellipse cx="0" cy="0" rx="6" ry="2.2" fill="rgba(14,37,48,0.2)"/>
-                <path d="M0,0 C-3,-8 -12,-13 -12,-22 A12,12 0 1 1 12,-22 C12,-13 3,-8 0,0 Z" fill="#2F6FDB" stroke="#FFFFFF" stroke-width="2"/>
-                <path d="M1.8,-31 L-4.8,-21.5 H-0.4 L-1.8,-13 L4.8,-23 H0.4 Z" fill="#FFFFFF"/>
-              </g>
-            </sc-for>
-            <g font-family="Inter, sans-serif" font-size="9.5" font-weight="600" fill="#1F52AE" style="paint-order:stroke" stroke="#F7F9F9" stroke-width="3" stroke-linejoin="round">
-              <sc-for list="{{chargerPins}}" as="p" hint-placeholder-count="6"><text x="{{p.lx}}" y="{{p.ly}}" text-anchor="{{p.a}}">{{p.label}}</text></sc-for>
-            </g>
-
-            <!-- Scheduled pins -->
-            <sc-for list="{{schedPins}}" as="p" hint-placeholder-count="8">
-              <g transform="{{p.t}}" opacity="{{p.o}}" onClick="{{p.click}}" style="cursor:pointer">
-                <ellipse cx="0" cy="0" rx="7" ry="2.5" fill="rgba(14,37,48,0.22)"/>
-                <path d="M0,0 C-3,-8 -12,-13 -12,-22 A12,12 0 1 1 12,-22 C12,-13 3,-8 0,0 Z" fill="{{p.fill}}" stroke="{{p.stroke}}" stroke-width="2" stroke-dasharray="{{p.dash}}"/>
-                <text x="0" y="-17.5" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="{{p.txt}}">{{p.letter}}</text>
-                <circle cx="0" cy="-22" r="{{p.dotR}}" fill="{{p.txt}}"/>
-              </g>
-            </sc-for>
-            <g font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0E2530" style="paint-order:stroke" stroke="#FFFFFF" stroke-width="3.5" stroke-linejoin="round">
-              <sc-for list="{{schedPins}}" as="p" hint-placeholder-count="8"><text x="{{p.lx}}" y="{{p.ly}}" text-anchor="{{p.a}}" opacity="{{p.o}}">{{p.label}}</text></sc-for>
-            </g>
-
-            <!-- Airbnb (prominent) -->
-            <g transform="translate(405,430)">
-              <circle cx="0" cy="-26" r="30" fill="none" stroke="#D9541E" stroke-width="1.5" opacity="0.35"/>
-              <circle cx="0" cy="-26" r="40" fill="none" stroke="#D9541E" stroke-width="1" stroke-dasharray="2 4" opacity="0.35"/>
-              <ellipse cx="0" cy="0" rx="9" ry="3" fill="rgba(14,37,48,0.25)"/>
-              <g transform="scale(1.4)">
-                <path d="M0,0 C-3,-8 -12,-13 -12,-22 A12,12 0 1 1 12,-22 C12,-13 3,-8 0,0 Z" fill="#D9541E" stroke="#FFFFFF" stroke-width="2"/>
-                <g transform="translate(0,-22)" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M-6.5,0 L0,-6.5 L6.5,0"/><path d="M-4.5,-1.5 V5.5 H4.5 V-1.5"/></g>
-              </g>
-              <g transform="translate(19,-47)" opacity="{{airbnbBadgeO}}"><circle r="8" fill="#0E2530" stroke="#FFFFFF" stroke-width="1.5"/><text x="0" y="3.8" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="10.5" font-weight="700" fill="#FFFFFF">{{airbnbLetter}}</text></g>
-              <g transform="translate(18,-34)">
-                <rect x="0" y="-16" width="150" height="34" rx="7" fill="#FFFFFF" stroke="#D9541E" stroke-width="1.25"/>
-                <text x="9" y="-2" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700" fill="#0E2530">Airbnb</text>
-                <text x="9" y="11" font-family="Inter, sans-serif" font-size="10" fill="#3F5864">3225 Idlewild Way</text>
-              </g>
-            </g>
-
-            <!-- Measure tool: Zoya <-> Shorehouse -->
-            <sc-if value="{{measureOn}}" hint-placeholder-val="{{ true }}">
-              <g>
-                <line x1="196" y1="320" x2="222" y2="264" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.9"/>
-                <line x1="196" y1="320" x2="222" y2="264" stroke="#0E2530" stroke-width="2" stroke-dasharray="6 4" stroke-linecap="round"/>
-                <circle cx="196" cy="320" r="5.5" fill="#FFFFFF" stroke="#0E2530" stroke-width="2"/>
-                <circle cx="222" cy="264" r="5.5" fill="#FFFFFF" stroke="#0E2530" stroke-width="2"/>
-                <path d="M100,282 L170,289" stroke="#0E2530" stroke-width="1" fill="none"/>
-                <circle cx="209" cy="292" r="0" fill="none"/>
-                <g transform="translate(-58,262)">
-                  <rect x="0" y="0" width="158" height="40" rx="8" fill="#0E2530"/>
-                  <text x="10" y="16" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500" fill="#FFFFFF">2.4 mi straight ·</text>
-                  <text x="10" y="31" font-family="JetBrains Mono, monospace" font-size="11" fill="#CFE3E8">~3.1 mi drive · 9 min</text>
-                </g>
-                <path d="M100,282 L196,296" stroke="#0E2530" stroke-width="1.25" fill="none" stroke-dasharray="2 3"/>
-              </g>
-            </sc-if>
-          </g>
+        <!-- route + measure overlay -->
+        <svg width="1004" height="760" viewBox="0 0 1004 760" aria-hidden="true" style="position: absolute; left: 0; top: 0; pointer-events: none">
+          <sc-if value="{{showRoute}}" hint-placeholder-val="{{ true }}">
+            <path d="{{routeD}}" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"></path>
+            <path d="{{returnD}}" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.7"></path>
+            <path d="{{returnD}}" fill="none" stroke="#1F2328" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 7" opacity="0.7"></path>
+            <path d="{{routeD}}" fill="none" stroke="#1F2328" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+          </sc-if>
+          <sc-if value="{{measure}}" hint-placeholder-val="{{ true }}">
+            <line x1="{{m.x1}}" y1="{{m.y1}}" x2="{{m.x2}}" y2="{{m.y2}}" stroke="#2C6E91" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round"></line>
+          </sc-if>
         </svg>
 
-        <!-- Homes off-map chip -->
-        <sc-if value="{{homesOn}}" hint-placeholder-val="{{ true }}">
-          <div style="position:absolute;left:430px;top:14px;display:flex;align-items:center;gap:10px;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:999px;padding:7px 14px 7px 8px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);">
-            <span style="width:26px;height:26px;border-radius:999px;background:#0E2530;color:#fff;display:flex;align-items:center;justify-content:center;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20 V5"/><path d="M6 11 L12 5 L18 11"/></svg>
-            </span>
-            <span style="font-size:12.5px;font-weight:600;">Valencia &amp; Sylmar</span>
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864;">&uarr; 135 mi</span>
-          </div>
+        <sc-if value="{{measure}}" hint-placeholder-val="{{ true }}">
+          <div style="{{m.labelStyle}}">3.1 mi · 9 min</div>
         </sc-if>
 
-        <!-- North arrow -->
-        <div style="position:absolute;left:20px;top:18px;display:flex;flex-direction:column;align-items:center;gap:2px;">
-          <svg width="34" height="44" viewBox="0 0 34 44" fill="none" aria-hidden="true"><path d="M17 3 L26 38 L17 31 L8 38 Z" fill="#0E2530"/><path d="M17 3 L17 31 L8 38 Z" fill="#56707C"/></svg>
-          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:#0E2530;margin-top:-2px;">N</span>
+        <!-- ideas, food, chargers -->
+        <sc-for list="{{ideaPins}}" as="p" hint-placeholder-count="4">
+          <button type="button" aria-label="{{p.label}}" onClick="{{p.open}}" style="{{p.style}}"></button>
+        </sc-for>
+        <sc-for list="{{chargerPins}}" as="p" hint-placeholder-count="3">
+          <span role="img" aria-label="{{p.label}}" style="{{p.style}}">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#24518F" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 3L5 14h6l-1 7 8-11h-6z"></path></svg>
+          </span>
+        </sc-for>
+
+        <!-- airbnb -->
+        <div style="{{airbnb.style}}">
+          <span style="position: relative; width: 44px; height: 44px; border-radius: 999px; background: #1F2328; color: #FFFFFF; display: grid; place-items: center; border: 3px solid #FFFFFF; box-sizing: border-box; box-shadow: 0 3px 10px rgba(31,35,40,.3)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"></path><path d="M6 10v9h12v-9"></path><path d="M10 19v-5h4v5"></path></svg>
+            <span style="position: absolute; right: -2px; top: -2px; width: 10px; height: 10px; border-radius: 999px; background: #FF7A59; border: 2px solid #FFFFFF"></span>
+          </span>
+          <span style="background: #FFFFFF; border-radius: 999px; padding: 3px 10px; font-size: 13px; font-weight: 700; box-shadow: 0 1px 4px rgba(31,35,40,.18)">Airbnb</span>
         </div>
 
-        <!-- Controls top-right -->
-        <div style="position:absolute;right:16px;top:14px;display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
-          <div style="display:flex;gap:6px;">
-            <button type="button" aria-pressed="{{measureOn}}" onClick="{{toggleMeasure}}" style="{{measureStyle}}">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17 L17 3 L21 7 L7 21 Z"/><path d="M7 13 L9.5 15.5 M10 10 L12 12 M13 7 L15.5 9.5"/></svg>
-              <span>Measure</span>
-            </button>
-            <button type="button" onClick="{{fitDay}}" style="height:36px;padding:0 12px;display:flex;align-items:center;gap:7px;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:8px;font-size:13px;font-weight:500;color:#0E2530;box-shadow:0 1px 2px rgba(14,37,48,.06);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9 V4 H9 M15 4 H20 V9 M20 15 V20 H15 M9 20 H4 V15"/></svg>
-              <span>Fit day</span>
-            </button>
-            <button type="button" aria-label="Map layers" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:8px;color:#0E2530;box-shadow:0 1px 2px rgba(14,37,48,.06);">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 L21 8 L12 13 L3 8 Z"/><path d="M3 12.5 L12 17.5 L21 12.5"/><path d="M3 16.5 L12 21.5 L21 16.5"/></svg>
-            </button>
-          </div>
-          <div style="display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:8px;box-shadow:0 1px 2px rgba(14,37,48,.06);overflow:hidden;">
-            <button type="button" aria-label="Zoom in" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;border:0;border-bottom:1px solid #D3DDE1;color:#0E2530;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M12 5 V19 M5 12 H19"/></svg>
-            </button>
-            <button type="button" aria-label="Zoom out" style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#FFFFFF;border:0;color:#0E2530;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M5 12 H19"/></svg>
-            </button>
-          </div>
-        </div>
+        <!-- trip stops -->
+        <sc-for list="{{stopPins}}" as="p" hint-placeholder-count="4">
+          <span role="img" aria-label="{{p.label}}" style="{{p.style}}">{{p.num}}</span>
+        </sc-for>
 
-        <!-- Place popover: Birch Aquarium -->
-        <sc-if value="{{popOn}}" hint-placeholder-val="{{ true }}">
-          <div role="dialog" aria-label="Birch Aquarium details" style="position:absolute;left:346px;top:128px;width:318px;box-sizing:border-box;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:10px;padding:14px 16px 14px;box-shadow:0 2px 4px rgba(14,37,48,.08),0 10px 28px rgba(14,37,48,.14);">
-            <span style="position:absolute;left:-7px;top:74px;width:12px;height:12px;background:#FFFFFF;border-left:1px solid #D3DDE1;border-bottom:1px solid #D3DDE1;transform:rotate(45deg);"></span>
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
-              <div>
-                <div style="display:flex;gap:6px;align-items:center;margin-bottom:6px;">
-                  <span style="font-size:11px;font-weight:600;background:#DDF0F2;color:#0B5562;border-radius:999px;padding:2px 9px;">Activity</span>
-                  <span style="font-size:11px;font-weight:600;background:#E8EEF0;color:#3F5864;border-radius:999px;padding:2px 9px;display:flex;align-items:center;gap:4px;">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11 L12 3 L21 11"/><path d="M5.5 9.5 V20 H18.5 V9.5"/></svg>Indoor / rain-safe</span>
-                </div>
-                <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.01em;">Birch Aquarium</h2>
-                <div style="font-size:12.5px;color:#3F5864;margin-top:2px;">2300 Expedition Way, La Jolla, CA</div>
-              </div>
-              <button type="button" aria-label="Close" onClick="{{closePop}}" style="width:28px;height:28px;flex:none;display:flex;align-items:center;justify-content:center;background:transparent;border:0;border-radius:6px;color:#56707C;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
+        <!-- popover -->
+        <sc-if value="{{pop.show}}" hint-placeholder-val="{{ true }}">
+          <div role="dialog" aria-label="Place preview" style="{{pop.style}}">
+            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px">
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em; line-height: 1.25">{{pop.name}}</span>
+              <button type="button" aria-label="Close" onClick="{{pop.close}}" style="flex: none; width: 24px; height: 24px; border: 0; background: #EFEDE9; border-radius: 999px; display: grid; place-items: center; cursor: pointer; color: #1F2328; padding: 0">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
               </button>
             </div>
-            <div style="margin-top:12px;display:flex;flex-direction:column;gap:7px;">
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11707F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16 V11 L7 6 H17 L19 11 V16"/><path d="M3.5 11 H20.5"/><circle cx="8" cy="16" r="1.4"/><circle cx="16" cy="16" r="1.4"/></svg>
-                <span style="font-family:'JetBrains Mono',monospace;font-weight:500;">6.1 mi · 14 min</span><span style="color:#56707C;">from Airbnb</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:13px;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#11707F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7 V12 L15.5 14"/></svg>
-                <span>Open <span style="font-family:'JetBrains Mono',monospace;font-weight:500;">9 AM – 5 PM</span></span><span style="color:#56707C;">· ~3.5 hr visit</span>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:#3F5864;">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#56707C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18 A4 4 0 0 1 7 10 A5.5 5.5 0 0 1 17.5 9 A4.5 4.5 0 0 1 17 18 Z"/></svg>
-                <span>Rainy Sun morning — a good fit. Dhuhr 11:32a here.</span>
-              </div>
-            </div>
-            <div style="display:flex;gap:8px;margin-top:14px;">
-              <button type="button" style="flex:1;height:36px;background:#D9541E;color:#FFFFFF;border:0;border-radius:8px;font-size:13px;font-weight:600;">Add to Sun</button>
-              <button type="button" style="height:36px;padding:0 12px;background:#FFFFFF;color:#0E2530;border:1px solid #D3DDE1;border-radius:8px;font-size:13px;font-weight:500;display:flex;align-items:center;gap:6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12 L20 4 L12 20 L10.5 13.5 Z"/></svg>Directions</button>
-              <button type="button" style="height:36px;padding:0 12px;background:transparent;color:#11707F;border:0;border-radius:8px;font-size:13px;font-weight:600;">Details</button>
+            <span style="font-size: 13px; color: #5F656D">{{pop.meta}}</span>
+            <div style="display: flex; gap: 8px">
+              <button type="button" style="font: inherit; font-weight: 600; font-size: 14px; background: #1F2328; color: #FFFFFF; border: 0; border-radius: 999px; padding: 9px 16px; cursor: pointer">Add to day</button>
+              <button type="button" style="font: inherit; font-weight: 600; font-size: 14px; background: #FFFFFF; color: #1F2328; border: 1px solid #DCD9D3; border-radius: 999px; padding: 8px 15px; cursor: pointer">Details</button>
             </div>
           </div>
         </sc-if>
 
-        <!-- Measure hint -->
-        <sc-if value="{{measureOn}}" hint-placeholder-val="{{ true }}">
-          <div style="position:absolute;left:50%;margin-left:-190px;bottom:20px;width:380px;box-sizing:border-box;background:#0E2530;color:#FFFFFF;border-radius:999px;padding:8px 16px;font-size:12px;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 12px rgba(14,37,48,.2);">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17 L17 3 L21 7 L7 21 Z"/></svg>
-            <span>Measure on: click two places</span><span style="font-family:'JetBrains Mono',monospace;color:#CFE3E8;">Esc to exit</span>
-          </div>
-        </sc-if>
-
-        <!-- Scale bar -->
-        <div style="position:absolute;left:20px;bottom:20px;font-family:'JetBrains Mono',monospace;font-size:10px;color:#0E2530;">
-          <svg width="160" height="16" viewBox="0 0 160 16" aria-hidden="true"><rect x="0" y="6" width="70" height="5" fill="#0E2530"/><rect x="70" y="6" width="70" height="5" fill="#FFFFFF" stroke="#0E2530" stroke-width="1"/><path d="M0.5 3 V12 M70 3 V12 M140 3 V12" stroke="#0E2530" stroke-width="1"/></svg>
-          <div style="display:flex;width:160px;"><span style="width:70px;">0</span><span style="width:70px;">2.5</span><span>5 mi</span></div>
         </div>
-
-        <!-- Legend -->
-        <div style="position:absolute;right:16px;bottom:20px;background:#FFFFFF;border:1px solid #D3DDE1;border-radius:10px;padding:10px 12px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);display:grid;grid-template-columns:auto auto;gap:6px 18px;font-size:11.5px;color:#3F5864;">
-          <div style="display:flex;align-items:center;gap:7px;"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#D9541E"/></svg>Airbnb</div>
-          <div style="display:flex;align-items:center;gap:7px;"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#11707F"/></svg>Scheduled stop</div>
-          <div style="display:flex;align-items:center;gap:7px;"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="#fff" stroke="#11707F" stroke-width="1.8"/></svg>Backup / idea</div>
-          <div style="display:flex;align-items:center;gap:7px;"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.2" fill="#fff" stroke="#8A4B07" stroke-width="1.8"/><path d="M5.5 4 V6.5 M8.5 4 V6.5 M7 4 V10" stroke="#8A4B07" stroke-width="1.2" fill="none"/></svg>Restaurant</div>
-          <div style="display:flex;align-items:center;gap:7px;"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="#2F6FDB"/><path d="M7.8 2.5 L4.5 7.5 H6.7 L6.2 11.5 L9.5 6.5 H7.3 Z" fill="#fff"/></svg>Supercharger</div>
-          <div style="display:flex;align-items:center;gap:7px;"><svg width="22" height="8" viewBox="0 0 22 8" aria-hidden="true"><path d="M1 4 H21" stroke="#11707F" stroke-width="3" stroke-linecap="round"/></svg>Day route</div>
+        <!-- controls -->
+        <button type="button" aria-pressed="{{measure}}" onClick="{{toggleMeasure}}" style="{{measureBtnStyle}}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17L17 3l4 4L7 21z"></path><path d="M8 12l2 2M11 9l2 2M14 6l2 2"></path></svg>
+          Measure
+        </button>
+        <div style="position: absolute; right: 16px; top: 16px; width: 44px; background: #FFFFFF; border-radius: 14px; box-shadow: 0 2px 8px rgba(31,35,40,.14); display: flex; flex-direction: column; overflow: hidden">
+          <button type="button" aria-label="Zoom in" onClick="{{zoomIn}}" style="height: 44px; border: 0; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; color: #1F2328">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+          </button>
+          <div style="height: 1px; background: #ECEAE6"></div>
+          <button type="button" aria-label="Zoom out" onClick="{{zoomOut}}" style="height: 44px; border: 0; background: #FFFFFF; cursor: pointer; display: grid; place-items: center; color: #1F2328">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14"></path></svg>
+          </button>
         </div>
+        <span style="position: absolute; left: 16px; bottom: 14px; font-size: 12px; color: #4A4F56; background: rgba(255,255,255,.85); padding: 4px 10px; border-radius: 999px">Illustration only. The real app uses OpenStreetMap.</span>
       </div>
     </section>
-  </div>
-
-  <footer style="height:40px;box-sizing:border-box;display:flex;align-items:center;padding:0 24px;border-top:1px solid #D3DDE1;background:#FFFFFF;font-size:12px;color:#56707C;">
-    Prototype map — built app uses OpenStreetMap tiles via MapLibre/Leaflet + OSRM routing
-  </footer>
+  </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1050}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {day:'sun', sched:true, backup:true, food:true, charger:true, homes:true, rain:false, pop:true, measure:true};
+    this.state = { day: 'sun', layers: { plan: true, ideas: true, food: false, chargers: true }, measure: true, zoom: 1, pop: 'rose' };
   }
-  renderVals(){
+  renderVals() {
     const s = this.state;
-    const sm = (p)=>{
-      let d = 'M'+p[0][0]+','+p[0][1];
-      for(let i=0;i<p.length-1;i++){
-        const p0=p[i-1]||p[i], p1=p[i], p2=p[i+1], p3=p[i+2]||p2;
-        d += ' C'+(p1[0]+(p2[0]-p0[0])/6)+','+(p1[1]+(p2[1]-p0[1])/6)+' '+(p2[0]-(p3[0]-p1[0])/6)+','+(p2[1]-(p3[1]-p1[1])/6)+' '+p2[0]+','+p2[1];
+    const AIR = [400, 385];
+    const C = [502, 380];
+    const z = s.zoom;
+    const P = (x, y) => [C[0] + (x - C[0]) * z, C[1] + (y - C[1]) * z];
+    const DAYS = [['all', 'All'], ['sat', 'Sat'], ['sun', 'Sun'], ['mon', 'Mon'], ['tue', 'Tue']];
+    const TITLES = { all: 'Whole trip', sat: 'Saturday, Oct 31', sun: 'Sunday, Nov 1', mon: 'Monday, Nov 2', tue: 'Tuesday, Nov 3' };
+    const STOPS = {
+      sat: [
+        { n: 'Sugar and Scribe', t: '12:30 – 1:45p', k: 'food', p: [262, 216], d: '~15 min' },
+        { n: 'Sea Cliff Coastal Bluff Trail', t: '2:00 – 3:30p', k: 'act', p: [355, 80], d: '~25 min', v: [[345, 160], [345, 290], [375, 370]] },
+        { n: 'Check in', t: '4:00p', k: 'home', p: AIR, d: '~15 min', v: [[300, 335]] },
+        { n: 'Zoya', t: '7:00 – 8:30p', k: 'food', p: [222, 238] }
+      ],
+      sun: [
+        { n: 'Fig Tree Cafe', t: '9:00 – 10:00a', k: 'food', p: [235, 365], d: '~12 min' },
+        { n: 'Birch Aquarium', t: '10:15a – 1:45p', k: 'act', p: [218, 300], d: '~25 min', v: [[300, 335], [335, 430], [440, 590]] },
+        { n: 'Flagship Harbor Tour', t: '4:15 – 5:15p', k: 'booked', p: [505, 650], d: '~20 min', v: [[540, 540], [566, 420]] },
+        { n: 'Aladdin Cafe', t: '6:15 – 7:30p', k: 'food', p: [560, 330] }
+      ],
+      mon: [
+        { n: 'Shorehouse Kitchen', t: '9:00 – 10:00a', k: 'food', p: [200, 268], d: '~25 min', v: [[300, 335], [335, 430], [450, 595]] },
+        { n: 'San Diego Zoo', t: '10:30a – 3:00p', k: 'act', p: [612, 592], d: '~5 min' },
+        { n: 'Balboa Park museum', t: '3:15 – 4:30p', k: 'act', p: [553, 546], d: '~25 min', v: [[720, 515]] },
+        { n: 'Sultan Baklava', t: '5:30 – 7:00p', k: 'food', p: [930, 520] }
+      ],
+      tue: [
+        { n: 'Check out', t: 'Before 10:00a', k: 'home', p: AIR }
+      ]
+    };
+    const all = s.day === 'all';
+    const dayKeys = all ? ['sat', 'sun', 'mon', 'tue'] : [s.day];
+    const list = [];
+    dayKeys.forEach((dk) => STOPS[dk].forEach((st, i, arr) => list.push(Object.assign({ day: dk, last: i === arr.length - 1 }, st))));
+    const FILL = { act: '#D9F2EA', food: '#FFE3D3', booked: '#FFF0C2' };
+    let num = 0;
+    list.forEach((st) => { if (st.k !== 'home') { num += 1; st.num = num; } });
+
+    const rows = [];
+    const dayName = { sat: 'Sat', sun: 'Sun', mon: 'Mon', tue: 'Tue' };
+    list.forEach((st) => {
+      const home = st.k === 'home';
+      rows.push({
+        isStop: true, isDrive: false, isHouse: home, isNum: !home, num: st.num, name: st.n,
+        time: (all ? dayName[st.day] + ' · ' : '') + st.t,
+        style: 'display: flex; align-items: center; gap: 12px; padding: ' + (all ? '2px' : '6px') + ' 0',
+        numStyle: 'flex: none; width: 28px; height: 28px; border-radius: 999px; display: grid; place-items: center; font-size: 13px; font-weight: 700; color: ' + (home ? '#FFFFFF' : '#1F2328') + '; background: ' + (home ? '#1F2328' : FILL[st.k])
+      });
+      if (!st.last && !all) {
+        rows.push({ isStop: false, isDrive: true, drive: st.d, style: 'display: flex; align-items: center; gap: 8px; padding: 2px 0 2px 8px; color: #5F656D; font-size: 13px' });
+      }
+    });
+
+    const dayChips = DAYS.map(([id, label]) => ({
+      label, pressed: s.day === id ? 'true' : 'false',
+      pick: () => this.setState({ day: id }),
+      style: 'font: inherit; font-size: 13px; font-weight: ' + (s.day === id ? 600 : 500) + '; border: 0; border-radius: 999px; padding: 7px 14px; cursor: pointer; background: ' + (s.day === id ? '#1F2328' : '#EFEDE9') + '; color: ' + (s.day === id ? '#FFFFFF' : '#1F2328')
+    }));
+    const LAY = [['plan', 'Plan'], ['ideas', 'Ideas'], ['food', 'Food'], ['chargers', 'Chargers']];
+    const layerChips = LAY.map(([id, label]) => {
+      const on = s.layers[id];
+      return {
+        label, pressed: on ? 'true' : 'false',
+        toggle: () => this.setState({ layers: Object.assign({}, s.layers, { [id]: !on }) }),
+        style: 'font: inherit; font-size: 13px; font-weight: ' + (on ? 600 : 500) + '; border: 0; border-radius: 999px; padding: 7px 14px; cursor: pointer; background: ' + (on ? '#1F2328' : '#EFEDE9') + '; color: ' + (on ? '#FFFFFF' : '#1F2328')
+      };
+    });
+
+    const abs = (x, y) => 'position: absolute; left: ' + x.toFixed(1) + 'px; top: ' + y.toFixed(1) + 'px; transform: translate(-50%, -50%)';
+    const stopPins = s.layers.plan ? list.filter((st) => st.k !== 'home').map((st) => {
+      const [x, y] = P(st.p[0], st.p[1]);
+      return { num: st.num, label: st.num + ', ' + st.n, style: abs(x, y) + '; width: 32px; height: 32px; border-radius: 999px; box-sizing: border-box; border: 3px solid #FFFFFF; background: ' + FILL[st.k] + '; color: #1F2328; display: grid; place-items: center; font-size: 13px; font-weight: 700; box-shadow: 0 2px 8px rgba(31,35,40,.3); z-index: 3' };
+    }) : [];
+
+    const routeStops = list;
+    const curve = (pts) => {
+      let d = 'M' + pts[0][0].toFixed(1) + ',' + pts[0][1].toFixed(1);
+      for (let i = 0; i < pts.length - 1; i++) {
+        const p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+        const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6];
+        const c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+        d += ' C' + c1[0].toFixed(1) + ',' + c1[1].toFixed(1) + ' ' + c2[0].toFixed(1) + ',' + c2[1].toFixed(1) + ' ' + p2[0].toFixed(1) + ',' + p2[1].toFixed(1);
       }
       return d;
     };
-
-    /* ---------- geography (local coords; group is shifted +70px) ---------- */
-    const coast = [[330,0],[320,55],[300,115],[270,180],[238,232],[205,262],[172,292],[160,322],[178,354],[205,372],[220,405],[228,445],[240,490],[250,530],[232,570],[207,600],[198,650],[205,710],[222,770],[240,815]];
-    const coastD = sm(coast);
-    const landD = coastD + ' L300,960 L1200,960 L1200,0 L330,0 Z';
-    const bayD = sm([[240,815],[255,780],[264,730],[285,685],[330,655],[375,662],[400,695],[406,745],[400,800],[390,860],[372,930]]) + ' L300,960 Z';
-    const contours = [28,70,130,210].map((dx,i)=>{
-      const pts = coast.map(p=>[p[0]-dx,p[1]]);
-      return {d:sm(pts), o:String([0.9,0.7,0.55,0.4][i]), lx:pts[16][0]-26, ly:pts[16][1]+4, label:['10 m','30 m','100 m','200 m'][i]};
-    });
-    const roadDefs = [
-      ['M336,-10 L322,70 L340,200 L330,310 L352,380 L357,430 L350,500 L372,560 L395,640 L398,690 L392,760 L390,830',5],
-      ['M345,170 C390,250 430,330 445,420 C458,500 478,560 490,620 C494,700 480,770 462,880',5],
-      ['M350,458 C390,466 450,468 520,452 L700,452 L900,470 L1200,462',4.5],
-      ['M205,598 C300,604 420,592 520,596 L700,606 C800,620 880,640 1200,655',5],
-      ['M410,672 C440,640 470,610 484,570 L484,520 L480,470 L492,400 L505,320 L508,200',4.5],
-      ['M380,396 L700,374',2.5],
-      ['M418,330 L428,420 L432,470 L440,540',2.5],
-      ['M355,545 L560,552',2.5],
-      ['M310,540 L330,575 L350,620',2.5]
-    ];
-    const roads = roadDefs.map(r=>({d:r[0], w:String(r[1]), wc:String(r[1]+2)}));
-    const shields = [
-      {t:'translate(322,70)', n:'5'},{t:'translate(398,262)', n:'805'},{t:'translate(640,453)', n:'52'},
-      {t:'translate(600,600)', n:'8'},{t:'translate(484,545)', n:'163'}
-    ];
-    const gridV = [93,273,453,633,813,993].map((x,i)=>({p:String(x), tx:String(x+4), label:["117°20′W","117°15′","117°10′","117°05′","117°00′","116°55′"][i]}));
-    const gridH = [178,393,608,823].map((y,i)=>({p:String(y), ty:String(y-4), label:["32°55′N","32°50′","32°45′","32°40′"][i]}));
-
-    /* ---------- places ---------- */
-    const PL = {
-      airbnb:{n:'Airbnb',x:405,y:430},
-      sugar:{n:'Sugar and Scribe',x:214,y:346,k:'food',lx:15,ly:-9,a:'start'},
-      seacliff:{n:'Sea Cliff Trail',x:312,y:92,k:'act',out:1,lx:15,ly:-9,a:'start'},
-      zoya:{n:'Zoya',x:196,y:320,k:'food',lx:-15,ly:-9,a:'end'},
-      fig:{n:'Fig Tree Cafe',x:240,y:452,k:'food',lx:15,ly:-9,a:'start'},
-      birch:{n:'Birch Aquarium',x:250,y:232,k:'act',lx:-15,ly:-14,a:'end'},
-      devils:{n:"Devil's Dozen",x:420,y:665,k:'food',opt:1,lx:15,ly:-9,a:'start'},
-      harbor:{n:'Harbor Tour',x:396,y:706,k:'fixed',lx:-15,ly:-9,a:'end'},
-      aladdin:{n:'Aladdin Cafe',x:445,y:388,k:'food',lx:15,ly:-9,a:'start'},
-      shore:{n:'Shorehouse Kitchen',x:222,y:264,k:'food',lx:-15,ly:-9,a:'end'},
-      zoo:{n:'San Diego Zoo',x:500,y:650,k:'act',lx:15,ly:-9,a:'start'},
-      museum:{n:'Balboa museum',x:468,y:672,k:'act',lx:0,ly:15,a:'middle'},
-      sultan:{n:'Sultan Baklava',x:940,y:640,k:'food',lx:-15,ly:-9,a:'end'}
-    };
-    const backups = [
-      {n:'Rose Canyon',x:352,y:405,k:'act',out:1,lx:15,ly:-9,a:'start'},
-      {n:'Coast Walk',x:172,y:306,k:'act',out:1,lx:-15,ly:-9,a:'end'},
-      {n:'Scripps Meander',x:268,y:258,k:'act',out:1,lx:15,ly:-9,a:'start',nolabel:1},
-      {n:'Geisel Library',x:292,y:285,k:'act',lx:15,ly:-9,a:'start',nolabel:1},
-      {n:'Kingdom of Padel',x:520,y:330,k:'act',lx:15,ly:-9,a:'start'},
-      {n:'MCASD',x:182,y:333,k:'act',lx:-15,ly:-9,a:'end',nolabel:1},
-      {n:'Little Italy tour',x:395,y:640,k:'act',out:1,lx:-15,ly:-9,a:'end'},
-      {n:"Akhi's",x:255,y:425,k:'food',lx:15,ly:-9,a:'start',food:1},
-      {n:'Urban Skillet',x:345,y:255,k:'food',lx:15,ly:-9,a:'start',food:1},
-      {n:"George's",x:190,y:290,k:'food',lx:-15,ly:-9,a:'end',nolabel:1,food:1},
-      {n:'Urbane Cafe',x:228,y:322,k:'food',lx:15,ly:-9,a:'start',nolabel:1,food:1},
-      {n:'Khyber Pass',x:505,y:610,k:'food',lx:15,ly:-9,a:'start',food:1}
-    ];
-    const chargers = [
-      {n:'Villa La Jolla',x:300,y:320,lx:15,ly:-9,a:'start'},
-      {n:'Liberty Park Plaza',x:430,y:462,lx:15,ly:-9,a:'start'},
-      {n:'Independence Sq',x:540,y:380,lx:15,ly:-9,a:'start'},
-      {n:'Kearny Office Park',x:610,y:378,lx:15,ly:-9,a:'start'},
-      {n:'Fashion Valley',x:470,y:545,lx:15,ly:-9,a:'start'},
-      {n:'Morena Blvd',x:330,y:575,lx:-15,ly:-9,a:'end'}
-    ];
-
-    /* ---------- per-day itinerary + routes ---------- */
-    const C = {sat:'#11707F', sun:'#3F5864', mon:'#8A4B07', tue:'#B7791F'};
-    const D = {
-      sat:{name:'Saturday · Oct 31', wx:'Cloudy 71°/63°', sub:'Rain moves in after 6p (69%). Evening stops are indoor.', miles:168, b0:90, b1:38,
-        note:'Drive in from Sylmar included. Check-in after 3:00p.',
-        lettered:['sugar','seacliff','airbnb','zoya'],
-        pre:'Valencia → Sylmar → La Jolla · 13 + ~125 mi · 2h 45m',
-        seq:[['sugar','12:30p','Brunch · closes 2:30p','14.0 mi · 22 min'],['seacliff','2:00p','Hike · bluff trail, Del Mar','11.0 mi · 19 min'],['airbnb','4:00p','Check-in · after 3:00p','5.0 mi · 12 min'],['zoya','7:00p','Dinner · halal · reserve']],
-        entry:[[336,-12],[322,70],[340,200],[330,310]],
-        legs:[[[290,345],[335,250],[330,150]],[[360,170],[395,260],[420,350]],[[340,420],[290,380],[230,340]]]},
-      sun:{name:'Sunday · Nov 1', wx:'Rain 69°/61°', sub:'Clocks fell back at 2:00 AM. Heaviest rain 7–9a; Maghrib 4:58p falls in the tour.', miles:42, b0:38, b1:25,
-        note:'Ends near 25%. Charge Mon morning at Villa La Jolla.',
-        lettered:['fig','birch','devils','harbor','aladdin'],
-        seq:[['airbnb','8:40a','Start · Idlewild Way','5.0 mi · 12 min'],['fig','9:00a','Brunch · closes 3:00p','7.1 mi · 16 min'],['birch','10:15a','Indoor · Dhuhr 11:32a here','14.2 mi · 22 min'],['devils','2:00p','Optional · donut stop','1.0 mi · 5 min'],['harbor','4:15p','Booked · arrive 3:45p','11.8 mi · 20 min'],['aladdin','6:15p','Dinner · halal','3.0 mi · 8 min'],['airbnb','7:45p','Back at the Airbnb']],
-        legs:[[[340,445],[280,455]],[[310,440],[320,330],[290,260]],[[300,250],[350,330],[360,450],[390,560],[410,640]],[[408,690]],[[430,600],[470,540],[450,460]],[[420,410]]]},
-      mon:{name:'Monday · Nov 2', wx:'Sunny 79°/64°', sub:'Clear all day (11%). Longest local drive: Balboa Park to El Cajon.', miles:55, b0:25, b1:62,
-        note:'Charge 20→80% at Villa La Jolla during brunch (~25 min).',
-        lettered:['shore','zoo','museum','sultan'],
-        seq:[['airbnb','8:40a','Start · charge 20→80% first','5.5 mi · 14 min'],['shore','9:00a','Brunch · closes 3:30p','13.0 mi · 24 min'],['zoo','10:30a','San Diego Zoo · Balboa Park','0.6 mi · 4 min'],['museum','3:15p','Tentative · Modern Art or NatHist','17.9 mi · 26 min'],['sultan','5:30p','Dinner · El Cajon','18.0 mi · 25 min'],['airbnb','7:30p','Back at the Airbnb']],
-        legs:[[[340,400],[290,330],[250,290]],[[300,300],[360,380],[390,500],[420,600],[470,640]],[[]],[[560,640],[700,610],[850,620]],[[800,560],[650,480],[520,445]]]},
-      tue:{name:'Tuesday · Nov 3', wx:'Mostly sunny 80°/67°', sub:'Check out before 10:00a. Dhuhr 11:32a before leaving.', miles:145, b0:62, b1:12,
-        warn:true, note:'Arrive Valencia ~12%, below the 20% buffer. Top up before leaving.',
-        lettered:['shore'],
-        seq:[['airbnb','9:45a','Check-out · before 10:00a','5.5 mi · 14 min'],['shore','10:15a','Brunch · then Dhuhr 11:32a','126 mi · 2h 10m'],['HOME','2:40p','Drop Ömer in Sylmar, then Valencia · +13 mi']],
-        legs:[[[340,400],[290,330],[250,290]],[[300,200],[330,100]]],
-        exit:[345,-12]}
-    };
-
-    const ptsOf = (a,b,mids)=> [[a.x,a.y]].concat(mids.filter(m=>m.length), [[b.x,b.y]]);
-    const polyD = (pts)=> 'M'+pts.map(p=>p[0]+','+p[1]).join(' L');
-    const chev = (pts)=>{
-      let tot=0; for(let i=0;i<pts.length-1;i++) tot+=Math.hypot(pts[i+1][0]-pts[i][0],pts[i+1][1]-pts[i][1]);
-      let h=tot/2, acc=0;
-      for(let i=0;i<pts.length-1;i++){
-        const L=Math.hypot(pts[i+1][0]-pts[i][0],pts[i+1][1]-pts[i][1]);
-        if(acc+L>=h){ const f=(h-acc)/L; const x=pts[i][0]+(pts[i+1][0]-pts[i][0])*f, y=pts[i][1]+(pts[i+1][1]-pts[i][1])*f; const ang=Math.atan2(pts[i+1][1]-pts[i][1],pts[i+1][0]-pts[i][0])*180/Math.PI; return 'translate('+x.toFixed(1)+','+y.toFixed(1)+') rotate('+ang.toFixed(1)+')'; }
-        acc+=L;
-      }
-      return 'translate(0,0)';
-    };
-    const buildRoute = (key)=>{
-      const day = D[key]; const out=[]; const ch=[];
-      const ids = day.seq.map(r=>r[0]).filter(id=>id!=='HOME');
-      for(let i=0;i<ids.length-1;i++){
-        const pts = ptsOf(PL[ids[i]], PL[ids[i+1]], day.legs[i]||[]);
-        out.push({d:polyD(pts), dash:'none'});
-        ch.push(chev(pts));
-      }
-      if(day.entry){ const pts=day.entry.concat([[PL[ids[0]].x,PL[ids[0]].y]]); out.push({d:polyD(pts), dash:'2 7'}); }
-      if(day.exit){ const last=PL[ids[ids.length-1]]; const pts=[[last.x,last.y]].concat(day.legs[day.legs.length-1], [day.exit]); out.push({d:polyD(pts), dash:'2 7'}); ch.push(chev(pts)); }
-      return {paths:out, chev:ch};
-    };
-
-    const dayKey = s.day;
-    const keys = dayKey==='all' ? ['sat','sun','mon','tue'] : [dayKey];
-    const routes=[]; const chevrons=[];
-    keys.forEach(k=>{
-      const r = buildRoute(k);
-      r.paths.forEach(p=>{
-        const single = dayKey!=='all';
-        routes.push({d:p.d, col:C[k], w:String(p.dash==='none'?(single?4:3):(single?3:2)), hw:String(p.dash==='none'?(single?8:5.5):(single?5:3.5)), dash:p.dash});
-      });
-      r.chev.forEach(t=>chevrons.push({t}));
-    });
-
-    /* ---------- pins ---------- */
-    const rain = s.rain;
-    const schedIds = []; ['sat','sun','mon','tue'].forEach(k=>D[k].lettered.forEach(id=>{ if(id!=='airbnb' && schedIds.indexOf(id)<0) schedIds.push(id); }));
-    const cur = dayKey==='all' ? null : D[dayKey];
-    const schedPins = [];
-    if(s.sched){
-      schedIds.forEach(id=>{
-        const p=PL[id];
-        if(rain && p.out) return;
-        const idx = cur ? cur.lettered.indexOf(id) : -1;
-        const inDay = !cur || idx>=0;
-        let fill='#11707F', stroke='#FFFFFF', txt='#FFFFFF', dash='none';
-        if(p.k==='food') fill='#8A4B07';
-        if(p.k==='fixed') fill='#0E2530';
-        if(p.opt){ fill='#FBEBD3'; stroke='#8A4B07'; txt='#8A4B07'; dash='3 2'; }
-        schedPins.push({
-          t:'translate('+p.x+','+p.y+')', o:inDay?'1':'0.28', fill, stroke, txt, dash,
-          letter: idx>=0 ? String.fromCharCode(65+idx) : '', dotR: idx>=0 ? '0' : '4',
-          label:p.n, lx:String(p.lx), ly:String(p.ly), a:p.a,
-          click:()=>{ if(id==='birch') this.setState({pop:true}); }
-        });
-      });
+    let routeD = '', returnD = '';
+    const showRoute = s.layers.plan && !all && routeStops.length > 1;
+    if (showRoute) {
+      const pts = [P(AIR[0], AIR[1])];
+      routeStops.forEach((st, i) => { pts.push(P(st.p[0], st.p[1])); if (st.v && i < routeStops.length - 1) st.v.forEach((q) => pts.push(P(q[0], q[1]))); });
+      routeD = curve(pts);
+      const last = pts[pts.length - 1], home = P(AIR[0], AIR[1]);
+      const dx = home[0] - last[0], dy = home[1] - last[1], len = Math.hypot(dx, dy) || 1;
+      const mid = [(last[0] + home[0]) / 2 - dy / len * 40, (last[1] + home[1]) / 2 + dx / len * 40];
+      returnD = curve([last, mid, home]);
     }
-    const forkD = 'M-3.5,-28 V-23.5 Q-3.5,-21 0,-21 Q3.5,-21 3.5,-23.5 V-28 M0,-28 V-15.5';
-    const backupPins = [];
-    backups.forEach(p=>{
-      if(p.food ? !s.food : !s.backup) return;
-      if(rain && p.out) return;
-      backupPins.push({
-        t:'translate('+p.x+','+p.y+') scale(0.82)', o:'1', stroke:p.food?'#8A4B07':'#11707F',
-        dotR:p.food?'0':'3.5', fork:p.food?forkD:'', label:p.nolabel?'':p.n, lx:String(p.lx), ly:String(p.ly), a:p.a, lo:'0.9'
-      });
-    });
-    const chargerPins = s.charger ? chargers.map(p=>({t:'translate('+p.x+','+p.y+') scale(0.88)', label:p.n, lx:String(p.lx), ly:String(p.ly), a:p.a})) : [];
 
-    /* ---------- left panel ---------- */
-    const dayList = [['all','All','',''],['sat','Sat','10/31',C.sat],['sun','Sun','11/1',C.sun],['mon','Mon','11/2',C.mon],['tue','Tue','11/3',C.tue]];
-    const dayBtns = dayList.map(d=>{
-      const on = s.day===d[0];
+    const IDEAS = [
+      { id: 'rose', n: 'Rose Canyon Open Space Park', p: [335, 305], k: 'act', meta: '~4 mi · 8 min from Airbnb' },
+      { id: 'coast', n: 'Coast Walk Trail', p: [212, 200], k: 'act', meta: '~6 mi · 14 min from Airbnb' },
+      { id: 'geisel', n: 'UCSD Geisel Library', p: [285, 268], k: 'act', meta: '~5 mi · 12 min from Airbnb' },
+      { id: 'italy', n: 'Little Italy', p: [525, 612], k: 'act', meta: '~8 mi · 16 min from Airbnb' },
+      { id: 'akhi', n: "Akhi's Shawarma & Kebab", p: [270, 340], k: 'food', meta: '~3 mi · 9 min from Airbnb' },
+      { id: 'skillet', n: 'Urban Skillet', p: [362, 168], k: 'food', meta: '~8 mi · 15 min from Airbnb' },
+      { id: 'khyber', n: 'Khyber Pass Zarparan', p: [440, 470], k: 'food', meta: '~4 mi · 11 min from Airbnb' }
+    ];
+    const vis = IDEAS.filter((i) => (i.k === 'act' ? s.layers.ideas : s.layers.food));
+    const ideaPins = vis.map((i) => {
+      const [x, y] = P(i.p[0], i.p[1]);
+      const on = s.pop === i.id;
+      const col = i.k === 'act' ? '#1C6B50' : '#C2562B';
       return {
-        label:d[1], sub:d[2]||'4 days', pressed:on,
-        style:'display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 0 7px;border:0;border-radius:7px;position:relative;'+(on?'background:#FFFFFF;color:#0E2530;box-shadow:0 1px 2px rgba(14,37,48,.12);':'background:transparent;color:#3F5864;'),
-        subStyle:"font-family:'JetBrains Mono',monospace;font-size:10px;color:"+(on?'#3F5864':'#56707C')+';',
-        dotStyle:'width:'+(d[0]==='all'?'0':'14px')+';height:3px;border-radius:2px;margin-top:2px;background:'+(d[3]||'transparent')+';opacity:'+(on||dayKey==='all'?'1':'0.55')+';',
-        click:()=>this.setState({day:d[0]})
+        label: i.n, open: () => this.setState({ pop: on ? null : i.id }),
+        style: abs(x, y) + '; width: 16px; height: 16px; border-radius: 999px; box-sizing: border-box; background: #FFFFFF; border: 3px solid ' + col + '; padding: 0; cursor: pointer; z-index: 2' + (on ? '; box-shadow: 0 0 0 5px rgba(31,35,40,.12)' : '')
       };
     });
+    const sel = vis.find((i) => i.id === s.pop);
+    let pop = { show: false, style: '', name: '', meta: '', close: () => this.setState({ pop: null }) };
+    if (sel) {
+      const [x, y] = P(sel.p[0], sel.p[1]);
+      pop = { show: true, name: sel.n, meta: sel.meta, close: () => this.setState({ pop: null }),
+        style: 'position: absolute; left: ' + (x + 16).toFixed(1) + 'px; bottom: ' + (760 - y + 12).toFixed(1) + 'px; width: 264px; box-sizing: border-box; background: #FFFFFF; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 8px 28px rgba(31,35,40,.18); z-index: 6' };
+    }
 
-    const bcol = (v)=> v>=50?'#11707F':(v>=20?'#B7791F':'#C2410C');
-    const chip = (v)=> "font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:500;color:"+bcol(v)+';border:1px solid '+bcol(v)+';border-radius:999px;padding:2px 10px;background:#FFFFFF;';
+    const CH = [
+      { n: 'Supercharger, Liberty Park Plaza', p: [362, 438] },
+      { n: 'Supercharger, Villa La Jolla', p: [308, 212] },
+      { n: 'Supercharger, Fashion Valley', p: [480, 500] },
+      { n: 'Supercharger, Morena Blvd', p: [395, 548] },
+      { n: 'Supercharger, Kearny Office Park', p: [655, 332] }
+    ];
+    const chargerPins = s.layers.chargers ? CH.map((c) => {
+      const [x, y] = P(c.p[0], c.p[1]);
+      return { label: c.n, style: abs(x, y) + '; width: 26px; height: 26px; border-radius: 999px; background: #DCEBFF; border: 2px solid #FFFFFF; box-sizing: border-box; display: grid; place-items: center; box-shadow: 0 1px 5px rgba(31,35,40,.25); z-index: 2' };
+    }) : [];
 
-    const items=[];
-    const addDay = (key, compact)=>{
-      const day = D[key];
-      if(compact) items.push({isHead:true, title:day.name, meta:day.miles+' mi · '+day.b0+'→'+day.b1+'%'});
-      else if(day.pre) items.push({isLeg:true, text:day.pre});
-      day.seq.forEach((r,i)=>{
-        const id=r[0];
-        if(id==='HOME'){
-          items.push({isStop:true, isHouse:false, isLetter:false, isHomeBadge:true, name:'Home · Sylmar, Valencia', sub:r[2], time:r[1],
-            bstyle:'width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex:none;background:#E8EEF0;color:#0E2530;'});
-          return;
-        }
-        const p=PL[id]; const li=day.lettered.indexOf(id);
-        let bg='#11707F', col='#FFFFFF', extra='';
-        if(id==='airbnb'){ bg=li>=0?'#0E2530':'#D9541E'; }
-        else if(p.k==='food'){ bg='#8A4B07'; }
-        else if(p.k==='fixed'){ bg='#0E2530'; }
-        if(p.opt){ bg='#FBEBD3'; col='#8A4B07'; extra='border:1.5px dashed #8A4B07;box-sizing:border-box;'; }
-        const house = li<0;
-        items.push({isStop:true, isHouse:house, isLetter:!house, isHomeBadge:false, badge: house?'':String.fromCharCode(65+li),
-          name: id==='airbnb' ? (li>=0?'Airbnb · Idlewild Way':'Airbnb') : (id==='harbor'?'Flagship South Harbor Tour':p.n),
-          sub:r[2], time:r[1],
-          bstyle:"width:26px;height:26px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex:none;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;background:"+bg+';color:'+col+';'+extra});
-        if(!compact && r[3]) items.push({isLeg:true, text:r[3]});
-      });
-    };
-    if(dayKey==='all'){ ['sat','sun','mon','tue'].forEach(k=>addDay(k,true)); }
-    else addDay(dayKey,false);
-
-    const tot = dayKey==='all' ? {miles:410, b0:90, b1:12, name:'Oct 31 – Nov 3', wx:'4 days', sub:'Tap a day to focus its route. Colors match the route lines on the map.', note:'Charge Mon morning; Tue ends low (~12%).', warn:true} : {miles:cur.miles, b0:cur.b0, b1:cur.b1, name:cur.name, wx:cur.wx, sub:cur.sub, note:cur.note, warn:!!cur.warn};
-
-    const layerDefs = [['sched','Scheduled','#11707F',false],['backup','Backups / ideas','#11707F',true],['food','Restaurants','#8A4B07',true],['charger','Superchargers','#2F6FDB',false],['homes','Homes','#3F5864',false],['rain','Rain-safe only','#4B4FC4',false]];
-    const layerBtns = layerDefs.map(l=>{
-      const on = !!s[l[0]];
-      return {
-        label:l[1], on, click:()=>this.setState({[l[0]]:!s[l[0]]}),
-        style:'display:flex;align-items:center;gap:8px;height:34px;padding:0 8px 0 10px;border-radius:8px;background:'+(on?'#FFFFFF':'#F3F6F7')+';border:1px solid '+(on?'#B8C9D0':'#D3DDE1')+';color:'+(on?'#0E2530':'#56707C')+';',
-        dotStyle:'width:10px;height:10px;border-radius:999px;flex:none;box-sizing:border-box;'+(l[3]?'background:#fff;border:2px solid '+l[2]+';':'background:'+l[2]+';'),
-        trackStyle:'width:28px;height:16px;border-radius:999px;flex:none;position:relative;background:'+(on?'#11707F':'#B8C9D0')+';',
-        knobStyle:'position:absolute;top:2px;left:'+(on?'14px':'2px')+';width:12px;height:12px;border-radius:999px;background:#fff;'
-      };
-    });
+    const [ax, ay] = P(AIR[0], AIR[1]);
+    const a2 = P(560, 330);
+    const mx = (ax + a2[0]) / 2, my = (ay + a2[1]) / 2;
+    const m = { x1: ax, y1: ay, x2: a2[0], y2: a2[1],
+      labelStyle: abs(mx, my) + '; background: #2C6E91; color: #FFFFFF; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 999px; white-space: nowrap; box-shadow: 0 2px 8px rgba(31,35,40,.2); z-index: 4' };
 
     return {
-      dayBtns, items, layerBtns, routes, chevrons, schedPins, backupPins, chargerPins,
-      contours, landD, coastD, bayD, roads, shields, gridV, gridH,
-      dayTitle:tot.name, dayWx:tot.wx, daySub:tot.sub,
-      milesLabel: dayKey==='all' ? 'Trip miles' : 'Day miles',
-      miles:tot.miles, b0:tot.b0, b1:tot.b1, b0Style:chip(tot.b0), b1Style:chip(tot.b1),
-      barStartStyle:'position:absolute;left:0;top:0;height:6px;border-radius:999px;background:#B8C9D0;width:'+tot.b0+'%;',
-      barEndStyle:'position:absolute;left:0;top:0;height:6px;border-radius:999px;background:'+bcol(tot.b1)+';width:'+tot.b1+'%;',
-      batNote:tot.note,
-      noteStyle:'margin-top:8px;font-size:12px;line-height:1.35;color:'+(tot.warn?'#C2410C':'#3F5864')+';font-weight:'+(tot.warn?'500':'400')+';',
-      airbnbLetter:'C', airbnbBadgeO: dayKey==='sat' ? '1' : '0',
-      homesOn:s.homes, popOn:s.pop, measureOn:s.measure,
-      closePop:()=>this.setState({pop:false}),
-      toggleMeasure:()=>this.setState({measure:!s.measure}),
-      fitDay:()=>this.setState({pop:s.pop}),
-      measureStyle:'height:36px;padding:0 12px;display:flex;align-items:center;gap:7px;border-radius:8px;font-size:13px;font-weight:600;box-shadow:0 1px 2px rgba(14,37,48,.06);'+(s.measure?'background:#FCE9DF;border:1px solid #D9541E;color:#A63D12;':'background:#FFFFFF;border:1px solid #D3DDE1;color:#0E2530;')
+      dayChips, dayTitle: TITLES[s.day], rows, layerChips, stopPins, routeD, returnD, showRoute, ideaPins, chargerPins, pop, m,
+      measure: s.measure,
+      airbnb: { style: abs(ax, ay) + '; display: flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 10px; z-index: 5' },
+      baseStyle: 'width: 1004px; height: 760px; transform-origin: 502px 380px; transform: scale(' + z + ')',
+      toggleMeasure: () => this.setState({ measure: !s.measure }),
+      measureBtnStyle: 'position: absolute; left: 16px; top: 16px; height: 44px; display: flex; align-items: center; gap: 8px; border-radius: 999px; padding: 0 18px; font-size: 14px; font-weight: 600; cursor: pointer; border: 0; box-shadow: 0 2px 8px rgba(31,35,40,.14); background: ' + (s.measure ? '#1F2328' : '#FFFFFF') + '; color: ' + (s.measure ? '#FFFFFF' : '#1F2328'),
+      zoomIn: () => this.setState({ zoom: Math.min(1.6, +(s.zoom + 0.2).toFixed(1)) }),
+      zoomOut: () => this.setState({ zoom: Math.max(1, +(s.zoom - 0.2).toFixed(1)) })
     };
   }
 }

@@ -8,211 +8,169 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0}
-a{color:#11707F}a:hover{color:#0B5562}
-button{font-family:Inter,sans-serif;cursor:pointer}
-input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid #11707F;outline-offset:1px}
-.fld{width:100%;box-sizing:border-box;border:1px solid #D3DDE1;border-radius:8px;padding:9px 11px;font:inherit;font-size:14px;color:#0E2530;background:#fff}
-.lbl{display:block;font-size:12px;font-weight:600;color:#3F5864;margin-bottom:5px}
+body{margin:0;background:#F7F6F3}
+a{color:#2C6E91}a:hover{color:#1F5370}
+.nm{color:#1F2328;text-decoration:none}.nm:hover{color:#2C6E91;text-decoration:underline}
+button{cursor:pointer}
+input::placeholder{color:#7A8087}
 </style>
 </helmet>
-<div style="position:relative;min-height:1640px;overflow:hidden;background:#F3F6F7;color:#0E2530;font-family:Inter,sans-serif;font-size:14px">
+<div style="min-height: 0; background: #F7F6F3; font-family: Figtree, system-ui, sans-serif; color: #1F2328; font-variant-numeric: tabular-nums">
 
-  <!-- Background: simplified Places screen -->
-  <div aria-hidden="true">
-    <header style="background:#fff;border-bottom:1px solid #D3DDE1;display:flex;align-items:center;gap:28px;padding:0 32px;height:60px">
-      <div style="display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:19px">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#D9541E" stroke-width="1.75" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="2.5" fill="#D9541E"/></svg>La Jolla '26
-      </div>
-      <nav style="display:flex;gap:4px;height:60px">
-        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Today</span>
-        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Schedule</span>
-        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Map</span>
-        <span style="display:flex;align-items:center;padding:0 14px;font-weight:600;border-bottom:3px solid #D9541E;box-sizing:border-box">Places</span>
-        <span style="display:flex;align-items:center;padding:0 14px;color:#3F5864;font-weight:500">Range</span>
-      </nav>
-    </header>
-    <div style="padding:28px 32px;max-width:1376px;box-sizing:border-box">
-      <h1 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:30px">Places</h1>
-      <div style="margin-top:20px;height:56px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
-      <h2 style="margin:32px 0 12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Scheduled</h2>
-      <div style="background:#fff;border:1px solid #D3DDE1;border-radius:10px;overflow:hidden">
-        <div style="padding:10px 16px;background:#E8EEF0;font-weight:600">Sat 10/31</div>
-        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">12:30–1:45p</span><span style="font-weight:600">Brunch · Sugar and Scribe</span></div>
-        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">2:00–3:30p</span><span style="font-weight:600">Hike · Sea Cliff Coastal Bluff Trail</span></div>
-        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px;background:#DDF0F2"><span style="font-family:'JetBrains Mono',monospace">7:00–8:30p</span><span style="font-weight:600">Dinner · Zoya</span></div>
-        <div style="padding:10px 16px;background:#E8EEF0;font-weight:600">Sun 11/1</div>
-        <div style="padding:14px 16px;border-bottom:1px solid #E8EEF0;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">9:00–10:00a</span><span style="font-weight:600">Brunch · Fig Tree Cafe</span></div>
-        <div style="padding:14px 16px;display:flex;gap:40px"><span style="font-family:'JetBrains Mono',monospace">10:15a–1:45p</span><span style="font-weight:600">Birch Aquarium</span></div>
-      </div>
-      <h2 style="margin:36px 0 12px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px">Backup restaurants</h2>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
-        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
-        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
-        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
-        <div style="height:160px;background:#fff;border:1px solid #D3DDE1;border-radius:10px"></div>
-      </div>
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 40px; max-width: 1360px; margin: 0 auto; box-sizing: border-box">
+    <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1F2328">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="12" r="6" fill="#FFB547"></circle><path d="M3 19c3-2 5-2 8 0s5 2 8 0 5-2 6-1" fill="none" stroke="#2C6E91" stroke-width="2.2" stroke-linecap="round"></path><path d="M3 24c3-2 5-2 8 0s5 2 8 0 5-2 6-1" fill="none" stroke="#2C6E91" stroke-width="2.2" stroke-linecap="round" opacity=".45"></path></svg>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.02em">la jolla ’26</span>
+    </a>
+    <nav aria-label="Main" style="max-width: 100%; overflow-x: auto; box-sizing: border-box; display: flex; gap: 4px; background: #FFFFFF; border-radius: 999px; padding: 4px; box-shadow: 0 1px 2px rgba(31,35,40,.06)">
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Overview</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Schedule</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Map</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; background: #1F2328; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 14px">Places</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Range</a>
+    </nav>
+    <div style="display: flex">
+      <span title="Emmad" style="width: 32px; height: 32px; border-radius: 999px; background: #FFE3D3; color: #8A3A14; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px solid #F7F6F3">E</span>
+      <span title="Ömer" style="width: 32px; height: 32px; border-radius: 999px; background: #D9F2EA; color: #1C6B50; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px solid #F7F6F3; margin-left: -8px">Ö</span>
     </div>
-  </div>
+  </header>
 
-  <!-- Scrim -->
-  <div style="position:absolute;inset:0;background:rgba(14,37,48,0.52)"></div>
+  <main style="max-width: 1360px; margin: 0 auto; padding: 24px 40px 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 
-  <!-- Drawer -->
-  <aside role="dialog" aria-modal="true" aria-labelledby="dr-title" style="position:absolute;top:0;right:0;bottom:0;width:480px;max-width:100%;background:#fff;box-shadow:-12px 0 40px rgba(14,37,48,.25);display:flex;flex-direction:column">
+    <section style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+      <a href="Places.dc.html" style="font-size: 15px; font-weight: 600; text-decoration: none">← Places</a>
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 48px; letter-spacing: -0.03em; line-height: 1.05">{{title}}</h1>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <span style="font-size: 12px; font-weight: 600; background: #FFE3D3; color: #8A3A14; padding: 4px 10px; border-radius: 999px">Food</span>
+        <span style="font-size: 12px; font-weight: 600; background: #D9F2EA; color: #1C6B50; padding: 4px 10px; border-radius: 999px">Halal</span>
+        <span style="font-size: 12px; font-weight: 600; background: #EFEDE9; color: #4A4F56; padding: 4px 10px; border-radius: 999px">Dinner</span>
+      </div>
+    </section>
 
-    <div style="padding:20px 24px 16px;border-bottom:1px solid #D3DDE1">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <span style="font-size:12px;font-weight:600;color:#56707C;letter-spacing:.04em;text-transform:uppercase">Place details</span>
-        <button type="button" aria-label="Close drawer" style="background:none;border:0;color:#3F5864;padding:4px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start">
+
+      <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+
+        <section style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">Details</h2>
+          <dl style="margin: 0; display: grid; grid-template-columns: 110px minmax(0, 1fr); row-gap: 14px; column-gap: 16px; font-size: 15px; line-height: 1.4">
+            <dt style="color: #5F656D">Address</dt><dd style="margin: 0">{{address}}</dd>
+            <dt style="color: #5F656D">Hours</dt><dd style="margin: 0; color: #5F656D">—</dd>
+            <dt style="color: #5F656D">From Airbnb</dt><dd style="margin: 0">5 mi · 13 min</dd>
+            <dt style="color: #5F656D">Links</dt>
+            <dd style="margin: 0; display: flex; gap: 16px">
+              <a href="#" style="font-weight: 600">Reserve</a>
+              <a href="#" style="font-weight: 600">Menu</a>
+            </dd>
+          </dl>
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <label for="notes" style="font-size: 14px; font-weight: 600">Notes</label>
+            <textarea id="notes" rows="3" placeholder="Add a note" style="font: inherit; font-size: 15px; box-sizing: border-box; width: 100%; padding: 12px 16px; border: 1px solid #DCD9D3; border-radius: 12px; resize: vertical; color: #1F2328; background: #FFFFFF"></textarea>
+          </div>
+        </section>
+
+        <section style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">Edit place</h2>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 16px">
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="f-name" style="font-size: 14px; font-weight: 600">Name</label>
+              <input id="f-name" type="text" value="{{title}}" onInput="{{onName}}" style="{{field}}">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="f-cat" style="font-size: 14px; font-weight: 600">Category</label>
+              <select id="f-cat" style="{{field}}; appearance: auto">
+                <option>Food</option><option>Activity</option><option>Charger</option>
+              </select>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1">
+              <label for="f-addr" style="font-size: 14px; font-weight: 600">Address</label>
+              <input id="f-addr" type="text" value="{{address}}" onInput="{{onAddress}}" style="{{field}}">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="f-dur" style="font-size: 14px; font-weight: 600">Duration</label>
+              <input id="f-dur" type="text" value="1 hr 30 min" style="{{field}}">
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 6px">
+              <label for="f-tags" style="font-size: 14px; font-weight: 600">Tags</label>
+              <input id="f-tags" type="text" value="Halal, Dinner" style="{{field}}">
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px">
+            <button type="button" onClick="{{save}}" style="font: inherit; font-weight: 600; font-size: 14px; background: #1F2328; color: #FFFFFF; border: 0; border-radius: 999px; padding: 10px 18px">Save</button>
+            <sc-if value="{{saved}}" hint-placeholder-val="{{ false }}"><span style="font-size: 14px; color: #1C6B50; font-weight: 600">Saved</span></sc-if>
+          </div>
+        </section>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap">
-        <h2 id="dr-title" style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:26px;letter-spacing:-0.01em">Zoya</h2>
-        <span style="display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;background:#0B5562;color:#fff;border-radius:999px;padding:3px 10px"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Halal</span>
-        <span style="font-size:12px;font-weight:500;background:#FBEBD3;color:#8A4B07;border-radius:6px;padding:3px 9px">Restaurant</span>
-      </div>
-      <div style="color:#3F5864;margin-top:4px">1000 Prospect St, La Jolla, CA 92037</div>
-      <div style="margin-top:12px;display:flex;align-items:center;gap:10px;background:#DDF0F2;border-radius:8px;padding:10px 12px">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B5562" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>
-        <span style="font-weight:600;color:#0B5562">Scheduled</span>
-        <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#0B5562">Sat 10/31 · 7:00–8:30p</span>
-        <a href="#" style="margin-left:auto;font-size:13px;font-weight:500">Open in Schedule</a>
-      </div>
+
+      <aside style="flex: 0 1 440px; min-width: 300px; display: flex; flex-direction: column; gap: 16px">
+        <section style="background: #FFFFFF; border-radius: 20px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+          <svg viewBox="0 0 400 260" width="100%" role="img" aria-label="Map of La Jolla with a pin at Zoya" style="display: block; border-radius: 12px">
+            <rect width="400" height="260" fill="#EFEDE6"></rect>
+            <path d="M0 0H130C150 40 120 70 140 110C155 140 125 170 100 190C80 210 90 240 70 260H0Z" fill="#D6E8F2"></path>
+            <path d="M0 60C20 70 30 50 50 60M0 150C25 160 40 140 60 150" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity=".8"></path>
+            <path d="M120 0L190 120L330 260" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"></path>
+            <path d="M130 105H400M150 175H400M250 0V260" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"></path>
+            <path d="M0 0" fill="none"></path>
+            <path d="M138 112C175 118 215 100 260 112" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"></path>
+            <text x="36" y="40" font-family="Figtree, sans-serif" font-size="11" fill="#4C7C98" font-style="italic">Pacific Ocean</text>
+            <text x="290" y="60" font-family="Figtree, sans-serif" font-size="12" font-weight="600" fill="#6B6F73">La Jolla</text>
+            <text x="262" y="200" font-family="Figtree, sans-serif" font-size="11" fill="#6B6F73">Torrey Pines Rd</text>
+            <text x="200" y="98" font-family="Figtree, sans-serif" font-size="11" fill="#6B6F73">Prospect St</text>
+            <g transform="translate(180 118)">
+              <ellipse cx="0" cy="2" rx="10" ry="4" fill="#1F2328" opacity=".12"></ellipse>
+              <path d="M0 0C-12 -14 -14 -20 -14 -26a14 14 0 0 1 28 0c0 6 -2 12 -14 26z" fill="#FF7A59"></path>
+              <circle cx="0" cy="-26" r="5" fill="#FFFFFF"></circle>
+            </g>
+          </svg>
+          <span style="font-size: 12px; color: #5F656D; padding: 0 8px 6px">Sketch map. The real app uses OpenStreetMap tiles.</span>
+        </section>
+
+        <section style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+          <sc-if value="{{scheduled}}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 14px; color: #5F656D">Scheduled</span>
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">Sat 10/31, 7:00–8:30 PM</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px">
+              <button type="button" style="font: inherit; font-weight: 600; font-size: 14px; background: #FFFFFF; color: #1F2328; border: 1px solid #DCD9D3; border-radius: 999px; padding: 9px 17px">Change time</button>
+              <button type="button" onClick="{{toIdeas}}" style="font: inherit; font-weight: 600; font-size: 14px; background: #FFFFFF; color: #1F2328; border: 1px solid #DCD9D3; border-radius: 999px; padding: 9px 17px">Move to ideas</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{inIdeas}}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 14px; color: #5F656D">Not scheduled</span>
+              <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">In ideas</span>
+            </div>
+            <div style="display: flex">
+              <button type="button" onClick="{{toSchedule}}" style="font: inherit; font-weight: 600; font-size: 14px; background: #1F2328; color: #FFFFFF; border: 0; border-radius: 999px; padding: 10px 18px">Add to day</button>
+            </div>
+          </sc-if>
+        </section>
+      </aside>
     </div>
-
-    <div style="flex:1;overflow-y:auto;padding:20px 24px;display:grid;gap:18px;align-content:start">
-
-      <!-- quick facts -->
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div style="background:#F3F6F7;border-radius:8px;padding:10px 12px">
-          <div style="font-size:12px;color:#56707C;font-weight:500">From Airbnb</div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:14px;margin-top:2px">5.0 mi · 13 min</div>
-        </div>
-        <div style="background:#F3F6F7;border-radius:8px;padding:10px 12px">
-          <div style="font-size:12px;color:#56707C;font-weight:500">Rain-safe</div>
-          <div style="font-size:14px;margin-top:2px;font-weight:500;color:#0B5562">Indoor <span style="font-family:'JetBrains Mono',monospace;font-weight:400;color:#56707C;font-size:12px">· Sat eve 69%</span></div>
-        </div>
-      </div>
-
-      <!-- Form -->
-      <div>
-        <label class="lbl" for="f-name">Name</label>
-        <input id="f-name" class="fld" type="text" value="Zoya">
-      </div>
-
-      <div>
-        <label class="lbl" for="f-addr">Address</label>
-        <input id="f-addr" class="fld" type="text" value="1000 Prospect St, La Jolla, CA 92037">
-        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap">
-          <span style="display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:#1F5A35"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Verified, geocoded</span>
-          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864">32.8472, -117.2741</span>
-          <a href="#" style="font-size:12px;margin-left:auto">Show on map</a>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div>
-          <label class="lbl" for="f-cat">Category</label>
-          <select id="f-cat" class="fld"><option>Restaurant</option><option>Activity</option><option>Lodging</option><option>Supercharger</option><option>Home</option></select>
-        </div>
-        <div>
-          <label class="lbl" for="f-dur">Est. duration (min)</label>
-          <input id="f-dur" class="fld" type="number" value="90" min="5" step="5" style="font-family:'JetBrains Mono',monospace">
-        </div>
-      </div>
-
-      <div>
-        <label class="lbl" for="f-hours">Hours</label>
-        <input id="f-hours" class="fld" type="text" value="Dinner service, check Google for tonight's hours">
-      </div>
-
-      <fieldset style="border:0;margin:0;padding:0">
-        <legend class="lbl" style="padding:0">Tags</legend>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <sc-for list="{{tags}}" as="t" hint-placeholder-count="6">
-            <button type="button" onClick="{{t.toggle}}" aria-pressed="{{t.pressed}}" style="{{t.style}}">{{t.label}}</button>
-          </sc-for>
-        </div>
-      </fieldset>
-
-      <div>
-        <label class="lbl" for="f-notes">Notes</label>
-        <textarea id="f-notes" class="fld" rows="3" style="resize:vertical">Reserve via Google. Rain 69% Sat evening, so indoor dinner works. Maghrib is 5:58p, so pray before heading over.</textarea>
-      </div>
-
-      <!-- Links -->
-      <div>
-        <div class="lbl">Links</div>
-        <div style="display:grid;gap:8px">
-          <a href="#" style="display:flex;align-items:center;gap:10px;border:1px solid #D3DDE1;border-radius:8px;padding:9px 12px;text-decoration:none;font-weight:500">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>
-            Reserve via Google<span style="margin-left:auto;font-size:12px;color:#56707C;font-weight:400">google.com</span>
-          </a>
-          <a href="#" style="display:flex;align-items:center;gap:10px;border:1px solid #D3DDE1;border-radius:8px;padding:9px 12px;text-decoration:none;font-weight:500">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>
-            Menu (halal)<span style="margin-left:auto;font-size:12px;color:#56707C;font-weight:400">Halal options marked</span>
-          </a>
-          <button type="button" style="display:inline-flex;align-items:center;gap:6px;justify-self:start;background:none;border:0;color:#11707F;font-size:13px;font-weight:600;padding:2px 0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add link</button>
-        </div>
-      </div>
-
-      <!-- Alternates -->
-      <div>
-        <label class="lbl" for="f-alt">Alternates</label>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;border:1px solid #D3DDE1;border-radius:8px;padding:7px 9px">
-          <span style="display:inline-flex;align-items:center;gap:6px;background:#E8EEF0;border-radius:999px;padding:4px 6px 4px 11px;font-size:13px;font-weight:500">Swap with Aladdin Cafe
-            <button type="button" aria-label="Remove alternate Aladdin Cafe" style="background:none;border:0;color:#3F5864;padding:0;display:inline-flex"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-          </span>
-          <input id="f-alt" type="text" placeholder="Add another place" style="flex:1;min-width:120px;border:0;font:inherit;font-size:14px;padding:4px;color:#0E2530;background:transparent">
-        </div>
-        <div style="font-size:12px;color:#56707C;margin-top:5px">Aladdin Cafe is halal, 3.0 mi · 8 min from the Airbnb.</div>
-      </div>
-
-      <!-- Activity -->
-      <div>
-        <div class="lbl">Activity</div>
-        <ol style="list-style:none;margin:0;padding:0;display:grid;gap:10px">
-          <li style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
-            <span style="width:22px;height:22px;border-radius:50%;background:#D9541E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">Ö</span>
-            <span><strong style="font-weight:600">Ömer</strong> moved this from Sun to Sat <span style="color:#56707C;font-family:'JetBrains Mono',monospace;font-size:12px">· 2h ago</span></span>
-          </li>
-          <li style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
-            <span style="width:22px;height:22px;border-radius:50%;background:#11707F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">E</span>
-            <span><strong style="font-weight:600">Emmad</strong> added tag Halal <span style="color:#56707C;font-family:'JetBrains Mono',monospace;font-size:12px">· yesterday</span></span>
-          </li>
-          <li style="display:flex;gap:10px;align-items:flex-start;font-size:13px">
-            <span style="width:22px;height:22px;border-radius:50%;background:#11707F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex:none">E</span>
-            <span><strong style="font-weight:600">Emmad</strong> created this place <span style="color:#56707C;font-family:'JetBrains Mono',monospace;font-size:12px">· 3 days ago</span></span>
-          </li>
-        </ol>
-      </div>
-    </div>
-
-    <!-- Footer actions -->
-    <div style="border-top:1px solid #D3DDE1;padding:14px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff">
-      <button type="button" style="background:#D9541E;color:#fff;border:0;border-radius:10px;padding:10px 20px;font-size:14px;font-weight:600">Save</button>
-      <button type="button" style="background:#fff;color:#0E2530;border:1px solid #D3DDE1;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:500">Move to backups</button>
-      <button type="button" style="margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:#fff;color:#B42318;border:1px solid #F0C5BF;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:500"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>Delete</button>
-    </div>
-  </aside>
+  </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1640}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1061}}'>
 class Component extends DCLogic {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {tags:{Halal:true, Indoor:true, 'Rain-safe':true, Reservation:true, Outdoor:false, Free:false}};
+    this.state = { title: 'Zoya', address: '1000 Prospect St, La Jolla, CA 92037', saved: false, scheduled: true };
   }
   renderVals() {
-    const on = 'border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500;background:#0E2530;color:#fff;border:1px solid #0E2530';
-    const off = 'border-radius:999px;padding:5px 12px;font-size:13px;font-weight:500;background:#fff;color:#3F5864;border:1px solid #D3DDE1';
-    const tags = Object.keys(this.state.tags).map(k => ({
-      label:k, pressed:this.state.tags[k]?'true':'false', style:this.state.tags[k]?on:off,
-      toggle: () => this.setState({tags:Object.assign({}, this.state.tags, {[k]:!this.state.tags[k]})})
-    }));
-    return {tags};
+    const s = this.state;
+    return {
+      title: s.title, address: s.address, saved: s.saved, scheduled: s.scheduled, inIdeas: !s.scheduled,
+      field: 'font: inherit; font-size: 15px; box-sizing: border-box; width: 100%; height: 42px; padding: 0 16px; border: 1px solid #DCD9D3; border-radius: 12px; background: #FFFFFF; color: #1F2328',
+      onName: (e) => this.setState({ title: e.target.value, saved: false }),
+      onAddress: (e) => this.setState({ address: e.target.value, saved: false }),
+      save: () => this.setState({ saved: true }),
+      toIdeas: () => this.setState({ scheduled: false }),
+      toSchedule: () => this.setState({ scheduled: true })
+    };
   }
 }
 </script>

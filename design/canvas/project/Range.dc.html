@@ -2,521 +2,345 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Range — EV planner</title>
+<title>Range</title>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-body{margin:0}
-a{color:#11707F}a:hover{color:#0B5562}
-button{font-family:Inter,sans-serif;cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #2F6FDB;outline-offset:2px}
-.navtab:hover{color:#0E2530}
-input[type=range]{accent-color:#11707F}
+body{margin:0;background:#F7F6F3}
+a{color:#2C6E91}a:hover{color:#1F5370}
+input:focus-visible,button:focus-visible{outline:2px solid #2C6E91;outline-offset:2px}
 </style>
 </helmet>
-<div style="min-height:2300px;background:#F3F6F7;color:#0E2530;font-family:Inter,sans-serif;font-size:14px;line-height:1.4;">
+<div style="min-height: 1552px; background: #F7F6F3; font-family: Figtree, system-ui, sans-serif; color: #1F2328; font-variant-numeric: tabular-nums">
 
-  <!-- ===== APP CHROME ===== -->
-  <header style="background:#FFFFFF;border-bottom:1px solid #D3DDE1;">
-    <div style="max-width:1440px;margin:0 auto;padding:0 24px;min-height:60px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 28px;box-sizing:border-box;">
-      <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#0E2530;">
-        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true"><rect x="1" y="1" width="26" height="26" rx="7" fill="#0E2530"/><path d="M5 17c2.5-3 4.5-3 7 0s4.5 3 7 0 2.5-1.5 4-2.5" stroke="#FFFFFF" stroke-width="1.75" stroke-linecap="round"/><circle cx="19" cy="9" r="2.2" fill="#D9541E"/></svg>
-        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.01em;">La Jolla '26</span>
-      </a>
-      <nav aria-label="Primary" style="display:flex;gap:4px;align-self:stretch;align-items:stretch;">
-        <a class="navtab" href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500;border-bottom:2px solid transparent;">Today</a>
-        <a class="navtab" href="Schedule-Day.dc.html" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500;border-bottom:2px solid transparent;">Schedule</a>
-        <a class="navtab" href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500;border-bottom:2px solid transparent;">Map</a>
-        <a class="navtab" href="#" style="display:flex;align-items:center;padding:0 14px;color:#3F5864;text-decoration:none;font-weight:500;border-bottom:2px solid transparent;">Places</a>
-        <a href="#" aria-current="page" style="display:flex;align-items:center;padding:0 14px;color:#0E2530;text-decoration:none;font-weight:600;border-bottom:2px solid #D9541E;">Range</a>
-      </nav>
-      <div style="margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;">
-        <div style="display:flex;align-items:center;gap:10px;background:#F3F6F7;border:1px solid #D3DDE1;border-radius:999px;padding:5px 12px 5px 6px;">
-          <span style="display:flex;"><span style="width:24px;height:24px;border-radius:50%;background:#11707F;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #fff;">E</span><span style="width:24px;height:24px;border-radius:50%;background:#0E2530;color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;border:2px solid #fff;margin-left:-8px;">Ö</span></span>
-          <span style="font-size:13px;font-weight:500;color:#0E2530;">Oct 31 – Nov 3</span>
-          <span style="font-size:13px;color:#3F5864;">2 travelers</span>
-        </div>
-        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#3F5864;"><span style="width:8px;height:8px;border-radius:50%;background:#11707F;display:inline-block;"></span>Synced</span>
-      </div>
+  <header style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 40px; max-width: 1360px; margin: 0 auto; box-sizing: border-box">
+    <a href="#" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #1F2328">
+      <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="12" r="6" fill="#FFB547"></circle><path d="M3 19c3-2 5-2 8 0s5 2 8 0 5-2 6-1" fill="none" stroke="#2C6E91" stroke-width="2.2" stroke-linecap="round"></path><path d="M3 24c3-2 5-2 8 0s5 2 8 0 5-2 6-1" fill="none" stroke="#2C6E91" stroke-width="2.2" stroke-linecap="round" opacity=".45"></path></svg>
+      <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.02em">la jolla ’26</span>
+    </a>
+    <nav aria-label="Main" style="max-width: 100%; overflow-x: auto; box-sizing: border-box; display: flex; gap: 4px; background: #FFFFFF; border-radius: 999px; padding: 4px; box-shadow: 0 1px 2px rgba(31,35,40,.06)">
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Overview</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Schedule</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Map</a>
+      <a href="#" style="padding: 8px 16px; border-radius: 999px; color: #1F2328; text-decoration: none; font-weight: 500; font-size: 14px">Places</a>
+      <a href="#" aria-current="page" style="padding: 8px 16px; border-radius: 999px; background: #1F2328; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 14px">Range</a>
+    </nav>
+    <div style="display: flex">
+      <span title="Emmad" style="width: 32px; height: 32px; border-radius: 999px; background: #FFE3D3; color: #8A3A14; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px solid #F7F6F3">E</span>
+      <span title="Ömer" style="width: 32px; height: 32px; border-radius: 999px; background: #D9F2EA; color: #1C6B50; display: grid; place-items: center; font-weight: 700; font-size: 13px; border: 2px solid #F7F6F3; margin-left: -8px">Ö</span>
     </div>
   </header>
 
-  <main style="max-width:1440px;margin:0 auto;padding:24px;box-sizing:border-box;">
+  <main style="max-width: 1360px; margin: 0 auto; padding: 24px 40px 64px; box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
 
-    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:16px;">
-      <div>
-        <div style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#56707C;">EV range planner</div>
-        <h1 style="margin:2px 0 0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:32px;letter-spacing:-0.02em;">Battery across the whole trip</h1>
-        <div style="color:#3F5864;font-size:13px;margin-top:4px;">Sat 9:30a leaving Valencia to Tue 2:40p back home · <span style="font-family:'JetBrains Mono',monospace;">{{totals.miles}} mi</span> · <span style="font-family:'JetBrains Mono',monospace;">{{totals.kwh}} kWh</span> · estimates, not live telemetry</div>
-      </div>
-      <span style="{{statusStyle}}">{{statusText}}</span>
-    </div>
+    <section style="display: flex; flex-direction: column; gap: 12px">
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 48px; letter-spacing: -0.03em; line-height: 1.05">Range</h1>
+      <p style="margin: 0; font-size: 17px; color: #5F656D; line-height: 1.5">2026 Model 3 Standard · 321 mi EPA</p>
+    </section>
 
-    <!-- ===== ROW 1: car + insights ===== -->
-    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:stretch;margin-bottom:16px;">
-
-      <section aria-label="Vehicle and inputs" style="flex:1 1 380px;min-width:0;background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);padding:20px;box-sizing:border-box;">
-        <div style="display:flex;gap:12px;align-items:center;">
-          <div style="flex:none;width:44px;height:44px;border-radius:10px;background:#E8EEF0;display:flex;align-items:center;justify-content:center;color:#0E2530;">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l1.6-5.2A2 2 0 0 1 6.5 8.4h11a2 2 0 0 1 1.9 1.4L21 15"/><path d="M3 15h18v3.5H3z"/><circle cx="7.5" cy="18.5" r="1.2"/><circle cx="16.5" cy="18.5" r="1.2"/></svg>
-          </div>
-          <div>
-            <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;">2026 Tesla Model 3</h2>
-            <div style="font-size:13px;color:#3F5864;">Standard RWD</div>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:16px 0 18px;">
-          <div style="background:#F3F6F7;border-radius:8px;padding:8px 10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;">321<span style="font-size:11px;color:#56707C;"> mi</span></div><div style="font-size:11px;color:#56707C;">EPA range</div></div>
-          <div style="background:#F3F6F7;border-radius:8px;padding:8px 10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;">69.5<span style="font-size:11px;color:#56707C;"> kWh</span></div><div style="font-size:11px;color:#56707C;">usable</div></div>
-          <div style="background:#F3F6F7;border-radius:8px;padding:8px 10px;"><div style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;">{{eff}}</div><div style="font-size:11px;color:#56707C;">kWh / 100 mi</div></div>
-        </div>
-
-        <div style="display:flex;flex-direction:column;gap:16px;">
-          <div>
-            <div style="display:flex;justify-content:space-between;align-items:baseline;"><label for="startPct" style="font-weight:600;">Starting charge</label><span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:500;">{{start}}%</span></div>
-            <input id="startPct" type="range" min="30" max="100" step="1" value="{{start}}" onInput="{{onStart}}" style="width:100%;margin:6px 0 2px;">
-            <div style="font-size:12px;color:#56707C;">Sat 9:30a. <span style="font-family:'JetBrains Mono',monospace;">{{startEpa}} mi</span> EPA · <span style="font-family:'JetBrains Mono',monospace;">{{startPlan}} mi</span> at your planning efficiency.</div>
-          </div>
-          <div style="display:flex;gap:12px;">
-            <div style="flex:1 1 0;min-width:0;">
-              <label for="effIn" style="font-weight:600;display:block;margin-bottom:4px;">Efficiency</label>
-              <div style="display:flex;align-items:center;gap:6px;"><input id="effIn" type="number" min="15" max="40" step="0.5" value="{{eff}}" onInput="{{onEff}}" style="width:100%;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:15px;padding:7px 8px;border:1px solid #9AAEB7;border-radius:8px;color:#0E2530;background:#fff;"><span style="font-size:12px;color:#56707C;white-space:nowrap;">kWh/100 mi</span></div>
-            </div>
-            <div style="flex:1 1 0;min-width:0;">
-              <label for="bufIn" style="font-weight:600;display:block;margin-bottom:4px;">Buffer</label>
-              <div style="display:flex;align-items:center;gap:6px;"><input id="bufIn" type="number" min="0" max="40" step="1" value="{{buf}}" onInput="{{onBuf}}" style="width:100%;box-sizing:border-box;font-family:'JetBrains Mono',monospace;font-size:15px;padding:7px 8px;border:1px solid #9AAEB7;border-radius:8px;color:#0E2530;background:#fff;"><span style="font-size:12px;color:#56707C;">%</span></div>
-            </div>
-          </div>
-          <div style="font-size:12px;color:#56707C;margin-top:-8px;">Buffer is the minimum charge you want left on arrival anywhere. EPA alone implies 21.6 kWh/100 mi; 24 adds real-world margin.</div>
-          <div style="display:flex;align-items:center;gap:12px;justify-content:space-between;padding-top:12px;border-top:1px solid #E8EEF0;">
-            <div><div style="font-weight:600;">Use highway penalty</div><div style="font-size:12px;color:#56707C;">Adds 8% energy to legs of 50+ mi (I-5 at 75 mph).</div></div>
-            <button role="switch" aria-checked="{{hwOn}}" aria-label="Use highway penalty" onClick="{{toggleHw}}" style="{{hwTrack}}"><span style="{{hwKnob}}"></span></button>
-          </div>
-        </div>
-      </section>
-
-      <div style="flex:2 1 560px;min-width:0;display:flex;flex-direction:column;gap:16px;">
-        <!-- alert -->
-        <section aria-label="Range alert" style="{{alert.style}}">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;color:#B8420F;margin-top:2px;"><path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18h.01"/></svg>
-          <div style="flex:1 1 auto;min-width:0;">
-            <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:22px;color:#8F3410;">Without charging you would arrive home at <span style="font-family:'JetBrains Mono',monospace;font-weight:500;">{{alert.ghostEnd}}</span></h2>
-            <p style="margin:6px 0 0;font-size:14px;">Sat night <b style="font-family:'JetBrains Mono',monospace;font-weight:500;">{{alert.g1}}</b> · Sun night <b style="font-family:'JetBrains Mono',monospace;font-weight:500;">{{alert.g2}}</b> · Mon night <b style="font-family:'JetBrains Mono',monospace;font-weight:500;">{{alert.g3}}</b>, then Tuesday's drive needs about <b style="font-family:'JetBrains Mono',monospace;font-weight:500;">{{alert.tueNeed}}%</b>. The battery would be empty about <b style="font-family:'JetBrains Mono',monospace;font-weight:500;">{{alert.emptyMi}} mi</b> into Shorehouse → Sylmar.</p>
-            <p style="margin:6px 0 0;font-size:14px;color:#3F5864;">{{alert.withCharge}}</p>
-            <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px;">
-              <button onClick="{{toggleMon}}" style="{{alert.monBtn}}">{{alert.monText}}</button>
-              <button onClick="{{toggleTue}}" style="{{alert.tueBtn}}">{{alert.tueText}}</button>
-            </div>
-          </div>
-        </section>
-        <!-- KPI -->
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;">
-          <sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
-            <div style="background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);padding:14px 16px;">
-              <div style="font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#56707C;">{{k.label}}</div>
-              <div style="margin:6px 0 4px;"><span style="{{k.chip}}">{{k.val}}</span></div>
-              <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864;">{{k.sub}}</div>
-            </div>
-          </sc-for>
+    <section style="display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="start-charge" style="font-size: 13px; font-weight: 500; color: #5F656D">Starting charge</label>
+        <div style="display: flex; align-items: center; gap: 6px; height: 44px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 1px solid #DCD9D3; border-radius: 12px">
+          <input id="start-charge" type="text" inputmode="decimal" value="{{startStr}}" onInput="{{onStart}}" style="font: inherit; font-size: 16px; font-weight: 600; color: #1F2328; width: 48px; border: 0; background: transparent; padding: 0; outline-offset: 6px; text-align: right">
+          <span style="font-size: 14px; color: #5F656D">%</span>
         </div>
       </div>
-    </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <label for="efficiency" style="font-size: 13px; font-weight: 500; color: #5F656D">Efficiency</label>
+        <div style="display: flex; align-items: center; gap: 6px; height: 44px; box-sizing: border-box; padding: 0 16px; background: #FFFFFF; border: 1px solid #DCD9D3; border-radius: 12px">
+          <input id="efficiency" type="text" inputmode="decimal" value="{{effStr}}" onInput="{{onEff}}" style="font: inherit; font-size: 16px; font-weight: 600; color: #1F2328; width: 48px; border: 0; background: transparent; padding: 0; outline-offset: 6px; text-align: right">
+          <span style="font-size: 14px; color: #5F656D">kWh/100 mi</span>
+        </div>
+      </div>
+      <button type="button" aria-pressed="{{chargeOn}}" onClick="{{toggleCharge}}" style="{{chipStyle}}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg>
+        <span>Include Monday charge</span>
+      </button>
+    </section>
 
-    <!-- ===== ROW 2: BIG CHART ===== -->
-    <section aria-label="Battery over the trip" style="background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);padding:20px;margin-bottom:16px;">
-      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;margin-bottom:6px;">
-        <div>
-          <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;">Battery % across the trip</h2>
-          <div style="font-size:12px;color:#3F5864;margin-top:2px;">Each drive steps the line down. Flat runs are stops and overnights. Time-proportional: Sat 9:30a → Tue 2:40p.</div>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;">
-          <div style="display:flex;align-items:center;gap:8px;"><button role="switch" aria-checked="{{monOn}}" aria-label="Include suggested Monday charge" onClick="{{toggleMon}}" style="{{monTrack}}"><span style="{{monKnob}}"></span></button><span style="font-size:13px;font-weight:500;">Monday charge</span></div>
-          <div style="display:flex;align-items:center;gap:8px;"><button role="switch" aria-checked="{{ghostOn}}" aria-label="Show no-charge scenario" onClick="{{toggleGhost}}" style="{{ghostTrack}}"><span style="{{ghostKnob}}"></span></button><span style="font-size:13px;font-weight:500;">No-charge scenario</span></div>
-        </div>
+    <section style="background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">Battery, Saturday to Tuesday</h2>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12px;color:#3F5864;margin:8px 0 10px;">
-        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:18px;border-top:3px solid #11707F;"></span>50%+</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:18px;border-top:3px solid #B7791F;"></span>20–50%</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:18px;border-top:3px solid #C2410C;"></span>under 20%</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:18px;border-top:4px solid #2F6FDB;"></span>Supercharging</span>
-        <span style="display:inline-flex;align-items:center;gap:6px;"><span style="width:18px;border-top:2px dashed #56707C;"></span>Without charging</span>
-      </div>
-      <div style="overflow-x:auto;">
-        <div style="min-width:820px;position:relative;width:100%;aspect-ratio:1200/400;">
-          <svg viewBox="0 0 1200 400" width="100%" height="100%" style="position:absolute;left:0;top:0;display:block;" role="img" aria-label="Line chart of battery percentage from Saturday morning to Tuesday afternoon">
-            <defs>
-              <clipPath id="cTeal"><rect x="0" y="0" width="1200" height="194"/></clipPath>
-              <clipPath id="cAmber"><rect x="0" y="194" width="1200" height="90"/></clipPath>
-              <clipPath id="cRed"><rect x="0" y="284" width="1200" height="116"/></clipPath>
-            </defs>
-            <rect x="56" y="284" width="984" height="60" fill="rgba(194,65,12,0.09)"/>
-            <path d="{{ghostPath}}" fill="none" stroke="#56707C" stroke-width="2" stroke-dasharray="6 5" stroke-linejoin="round" style="{{ghostShow}}"/>
-            <g fill="none" stroke-width="3.25" stroke-linejoin="round" stroke-linecap="round">
-              <path d="{{mainPath}}" stroke="#11707F" clip-path="url(#cTeal)"/>
-              <path d="{{mainPath}}" stroke="#B7791F" clip-path="url(#cAmber)"/>
-              <path d="{{mainPath}}" stroke="#C2410C" clip-path="url(#cRed)"/>
-              <path d="{{chargePath}}" stroke="#2F6FDB" stroke-width="5"/>
+      <div style="overflow-x: auto">
+        <svg viewBox="0 0 1232 400" width="100%" role="img" aria-label="Battery percentage across the trip, Saturday to Tuesday" style="display: block; min-width: 760px; height: auto">
+          <defs>
+            <linearGradient id="lineGrad" gradientUnits="userSpaceOnUse" x1="0" y1="{{chart.gTop}}" x2="0" y2="{{chart.gBottom}}">
+              <stop offset="0" stop-color="#2FA67C"></stop>
+              <stop offset="{{chart.gOff}}" stop-color="#2FA67C"></stop>
+              <stop offset="{{chart.gOff}}" stop-color="#C8432B"></stop>
+              <stop offset="1" stop-color="#C8432B"></stop>
+            </linearGradient>
+          </defs>
+          <rect x="{{chart.negX}}" y="{{chart.negY}}" width="{{chart.negW}}" height="{{chart.negH}}" fill="rgba(200,67,43,0.06)"></rect>
+          <sc-for list="{{chart.grid}}" as="g" hint-placeholder-count="3">
+            <g>
+              <line x1="56" x2="1216" y1="{{g.y}}" y2="{{g.y}}" stroke="#ECEAE6" stroke-width="1"></line>
+              <text x="44" y="{{g.ty}}" text-anchor="end" font-size="12" fill="#5F656D">{{g.label}}</text>
             </g>
-          </svg>
-          <!-- gridlines + labels as positioned elements -->
-          <sc-for list="{{grid}}" as="g" hint-placeholder-count="6">
-            <div style="{{g.line}}"></div>
           </sc-for>
-          <sc-for list="{{grid}}" as="g" hint-placeholder-count="6">
-            <span style="{{g.label}}">{{g.text}}</span>
+          <sc-for list="{{chart.dividers}}" as="d" hint-placeholder-count="3">
+            <line x1="{{d.x}}" x2="{{d.x}}" y1="44" y2="380" stroke="#ECEAE6" stroke-width="1"></line>
           </sc-for>
-          <sc-for list="{{dayDividers}}" as="dv" hint-placeholder-count="3">
-            <div style="{{dv.style}}"></div>
+          <sc-for list="{{chart.days}}" as="d" hint-placeholder-count="4">
+            <text x="{{d.x}}" y="26" text-anchor="middle" font-size="15" font-weight="600" fill="#1F2328">{{d.label}}</text>
           </sc-for>
-          <sc-for list="{{dayLabels}}" as="dl" hint-placeholder-count="4">
-            <div style="{{dl.style}}">{{dl.text}}</div>
+          <line x1="56" x2="1216" y1="{{chart.y20}}" y2="{{chart.y20}}" stroke="#C8432B" stroke-opacity="0.45" stroke-width="1.5" stroke-dasharray="6 6"></line>
+          <text x="44" y="{{chart.y20t}}" text-anchor="end" font-size="12" font-weight="600" fill="#B93A24">20%</text>
+          <path d="{{chart.d}}" fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+          <sc-for list="{{chart.bolts}}" as="b" hint-placeholder-count="1">
+            <g>
+              <title>Monday charge</title>
+              <circle cx="{{b.cx}}" cy="{{b.cy}}" r="13" fill="#DCEBFF"></circle>
+              <path d="M13 2L4 14h7l-1 8 9-12h-7z" fill="#24518F" transform="{{b.t}}"></path>
+            </g>
           </sc-for>
-          <sc-for list="{{xTicks}}" as="xt" hint-placeholder-count="12">
-            <span style="{{xt.style}}">{{xt.text}}</span>
+          <sc-for list="{{chart.dots}}" as="p" hint-placeholder-count="6">
+            <g>
+              <circle cx="{{p.x}}" cy="{{p.y}}" r="5.5" fill="#FFFFFF" stroke="{{p.color}}" stroke-width="3"></circle>
+              <text x="{{p.lx}}" y="{{p.ly}}" text-anchor="{{p.anchor}}" font-size="15" fill="{{p.tcolor}}"><tspan font-weight="700">{{p.text}}</tspan><tspan font-weight="500" fill="#5F656D" dx="6">{{p.cap}}</tspan></text>
+            </g>
           </sc-for>
-          <div style="{{bufferLine}}"></div>
-          <span style="{{bufferLabel}}">Buffer {{buf}}%</span>
-          <span style="{{dangerLabel}}">Danger zone · under 20%</span>
-          <div style="{{stayBar}}">At the Airbnb · check-in 3p+ Sat → check-out before 10a Tue</div>
-          <sc-for list="{{dots}}" as="dt" hint-placeholder-count="8">
-            <span style="{{dt.style}}"></span>
+        </svg>
+      </div>
+    </section>
+
+    <section style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+      <div style="flex: 2 1 640px; min-width: 0; max-width: 100%; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 20px">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">Drives</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 32px 40px; align-items: start">
+          <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+            <div style="display: flex; flex-direction: column; gap: 4px">
+              <div style="display: grid; grid-template-columns: minmax(0, 1fr) 72px 44px; gap: 8px; align-items: baseline; padding-bottom: 8px; border-bottom: 1px solid #ECEAE6">
+                <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: -0.01em">{{g.day}}</span>
+                <span style="text-align: right; font-size: 14px; font-weight: 600">{{g.miles}}</span>
+                <span style="text-align: right; font-size: 14px; font-weight: 600">{{g.pct}}</span>
+              </div>
+              <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="5">
+                <div style="display: grid; grid-template-columns: minmax(0, 1fr) 72px 44px; gap: 8px; align-items: center; min-height: 34px">
+                  <span style="font-size: 15px; display: flex; align-items: center; gap: 6px"><span>{{r.from}}</span><span style="color: #8A9097">→</span><span>{{r.to}}</span></span>
+                  <span style="text-align: right; font-size: 15px; color: #5F656D">{{r.miles}}</span>
+                  <span style="text-align: right; font-size: 15px">{{r.pct}}</span>
+                </div>
+              </sc-for>
+            </div>
           </sc-for>
-          <sc-for list="{{labels}}" as="lb" hint-placeholder-count="8">
-            <span style="{{lb.style}}">{{lb.text}}</span>
+        </div>
+      </div>
+
+      <div style="flex: 1 1 320px; min-width: 0; max-width: 100%; box-sizing: border-box; background: #FFFFFF; border-radius: 20px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px">
+          <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em">Chargers nearby</h2>
+          <span style="font-size: 13px; color: #5F656D">from the Airbnb</span>
+        </div>
+        <div style="display: flex; flex-direction: column">
+          <sc-for list="{{chargers}}" as="c" hint-placeholder-count="6">
+            <div style="{{c.style}}">
+              <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+                <span style="font-size: 15px; font-weight: 600">{{c.name}}</span>
+                <span style="font-size: 13px; color: #5F656D">{{c.sub}}</span>
+              </div>
+              <span style="font-size: 15px; font-weight: 600; text-align: right; white-space: nowrap">{{c.dist}}</span>
+            </div>
           </sc-for>
         </div>
       </div>
     </section>
-
-    <!-- ===== ROW 3: table + stops ===== -->
-    <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;">
-
-      <section aria-label="Leg table" style="flex:3 1 640px;min-width:0;background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);padding:20px;box-sizing:border-box;">
-        <h2 style="margin:0 0 4px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;">Leg by leg</h2>
-        <div style="font-size:12px;color:#3F5864;margin-bottom:12px;">Updates live with the inputs on the left. Sunday times are PST (clocks fell back at 2:00 AM).</div>
-        <div style="overflow-x:auto;">
-          <div style="min-width:640px;">
-            <div style="display:grid;grid-template-columns:minmax(0,1fr) 84px 62px 70px 62px 74px;gap:8px;padding:6px 10px;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#56707C;border-bottom:1px solid #D3DDE1;">
-              <span>From → to</span><span style="text-align:right;">Depart</span><span style="text-align:right;">Miles</span><span style="text-align:right;">Est. kWh</span><span style="text-align:right;">% used</span><span style="text-align:right;">% after</span>
-            </div>
-            <sc-for list="{{rows}}" as="r" hint-placeholder-count="26">
-              <div style="{{r.style}}">
-                <span style="{{r.c1Style}}">{{r.c1}}</span>
-                <span style="{{r.numStyle}}">{{r.c2}}</span>
-                <span style="{{r.numStyle}}">{{r.c3}}</span>
-                <span style="{{r.numStyle}}">{{r.c4}}</span>
-                <span style="{{r.numStyle}}">{{r.c5}}</span>
-                <span style="text-align:right;"><span style="{{r.chip}}">{{r.c6}}</span></span>
-              </div>
-            </sc-for>
-          </div>
-        </div>
-      </section>
-
-      <section aria-label="Suggested charging stops" style="flex:2 1 400px;min-width:0;display:flex;flex-direction:column;gap:12px;">
-        <div>
-          <h2 style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:20px;">Suggested charging stops</h2>
-          <div style="font-size:12px;color:#3F5864;margin-top:2px;">From your Supercharger list. Distances are from the Airbnb (3225 Idlewild Way).</div>
-        </div>
-        <sc-for list="{{stops}}" as="c" hint-placeholder-count="3">
-          <div style="{{c.style}}">
-            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
-              <div>
-                <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;">{{c.name}}</div>
-                <div style="font-size:12px;color:#3F5864;">{{c.addr}}</div>
-              </div>
-              <span style="{{c.tagStyle}}">{{c.tag}}</span>
-            </div>
-            <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#F3F6F7;border-radius:6px;padding:2px 8px;">{{c.dist}}</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#F3F6F7;border-radius:6px;padding:2px 8px;">{{c.stalls}}</span>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;background:#F3F6F7;border-radius:6px;padding:2px 8px;">{{c.kw}}</span>
-            </div>
-            <div style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#0E2530;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2F6FDB" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px;"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg>
-              <span>{{c.tip}}</span>
-            </div>
-            <div style="{{c.btnWrap}}"><button onClick="{{c.act}}" style="{{c.btnStyle}}">{{c.btn}}</button></div>
-          </div>
-        </sc-for>
-
-        <div style="background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);padding:14px 16px;">
-          <div style="font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#56707C;margin-bottom:6px;">Other Superchargers nearby</div>
-          <sc-for list="{{others}}" as="o" hint-placeholder-count="4">
-            <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid #E8EEF0;">
-              <div style="flex:1 1 auto;min-width:0;"><div style="font-weight:500;">{{o.name}}</div><div style="font-size:12px;color:#56707C;">{{o.addr}}</div></div>
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#3F5864;text-align:right;white-space:nowrap;">{{o.spec}}</span>
-            </div>
-          </sc-for>
-        </div>
-      </section>
-    </div>
   </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2300}}'>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1552}}'>
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { start: 90, eff: 24, buf: 15, hw: false, mon: true, tue: false, ghost: true, stop: 'liberty' };
+    this.state = { startStr: '90', effStr: '24', chargeOn: true };
   }
 
   renderVals() {
+    const BAT = 69.5;
     const st = this.state;
-    const USABLE = 69.5;
-    const mono = "font-family:'JetBrains Mono',monospace;";
-    const T = (d, h, m) => d * 1440 + h * 60 + m;
-    const clock = a => { const m = a % 1440, h = Math.floor(m / 60), mm = m % 60; return ((h % 12) || 12) + ':' + String(mm).padStart(2, '0') + (h >= 12 ? 'p' : 'a'); };
-    const fp = p => (p < -0.5 ? '−' + Math.round(-p) : Math.round(p)) + '%';
-    const eff = isFinite(st.eff) && st.eff > 0 ? st.eff : 24;
-    const buf = isFinite(st.buf) ? st.buf : 15;
-    const start = st.start;
+    const on = st.chargeOn;
+    let start = parseFloat(st.startStr);
+    if (isNaN(start)) start = 90;
+    start = Math.max(0, Math.min(100, start));
+    let eff = parseFloat(st.effStr);
+    if (isNaN(eff) || eff <= 0) eff = 24;
+    const perMi = eff / BAT; // percent of battery per mile
 
-    const stopDef = st.stop === 'villa'
-      ? { name: 'Villa La Jolla', out: 5, back: 3, mins: 30 }
-      : { name: 'Liberty Park Plaza', out: 1.5, back: 5, mins: 25 };
-    const chargeEnd = T(2, 8, 15) + stopDef.mins;
-
-    // ----- itinerary -----
-    const items = [
-      { day: 0, type: 'leg', from: 'Valencia', to: 'Sylmar (pick up Ömer)', mi: 13, a: T(0, 9, 30), b: T(0, 9, 55) },
-      { day: 0, type: 'leg', from: 'Sylmar', to: 'Sugar and Scribe, La Jolla', mi: 112, a: T(0, 10, 0), b: T(0, 12, 25) },
-      { day: 0, type: 'leg', from: 'Sugar and Scribe', to: 'Sea Cliff Trail, Del Mar', mi: 5, a: T(0, 13, 45), b: T(0, 14, 0) },
-      { day: 0, type: 'leg', from: 'Sea Cliff Trail', to: 'Airbnb check-in', mi: 11, a: T(0, 15, 30), b: T(0, 15, 50) },
-      { day: 0, type: 'leg', from: 'Airbnb', to: 'Zoya', mi: 5, a: T(0, 18, 45), b: T(0, 19, 0) },
-      { day: 0, type: 'leg', from: 'Zoya', to: 'Airbnb', mi: 5, a: T(0, 20, 30), b: T(0, 20, 45) },
-      { day: 1, type: 'leg', from: 'Airbnb', to: 'Fig Tree Cafe', mi: 5, a: T(1, 8, 45), b: T(1, 9, 0) },
-      { day: 1, type: 'leg', from: 'Fig Tree Cafe', to: 'Birch Aquarium', mi: 6, a: T(1, 10, 0), b: T(1, 10, 15) },
-      { day: 1, type: 'leg', from: 'Birch Aquarium', to: 'Little Italy', mi: 13, a: T(1, 13, 45), b: T(1, 14, 15) },
-      { day: 1, type: 'leg', from: 'Little Italy', to: 'Harbor Tour', mi: 1, a: T(1, 15, 30), b: T(1, 15, 45) },
-      { day: 1, type: 'leg', from: 'Harbor Tour', to: 'Aladdin Cafe', mi: 10, a: T(1, 17, 15), b: T(1, 17, 40) },
-      { day: 1, type: 'leg', from: 'Aladdin Cafe', to: 'Airbnb', mi: 3, a: T(1, 19, 30), b: T(1, 19, 45) },
-      { day: 2, type: 'leg', only: 'mon', from: 'Airbnb', to: stopDef.name, mi: stopDef.out, a: T(2, 8, 15) - 10, b: T(2, 8, 15) },
-      { day: 2, type: 'charge', only: 'mon', place: stopDef.name, target: 80, a: T(2, 8, 15), b: chargeEnd },
-      { day: 2, type: 'leg', only: 'mon', from: stopDef.name, to: 'Shorehouse Kitchen', mi: stopDef.back, a: chargeEnd, b: chargeEnd + 15 },
-      { day: 2, type: 'leg', only: 'nomon', from: 'Airbnb', to: 'Shorehouse Kitchen', mi: 4, a: T(2, 8, 45), b: T(2, 9, 0) },
-      { day: 2, type: 'leg', from: 'Shorehouse Kitchen', to: 'San Diego Zoo', mi: 11, a: T(2, 10, 0), b: T(2, 10, 30) },
-      { day: 2, type: 'leg', from: 'San Diego Zoo', to: 'Sultan Baklava, El Cajon', mi: 18, a: T(2, 17, 0), b: T(2, 17, 30) },
-      { day: 2, type: 'leg', from: 'Sultan Baklava', to: 'Airbnb', mi: 18, a: T(2, 19, 0), b: T(2, 19, 35) },
-      { day: 3, type: 'leg', only: 'tue', from: 'Airbnb', to: 'Liberty Park Plaza', mi: 1.5, a: T(3, 9, 30), b: T(3, 9, 35) },
-      { day: 3, type: 'charge', only: 'tue', place: 'Liberty Park Plaza', add: 15, a: T(3, 9, 35), b: T(3, 9, 47) },
-      { day: 3, type: 'leg', only: 'tue', from: 'Liberty Park Plaza', to: 'Shorehouse Kitchen', mi: 5, a: T(3, 9, 50), b: T(3, 10, 5) },
-      { day: 3, type: 'leg', only: 'notue', from: 'Airbnb', to: 'Shorehouse Kitchen', mi: 4, a: T(3, 9, 55), b: T(3, 10, 10) },
-      { day: 3, type: 'leg', from: 'Shorehouse Kitchen', to: 'Sylmar (drop Ömer)', mi: 127, a: T(3, 11, 45), b: T(3, 14, 15) },
-      { day: 3, type: 'leg', from: 'Sylmar', to: 'Valencia (home)', mi: 13, a: T(3, 14, 25), b: T(3, 14, 40) }
+    // day index, from, to, miles, start hour, end hour
+    const L = (d, f, t, mi, s, h, charge) => ({ d: d, f: f, t: t, mi: mi, s: s, h: h, charge: !!charge });
+    const legs = [
+      L(0, 'Valencia', 'Sylmar', 13, 9.5, 9.85),
+      L(0, 'Sylmar', 'Sugar and Scribe', 110, 9.95, 12.4),
+      L(0, 'Sugar and Scribe', 'Sea Cliff', 8, 13.8, 14.0),
+      L(0, 'Sea Cliff', 'Airbnb', 8, 15.7, 16.0),
+      L(0, 'Airbnb', 'Zoya', 6, 18.7, 19.0),
+      L(0, 'Zoya', 'Airbnb', 6, 20.5, 20.85),
+      L(1, 'Airbnb', 'Fig Tree', 5, 8.7, 9.0),
+      L(1, 'Fig Tree', 'Birch', 6, 10.0, 10.25),
+      L(1, 'Birch', 'Harbor tour', 13, 15.2, 15.7),
+      L(1, 'Harbor tour', 'Aladdin', 11, 17.6, 18.2),
+      L(1, 'Aladdin', 'Airbnb', 3, 19.6, 19.75),
+      L(2, 'Airbnb', 'Liberty Park', 2, 7.7, 7.85, true),
+      L(2, 'Liberty Park', 'Shorehouse', 5, 8.55, 9.0),
+      L(2, 'Shorehouse', 'Zoo', 12, 10.0, 10.5),
+      L(2, 'Zoo', 'Balboa Park', 2, 14.9, 15.25),
+      L(2, 'Balboa Park', 'Sultan', 18, 16.5, 17.5),
+      L(2, 'Sultan', 'Airbnb', 15, 18.9, 19.5),
+      L(3, 'Airbnb', 'Brunch', 7, 9.9, 10.25),
+      L(3, 'Brunch', 'Sylmar', 125, 11.75, 14.25),
+      L(3, 'Sylmar', 'Valencia', 13, 14.4, 14.7)
     ];
 
-    const sim = (mon, tue) => {
-      let cur = start; const out = [];
-      items.forEach(it => {
-        if (it.only === 'mon' && !mon) return; if (it.only === 'nomon' && mon) return;
-        if (it.only === 'tue' && !tue) return; if (it.only === 'notue' && tue) return;
-        const before = cur;
-        if (it.type === 'leg') {
-          const f = st.hw && it.mi >= 50 ? 1.08 : 1;
-          const used = it.mi * eff / USABLE * f;
-          cur -= used;
-          out.push(Object.assign({}, it, { before, after: cur, used, kwh: it.mi * eff / 100 * f }));
-        } else {
-          const after = it.target ? Math.max(cur, it.target) : Math.min(100, cur + it.add);
-          cur = after;
-          out.push(Object.assign({}, it, { before, after, used: before - after, kwh: (after - before) / 100 * USABLE }));
-        }
-      });
-      return out;
-    };
-    const main = sim(st.mon, st.tue);
-    const ghost = sim(false, false);
-    const endOf = (arr, d) => { const l = arr.filter(i => i.day === d); return l[l.length - 1].after; };
-    const milesOf = (arr, d) => arr.filter(i => i.day === d && i.type === 'leg').reduce((s, i) => s + i.mi, 0);
-    const final = main[main.length - 1].after;
-    const gFinal = ghost[ghost.length - 1].after;
+    // Walk the trip
+    const pts = [];
+    let lvl = start;
+    const keys = {};
+    let bolt = null;
+    pts.push({ d: 0, h: 9.5, v: lvl });
+    keys.start = { d: 0, h: 9.5, v: lvl };
+    const dayEnd = {};
+    legs.forEach((g) => {
+      if (g.charge && !on) return;
+      pts.push({ d: g.d, h: g.s, v: lvl });
+      lvl = lvl - g.mi * perMi;
+      pts.push({ d: g.d, h: g.h, v: lvl });
+      dayEnd[g.d] = { d: g.d, h: g.h, v: lvl };
+      if (g.charge) {
+        const before = lvl;
+        pts.push({ d: g.d, h: g.h + 0.25, v: before });
+        pts.push({ d: g.d, h: g.h + 0.6, v: 80 });
+        lvl = 80;
+        keys.charged = { d: g.d, h: g.h + 0.6, v: 80 };
+        bolt = { d: g.d, h: g.h + 0.425, v1: before, v2: 80 };
+      }
+    });
+    keys.sat = dayEnd[0];
+    keys.sun = dayEnd[1];
+    keys.mon = dayEnd[2];
+    keys.end = dayEnd[3];
 
-    // ----- chip colors -----
-    const chipFor = p => {
-      const c = p >= 50 ? 'background:#DDF0F2;color:#0B5562;' : p >= 20 ? 'background:#F6EBD2;color:#7A5210;' : 'background:#FCE9DF;color:#9A3A12;';
-      return mono + 'display:inline-block;font-size:12px;font-weight:500;border-radius:6px;padding:1px 8px;min-width:46px;text-align:right;box-sizing:border-box;' + c;
-    };
-    const bigChip = p => {
-      const c = p >= 50 ? 'background:#DDF0F2;color:#0B5562;' : p >= 20 ? 'background:#F6EBD2;color:#7A5210;' : 'background:#FCE9DF;color:#9A3A12;';
-      return mono + 'display:inline-block;font-size:28px;font-weight:500;border-radius:8px;padding:0 10px;' + c;
-    };
-    const colorFor = p => p >= 50 ? '#11707F' : p >= 20 ? '#B7791F' : '#C2410C';
+    // Geometry
+    const padL = 56, padR = 16, padT = 44, padB = 20, W = 1232, H = 400;
+    const bandW = (W - padL - padR) / 4;
+    let minV = 100;
+    pts.forEach((p) => { if (p.v < minV) minV = p.v; });
+    const lo = minV < 0 ? Math.floor(minV / 50) * 50 : 0;
+    const hi = 100;
+    const plotH = H - padT - padB;
+    const Y = (v) => padT + (hi - v) / (hi - lo) * plotH;
+    const X = (d, h) => padL + d * bandW + Math.max(0, Math.min(1, (h - 7) / 15)) * bandW;
+    const f1 = (n) => Math.round(n * 10) / 10;
 
-    // ----- KPIs -----
-    const mk = (label, arr, d, extra) => {
-      const e = endOf(arr, d); return { label, val: fp(e), chip: bigChip(e), sub: extra };
-    };
-    const kpis = [
-      mk('Sat night', main, 0, milesOf(main, 0) + ' mi driven'),
-      mk('Sun night', main, 1, milesOf(main, 1) + ' mi · PST'),
-      mk('Mon night', main, 2, milesOf(main, 2).toFixed(1).replace('.0', '') + ' mi' + (st.mon ? ' + charge' : '')),
-      mk('Arrive home', main, 3, 'Tue 2:40p · ' + milesOf(main, 3).toFixed(0) + ' mi')
-    ];
-
-    // ----- chart geometry -----
-    const W = 1200, H = 400, pl = 56, pr = 1040, yB = 344;
-    const X = a => pl + (a - 570) / 4630 * (pr - pl);
-    const Y = p => yB - 3 * Math.max(0, Math.min(100, p));
-    const lp = x => (x / W * 100).toFixed(3) + '%';
-    const tp = y => (y / H * 100).toFixed(3) + '%';
-    const build = (arr, clampCross) => {
-      const P = [[570, start]];
-      arr.forEach(it => { P.push([it.a, it.before]); P.push([it.b, it.after]); });
-      const O = []; let cross = null;
-      P.forEach((q, i) => {
-        if (i > 0) { const p0 = P[i - 1]; if (p0[1] >= 0 && q[1] < 0 && cross === null) { cross = p0[0] + (q[0] - p0[0]) * p0[1] / (p0[1] - q[1]); O.push([cross, 0]); } }
-        O.push([q[0], Math.max(0, q[1])]);
-      });
-      return { d: O.map((q, i) => (i ? 'L' : 'M') + X(q[0]).toFixed(1) + ',' + Y(q[1]).toFixed(1)).join(' '), cross };
-    };
-    const mainB = build(main);
-    const ghostB = build(ghost);
-    const chargePath = main.filter(i => i.type === 'charge').map(i => 'M' + X(i.a).toFixed(1) + ',' + Y(i.before).toFixed(1) + ' L' + X(i.b).toFixed(1) + ',' + Y(i.after).toFixed(1)).join(' ') || 'M0,0';
-    const showGhost = st.ghost && (st.mon || st.tue);
-
-    // grid
-    const grid = [0, 20, 40, 60, 80, 100].map(p => ({
-      line: 'position:absolute;left:' + lp(pl) + ';width:' + lp(pr - pl) + ';top:' + tp(Y(p)) + ';border-top:1px solid ' + (p === 0 ? '#9AAEB7' : '#E8EEF0') + ';',
-      label: mono + 'position:absolute;left:0;width:' + lp(pl - 8) + ';text-align:right;top:' + tp(Y(p)) + ';transform:translateY(-50%);font-size:11px;color:#56707C;',
-      text: p + '%'
-    }));
-    const dayDividers = [1, 2, 3].map(d => ({ style: 'position:absolute;left:' + lp(X(d * 1440)) + ';top:' + tp(34) + ';height:' + (344 - 34) / H * 100 + '%;border-left:1px solid #9AAEB7;' }));
-    const dayNames = [['Sat 10/31 · PDT', 570, 1440], ['Sun 11/1 · PST · clocks fell back', 1440, 2880], ['Mon 11/2', 2880, 4320], ['Tue 11/3', 4320, 5200]];
-    const dayLabels = dayNames.map(d => ({ text: d[0], style: 'position:absolute;left:' + lp(X(d[1])) + ';width:' + lp(X(d[2]) - X(d[1])) + ';top:' + tp(8) + ';text-align:center;font-size:12px;font-weight:600;color:#0E2530;white-space:nowrap;overflow:hidden;' }));
-    const xTicks = [];
-    for (let a = 720; a <= 5200; a += 360) {
-      const h = (a % 1440) / 60;
-      const txt = h === 0 ? '12a' : h === 12 ? '12p' : h === 6 ? '6a' : '6p';
-      xTicks.push({ text: txt, style: mono + 'position:absolute;left:' + lp(X(a)) + ';top:' + tp(350) + ';transform:translateX(-50%);font-size:10px;color:#56707C;' });
-    }
-    const bufferLine = 'position:absolute;left:' + lp(pl) + ';width:' + lp(pr - pl) + ';top:' + tp(Y(buf)) + ';border-top:1.5px dashed #C2410C;';
-    const bufferLabel = mono + 'position:absolute;left:' + lp(pr + 8) + ';top:' + tp(Y(buf)) + ';transform:translateY(-50%);font-size:11px;color:#9A3A12;white-space:nowrap;';
-    const dangerLabel = 'position:absolute;left:' + lp(pl + 8) + ';top:' + tp(Y(0) - 18) + ';font-size:11px;font-weight:600;color:#9A3A12;';
-    const stayBar = 'position:absolute;left:' + lp(X(T(0, 16, 0))) + ';width:' + lp(X(T(3, 10, 0)) - X(T(0, 16, 0))) + ';top:' + tp(368) + ';height:' + (18 / H * 100) + '%;box-sizing:border-box;background:#E8EEF0;border-radius:4px;font-size:10.5px;color:#3F5864;display:flex;align-items:center;justify-content:center;white-space:nowrap;overflow:hidden;';
-
-    // dots + labels
-    const dots = [], labels = [];
-    const dot = (a, p, col) => dots.push({ style: 'position:absolute;left:' + lp(X(a)) + ';top:' + tp(Y(p)) + ';width:11px;height:11px;margin:-5.5px 0 0 -5.5px;border-radius:50%;background:' + col + ';border:2px solid #fff;box-sizing:content-box;box-shadow:0 0 0 1px ' + col + ';' });
-    const label = (a, p, text, o) => {
-      o = o || {};
-      const dx = o.align === 'r' ? '-100%' : o.align === 'c' ? '-50%' : '0';
-      const dy = o.below ? '12px' : 'calc(-100% - 12px)';
-      labels.push({ text, style: mono + 'position:absolute;left:' + lp(X(a) + (o.ox || 0)) + ';top:' + tp(Y(p)) + ';transform:translate(' + dx + ',' + dy + ');font-size:12px;font-weight:500;color:' + (o.color || '#0E2530') + ';white-space:nowrap;background:rgba(255,255,255,.85);padding:0 3px;border-radius:3px;' });
-    };
-    dot(570, start, colorFor(start)); label(570, start, 'Leave Valencia ' + start + '%', { ox: -2 });
-    const sat = main.filter(i => i.day === 0); const sunI = main.filter(i => i.day === 1); const monI = main.filter(i => i.day === 2); const tueI = main.filter(i => i.day === 3);
-    const eSat = sat[sat.length - 1], eSun = sunI[sunI.length - 1], eMon = monI[monI.length - 1];
-    dot(eSat.b, eSat.after, colorFor(eSat.after)); label(eSat.b, eSat.after, 'Sat night ' + fp(eSat.after), { ox: -4, align: 'c' });
-    dot(eSun.b, eSun.after, colorFor(eSun.after)); label(eSun.b, eSun.after, 'Sun night ' + fp(eSun.after), { align: 'c' });
-    dot(eMon.b, eMon.after, colorFor(eMon.after)); label(eMon.b, eMon.after, 'Mon night ' + fp(eMon.after), { align: 'c' });
-    if (st.mon) {
-      const ch = monI.find(i => i.type === 'charge');
-      dot(ch.a, ch.before, colorFor(ch.before));
-      label(ch.b, ch.after, 'Charge ' + fp(ch.before) + ' → ' + fp(ch.after) + ' · ' + stopDef.name + ' · ~' + stopDef.mins + ' min', { color: '#1F4FA8', ox: 10, below: false });
-    }
-    if (st.tue) {
-      const ch = tueI.find(i => i.type === 'charge');
-      label(ch.b, ch.after, 'Tue top-up +15%', { color: '#1F4FA8', ox: -6, align: 'r' });
-    }
-    const last = main[main.length - 1];
-    dot(last.b, last.after, colorFor(last.after));
-    labels.push({ text: 'Arrive Valencia ' + fp(last.after), style: mono + 'position:absolute;left:' + lp(pr + 12) + ';top:' + tp(Y(last.after) - 12) + ';font-size:12px;font-weight:500;color:' + (last.after < buf ? '#9A3A12' : '#0B5562') + ';white-space:nowrap;' });
-    labels.push({ text: last.after < buf ? 'under your ' + buf + '% buffer' : 'above your ' + buf + '% buffer', style: 'position:absolute;left:' + lp(pr + 12) + ';top:' + tp(Y(last.after) + 4) + ';font-size:11px;color:#3F5864;white-space:nowrap;' });
-    if (showGhost && ghostB.cross !== null) {
-      labels.push({ text: 'Without charging: empty mid-drive Tue, ' + fp(gFinal) + ' at home', style: mono + 'position:absolute;left:' + lp(X(ghostB.cross) - 8) + ';top:' + tp(Y(0) - 22) + ';transform:translateX(-100%);font-size:11px;color:#3F5864;white-space:nowrap;background:rgba(255,255,255,.85);padding:0 3px;' });
-    }
-
-    // ----- table rows -----
-    const rows = [];
-    const dayNm = ['Saturday 10/31 · PDT', 'Sunday 11/1 · PST', 'Monday 11/2', 'Tuesday 11/3'];
-    [0, 1, 2, 3].forEach(d => {
-      const L = main.filter(i => i.day === d);
-      const mi = L.filter(i => i.type === 'leg').reduce((s, i) => s + i.mi, 0);
-      const kwh = L.filter(i => i.type === 'leg').reduce((s, i) => s + i.kwh, 0);
-      const net = L[0].before - L[L.length - 1].after;
-      rows.push({
-        style: 'display:grid;grid-template-columns:minmax(0,1fr) 84px 62px 70px 62px 74px;gap:8px;align-items:center;padding:8px 10px;background:#E8EEF0;margin-top:10px;border-radius:6px;',
-        c1Style: "font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:14px;", c1: dayNm[d], numStyle: mono + 'text-align:right;font-size:12px;font-weight:500;',
-        c2: '', c3: mi.toFixed(mi % 1 ? 1 : 0), c4: kwh.toFixed(1), c5: (net >= 0 ? '' : '+') + Math.abs(net).toFixed(0) + (net >= 0 ? '' : ''), c6: fp(L[L.length - 1].after), chip: chipFor(L[L.length - 1].after)
-      });
-      L.forEach(it => {
-        const isC = it.type === 'charge';
-        rows.push({
-          style: 'display:grid;grid-template-columns:minmax(0,1fr) 84px 62px 70px 62px 74px;gap:8px;align-items:center;padding:7px 10px;border-bottom:1px solid #E8EEF0;font-size:13px;' + (isC ? 'background:#EAF1FD;' : ''),
-          c1Style: isC ? 'color:#1F4FA8;font-weight:600;' : '', numStyle: mono + 'text-align:right;font-size:12px;color:' + (isC ? '#1F4FA8' : '#0E2530') + ';',
-          c1: isC ? 'Supercharge · ' + it.place : it.from + ' → ' + it.to,
-          c2: clock(it.a), c3: isC ? '' : (it.mi % 1 ? it.mi.toFixed(1) : it.mi), c4: (isC ? '+' : '') + Math.abs(it.kwh).toFixed(1), c5: isC ? '+' + (it.after - it.before).toFixed(0) : it.used.toFixed(1),
-          c6: fp(it.after), chip: chipFor(it.after)
-        });
-      });
+    let dStr = '';
+    pts.forEach((p, i) => {
+      const x = X(p.d, p.h), y = Y(p.v);
+      if (i === 0) { dStr += 'M' + f1(x) + ' ' + f1(y); return; }
+      const q = pts[i - 1];
+      const x0 = X(q.d, q.h), y0 = Y(q.v);
+      const mx = (x0 + x) / 2;
+      dStr += ' C' + f1(mx) + ' ' + f1(y0) + ' ' + f1(mx) + ' ' + f1(y) + ' ' + f1(x) + ' ' + f1(y);
     });
 
-    // ----- alert -----
-    const tueNeed = tueI.filter(i => i.type === 'leg' && !i.only).reduce((s, i) => s + i.used, 0) + 0.0;
-    const tueNeedBase = ghost.filter(i => i.day === 3).reduce((s, i) => s + i.used, 0);
-    let emptyMi = 0;
-    const gl = ghost.find(i => i.type === 'leg' && i.before >= 0 && i.after < 0);
-    if (gl) emptyMi = Math.round(gl.before / (gl.used / gl.mi));
-    const under = final < buf;
-    const alert = {
-      ghostEnd: fp(gFinal), g1: fp(endOf(ghost, 0)), g2: fp(endOf(ghost, 1)), g3: fp(endOf(ghost, 2)),
-      tueNeed: Math.round(tueNeedBase), emptyMi: emptyMi,
-      withCharge: (st.mon ? 'With the Monday charge at ' + stopDef.name + ' you arrive at ' + fp(final) : 'Monday charge is off, so the plan above arrives at ' + fp(final)) + (final < buf ? ', ' + Math.round(buf - final) + ' pts under your ' + buf + '% buffer.' : ', above your ' + buf + '% buffer.') + (st.tue ? '' : ' A 12-minute Tuesday top-up at Liberty Park Plaza lifts that to about ' + fp(Math.min(100, final + 15 - 0.5)) + '.'),
-      style: 'display:flex;gap:14px;align-items:flex-start;border-radius:10px;padding:18px 20px;box-sizing:border-box;border:1px solid ' + (under ? '#EDB79B' : '#A8D3D9') + ';background:' + (under ? '#FCE9DF' : '#DDF0F2') + ';',
-      monText: st.mon ? 'Monday charge: on' : 'Add Monday charge',
-      tueText: st.tue ? 'Tuesday top-up: on' : 'Add Tuesday top-up',
-      monBtn: st.mon ? 'border:1px solid #0B5562;background:#fff;color:#0B5562;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;' : 'border:0;background:#D9541E;color:#fff;border-radius:999px;padding:8px 14px;font-size:13px;font-weight:600;',
-      tueBtn: st.tue ? 'border:1px solid #0B5562;background:#fff;color:#0B5562;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;' : 'border:1px solid #8F3410;background:transparent;color:#8F3410;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;'
+    const fmt = (v, approx) => {
+      const r = Math.round(v);
+      return (approx && r >= 0 ? '~' : '') + (r < 0 ? '−' + Math.abs(r) : String(r)) + '%';
+    };
+    const LOW = '#C8432B', OKC = '#2FA67C', INK = '#1F2328';
+    const dot = (k, opts) => {
+      const p = keys[k];
+      const x = X(p.d, p.h), y = Y(p.v);
+      const low = p.v < 20;
+      const o = Object.assign({ approx: true, cap: '', anchor: 'middle', dx: 0, dy: -16 }, opts || {});
+      return {
+        x: f1(x), y: f1(y), color: low ? LOW : OKC,
+        lx: f1(x + o.dx), ly: f1(y + o.dy), anchor: o.anchor,
+        text: fmt(p.v, o.approx), cap: o.cap, tcolor: low ? '#B93A24' : INK
+      };
+    };
+    const dots = [
+      dot('start', { approx: false, cap: 'start', anchor: 'start', dx: -6 }),
+      dot('sat'), dot('sun')
+    ];
+    if (on) dots.push(dot('charged', { approx: false }));
+    dots.push(dot('mon', { dy: 28 }));
+    dots.push(dot('end', { cap: 'home', anchor: 'start', dx: 14, dy: 5 }));
+
+    const bolts = [];
+    if (bolt) {
+      const bx = X(bolt.d, bolt.h) - 22;
+      const by = Y((bolt.v1 + bolt.v2) / 2);
+      bolts.push({ cx: f1(bx), cy: f1(by), t: 'translate(' + f1(bx - 6.6) + ' ' + f1(by - 6.6) + ') scale(0.55)' });
+    }
+
+    const grid = [];
+    const ticks = lo < 0 ? [100, 50, 0, -50] : [100, 50, 0];
+    ticks.forEach((t) => grid.push({ y: f1(Y(t)), ty: f1(Y(t) + 4), label: (t < 0 ? '\u2212' + Math.abs(t) : t) + '%' }));
+    const dividers = [1, 2, 3].map((i) => ({ x: f1(padL + i * bandW) }));
+    const days = ['Sat', 'Sun', 'Mon', 'Tue'].map((n, i) => ({ x: f1(padL + (i + 0.5) * bandW), label: n }));
+    const y20 = Y(20);
+    const gOff = (y20 - padT) / plotH;
+    const chart = {
+      d: dStr, grid: grid, dividers: dividers, days: days, dots: dots, bolts: bolts,
+      y20: f1(y20), y20t: f1(y20 + 4),
+      gTop: padT, gBottom: H - padB, gOff: f1(gOff * 1000) / 1000,
+      negX: padL, negW: W - padL - padR,
+      negY: f1(Y(0)), negH: lo < 0 ? f1(H - padB - Y(0)) : 0
     };
 
-    // ----- stops -----
-    const choose = k => () => this.setState({ stop: k });
-    const cardBase = on => 'background:#FFFFFF;border-radius:10px;box-shadow:0 1px 2px rgba(14,37,48,.06),0 4px 12px rgba(14,37,48,.05);padding:16px;border:2px solid ' + (on ? '#2F6FDB' : 'transparent') + ';';
-    const tagOn = 'flex:none;font-size:11px;font-weight:600;border-radius:999px;padding:2px 10px;background:#DCE8FB;color:#1F4FA8;white-space:nowrap;';
-    const tagOff = 'flex:none;font-size:11px;font-weight:600;border-radius:999px;padding:2px 10px;background:#E8EEF0;color:#3F5864;white-space:nowrap;';
-    const bPrim = 'border:0;background:#2F6FDB;color:#fff;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600;';
-    const bGhost = 'border:1px solid #9AAEB7;background:#fff;color:#0E2530;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:600;';
-    const lib = st.stop === 'liberty';
-    const stops = [
-      { name: 'Liberty Park Plaza', addr: '4340 Genesee Ave, San Diego 92117', style: cardBase(lib && st.mon), tag: lib && st.mon ? 'Chosen · Mon 8:15a' : 'Closest', tagStyle: lib && st.mon ? tagOn : tagOff, dist: '1.5 mi from Airbnb', stalls: '8 stalls', kw: '250 kW',
-        tip: 'Closest option. Plug in at 8:15a, unplug ~8:40a after about 25 min (est. 24 → 80%), then 5 mi to the 9:00a brunch at Shorehouse Kitchen.', btnWrap: 'margin-top:12px;', btn: lib ? 'Selected' : 'Use this stop', btnStyle: lib ? bGhost : bPrim, act: choose('liberty') },
-      { name: 'Villa La Jolla', addr: '8657 Villa La Jolla Dr, La Jolla', style: cardBase(!lib && st.mon), tag: !lib && st.mon ? 'Chosen · Mon 8:15a' : 'Eat while it charges', tagStyle: !lib && st.mon ? tagOn : tagOff, dist: '5 mi · ~10 min', stalls: 'stalls n/a', kw: 'kW n/a',
-        tip: 'Inside a mall with shops and restaurants. Fits a coffee-and-breakfast stop during the charge, then a short hop to Shorehouse for the 9:00a brunch.', btnWrap: 'margin-top:12px;', btn: !lib ? 'Selected' : 'Use this stop', btnStyle: !lib ? bGhost : bPrim, act: choose('villa') },
-      { name: 'Optional: Tuesday top-up', addr: 'Liberty Park Plaza · before checkout', style: cardBase(st.tue), tag: st.tue ? 'Added' : 'Optional', tagStyle: st.tue ? tagOn : tagOff, dist: '1.5 mi from Airbnb', stalls: '8 stalls', kw: '250 kW',
-        tip: 'About 12 min around 9:35a, right before the Shorehouse brunch, adds roughly 15%. Brings the drive home from the red zone to a comfortable arrival.', btnWrap: 'margin-top:12px;', btn: st.tue ? 'Remove top-up' : 'Add top-up', btnStyle: st.tue ? bGhost : bPrim, act: () => this.setState({ tue: !this.state.tue }) }
-    ];
-    const others = [
-      { name: 'Independence Square', addr: '7373 Clairemont Mesa Blvd', spec: '12 stalls · 250 kW' },
-      { name: 'Kearny Office Park', addr: '8344 Clairemont Mesa Blvd', spec: '16 stalls' },
-      { name: 'Fashion Valley Mall', addr: '7007 Friars Rd', spec: '48 stalls · 250 kW' },
-      { name: 'Morena Blvd', addr: '845 Morena Blvd', spec: '16 stalls · 325 kW' }
-    ];
+    // Drive list
+    const names = ['Saturday', 'Sunday', 'Monday', 'Tuesday'];
+    const groups = names.map((n, di) => {
+      const ls = legs.filter((g) => g.d === di && !(g.charge && !on));
+      const mi = ls.reduce((a, g) => a + g.mi, 0);
+      return {
+        day: n,
+        miles: '~' + mi + ' mi',
+        pct: Math.round(mi * perMi) + '%',
+        rows: ls.map((g) => ({
+          from: g.f, to: g.t,
+          miles: '~' + g.mi + ' mi',
+          pct: Math.max(1, Math.round(g.mi * perMi)) + '%'
+        }))
+      };
+    });
 
-    const track = on => 'flex:none;position:relative;width:38px;height:22px;border-radius:999px;border:0;padding:0;background:' + (on ? '#11707F' : '#9AAEB7') + ';';
-    const knob = on => 'position:absolute;top:3px;left:' + (on ? 19 : 3) + 'px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .15s;';
-    const num = (e, lo, hi, key) => { const v = parseFloat(e.target.value); if (isFinite(v)) this.setState({ [key]: Math.max(lo, Math.min(hi, v)) }); };
-    const totalMi = main.filter(i => i.type === 'leg').reduce((s, i) => s + i.mi, 0);
-    const totalKwh = main.filter(i => i.type === 'leg').reduce((s, i) => s + i.kwh, 0);
+    const row = (last) => 'display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 0;' + (last ? '' : ' border-bottom: 1px solid #ECEAE6');
+    const cdata = [
+      ['Liberty Park Plaza', '4340 Genesee Ave · 8 stalls', '1.5 mi'],
+      ['Independence Square', '7373 Clairemont Mesa Blvd', '~2 mi'],
+      ['Kearny Office Park', '8344 Clairemont Mesa Blvd', '~3 mi'],
+      ['Morena Blvd', '845 Morena Blvd', '~4 mi'],
+      ['Villa La Jolla', '8657 Villa La Jolla Dr · in a mall', '5 mi'],
+      ['Fashion Valley', '7007 Friars Rd · 48 stalls', '~6 mi']
+    ];
+    const chargers = cdata.map((c, i) => ({ name: c[0], sub: c[1], dist: c[2], style: row(i === cdata.length - 1) }));
+
+    const base = 'font: inherit; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 18px; border: 0; border-radius: 999px; cursor: pointer; ';
+    const chipStyle = on
+      ? base + 'font-weight: 600; background: #1F2328; color: #FFFFFF'
+      : base + 'font-weight: 500; background: #EFEDE9; color: #1F2328';
+
+    const endV = keys.end.v;
+    
 
     return {
-      eff: eff, buf: buf, start: start,
-      startEpa: Math.round(start / 100 * 321), startPlan: Math.round(start / 100 * USABLE / eff * 100),
-      onStart: e => num(e, 30, 100, 'start'), onEff: e => num(e, 10, 60, 'eff'), onBuf: e => num(e, 0, 50, 'buf'),
-      hwOn: st.hw ? 'true' : 'false', hwTrack: track(st.hw), hwKnob: knob(st.hw), toggleHw: () => this.setState({ hw: !this.state.hw }),
-      monOn: st.mon ? 'true' : 'false', monTrack: track(st.mon), monKnob: knob(st.mon), toggleMon: () => this.setState({ mon: !this.state.mon }),
-      ghostOn: st.ghost ? 'true' : 'false', ghostTrack: track(st.ghost), ghostKnob: knob(st.ghost), toggleGhost: () => this.setState({ ghost: !this.state.ghost }),
-      toggleTue: () => this.setState({ tue: !this.state.tue }),
-      totals: { miles: Math.round(totalMi), kwh: totalKwh.toFixed(0) },
-      statusText: under ? 'Warning · arrive home under buffer' : 'On track · arrive above buffer',
-      statusStyle: 'font-size:13px;font-weight:600;border-radius:999px;padding:6px 14px;' + (under ? 'background:#FCE9DF;color:#9A3A12;' : 'background:#DDF0F2;color:#0B5562;'),
-      alert, kpis, grid, dayDividers, dayLabels, xTicks, bufferLine, bufferLabel, dangerLabel, stayBar, dots, labels,
-      mainPath: mainB.d, ghostPath: ghostB.d, chargePath: chargePath, ghostShow: showGhost ? '' : 'display:none;',
-      rows, stops, others
+      startStr: st.startStr,
+      effStr: st.effStr,
+      onStart: (e) => this.setState({ startStr: e.target.value }),
+      onEff: (e) => this.setState({ effStr: e.target.value }),
+      toggleCharge: () => this.setState({ chargeOn: !st.chargeOn }),
+      chargeOn: on ? 'true' : 'false',
+      chipStyle: chipStyle,
+      chart: chart,
+      groups: groups,
+      chargers: chargers
     };
   }
 }
