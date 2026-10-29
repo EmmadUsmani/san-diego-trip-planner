@@ -1,0 +1,98 @@
+.page { display: flex; flex-direction: column; gap: 20px; }
+.top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.spacer { flex: 1; }
+.seg { display: inline-flex; background: var(--chip-off); border-radius: 999px; padding: 4px; }
+.seg button { border: 0; background: transparent; padding: 6px 16px; border-radius: 999px; cursor: pointer; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--card); color: var(--ink); box-shadow: var(--shadow-pill); }
+.toggle { cursor: pointer; }
+
+.dayPicker { display: flex; gap: 8px; }
+.dayPick { border: 0; background: var(--chip-off); border-radius: 12px; padding: 8px 14px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 72px; }
+.dayPick span { font-size: 12px; color: var(--muted); }
+.dayPick[aria-pressed="true"] { background: var(--fixed); color: var(--fixed-ink); }
+.dayPick[aria-pressed="true"] span { color: var(--fixed-sub); }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+.gridCard { background: var(--card); border-radius: var(--radius-card); padding: 0; overflow: hidden; }
+.grid { display: grid; }
+.headGutter { border-bottom: 1px solid var(--hairline); }
+.dayHead { padding: 16px 16px 12px; border-bottom: 1px solid var(--hairline); border-left: 1px solid var(--hairline); min-height: 118px; }
+.dayHeadTop { display: flex; justify-content: space-between; align-items: center; }
+.dow { font-size: 14px; color: var(--muted); font-weight: 600; margin-right: 8px; }
+.dateBig { font-family: var(--font-display); font-weight: 700; font-size: 26px; letter-spacing: -0.02em; }
+.dayHeadSub { margin-top: 6px; font-size: 14px; font-weight: 500; }
+.rainPct { color: var(--sky-ink); }
+.dayHeadNote { margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+
+.gutter { position: relative; margin-top: 12px; }
+.gutter span { position: absolute; right: 10px; transform: translateY(-50%); font-size: 12px; color: var(--muted); }
+.gutter span:first-child { transform: none; }
+.col { position: relative; border-left: 1px solid var(--hairline); margin-top: 12px; touch-action: none; }
+.colOver { background: rgba(124, 111, 219, 0.04); }
+.hourLine { position: absolute; left: 0; right: 0; border-top: 1px solid var(--hairline); pointer-events: none; }
+.rain { position: absolute; left: 0; right: 0; pointer-events: none; }
+
+.prayer { position: absolute; left: 0; right: 0; height: 0; border-top: 1px dashed rgba(106, 98, 184, 0.45); pointer-events: none; z-index: 1; }
+.prayerStrong { border-top: 2px solid var(--prayer); }
+.prayerPill { position: absolute; right: 4px; top: 0; transform: translateY(-50%); background: var(--prayer-pill); color: var(--prayer-pill-ink); border-radius: 8px; padding: 2px 6px; font-size: 10.5px; font-weight: 700; line-height: 1.15; text-align: center; }
+.prayer:not(.prayerStrong) .prayerPill { background: transparent; color: var(--prayer-faint); font-weight: 500; transform: translateY(-100%); }
+
+.driveLine { position: absolute; left: 17px; border-left: 1.5px dotted #b9b5ae; width: 0 !important; pointer-events: none; }
+.driveLabel { position: absolute; left: 24px; font-size: 12px; color: var(--muted); display: flex; gap: 4px; align-items: center; pointer-events: none; background: rgba(255, 255, 255, 0.8); border-radius: 6px; padding: 0 4px; z-index: 2; }
+
+.event { position: absolute; left: 7px; border-radius: var(--radius-block); padding: 6px 9px; overflow: hidden; font-size: 13px; line-height: 1.25; z-index: 3; user-select: none; }
+.eventHead { display: flex; justify-content: space-between; align-items: flex-start; gap: 4px; }
+.eventTitle { font-weight: 700; }
+.eventTime { font-size: 12.5px; opacity: 0.85; }
+.ticket { color: var(--booked-icon); vertical-align: -2px; }
+.toneActivity { background: var(--activity); color: var(--activity-ink); }
+.toneFood { background: var(--food); color: var(--food-ink); }
+.toneBooked { background: var(--booked); color: var(--booked-ink); }
+.toneLocked { background: var(--fixed); color: var(--fixed-ink); }
+.toneCharger { background: var(--sky); color: var(--sky-ink); }
+.toneNeutral { background: var(--card); color: var(--ink); border: 1px solid var(--border); }
+.draggable { cursor: grab; touch-action: none; }
+.dragging { opacity: 0.35; }
+.overlayEvent { position: relative; left: 0; box-shadow: 0 8px 24px rgba(31, 35, 40, 0.2); cursor: grabbing; }
+.skipped { opacity: 0.55; }
+.skipped .eventTitle { text-decoration: line-through; }
+.skipBtn { margin-top: 4px; border: 0; background: var(--card); border-radius: 999px; padding: 2px 12px; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink); }
+.skipBtn[data-disabled="true"] { opacity: 0.6; }
+
+.tray { padding: var(--pad-card); display: flex; flex-direction: column; gap: 12px; position: sticky; top: 16px; max-height: calc(100vh - 200px); min-height: 420px; }
+.trayScroll { overflow-y: auto; min-height: 0; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.trayOver { outline: 2px dashed var(--prayer); }
+.traySearch { border-radius: 999px; }
+.trayLabel { font-size: 13px; font-weight: 700; color: var(--muted); margin: 8px 0 6px; }
+.trayList { display: flex; flex-direction: column; gap: 8px; }
+.idea { display: flex; gap: 10px; align-items: center; border-radius: 12px; padding: 10px 12px; background: var(--page); border-left: 4px solid var(--activity); }
+.ideaFood { border-left-color: var(--food); }
+.ideaActivity { border-left-color: #8fd8c0; }
+.ideaFood { border-left-color: #f7b99a; }
+.ideaName { font-weight: 600; font-size: 14px; }
+.ideaSub { font-size: 12.5px; color: var(--muted); }
+.grip { color: var(--muted); }
+.overlayIdea { box-shadow: 0 8px 24px rgba(31, 35, 40, 0.2); background: var(--activity); cursor: grabbing; }
+.dropHint { flex: none; margin-top: 4px; border: 1.5px dashed var(--border); border-radius: 14px; padding: 16px; text-align: center; color: var(--muted); font-size: 14px; }
+.dropHintOver { border-color: var(--prayer); color: var(--prayer-pill-ink); background: var(--prayer-pill); }
+
+/* Mobile agenda */
+.mobile { display: flex; flex-direction: column; gap: 14px; }
+.mobile .dayPicker { display: grid; grid-template-columns: repeat(4, 1fr); }
+.mobile .dayPick { min-width: 0; padding: 12px 6px; }
+.mobile .dayPick strong { font-size: 17px; font-family: var(--font-display); }
+.clockNote { margin: 0; color: var(--muted); font-size: 14px; }
+.agenda { display: flex; flex-direction: column; gap: 10px; }
+.agRow { display: flex; align-items: center; gap: 12px; }
+.agTime { width: 38px; flex: none; font-size: 13px; color: var(--muted); }
+.agCard { flex: 1; display: flex; align-items: center; gap: 10px; justify-content: space-between; border-radius: 16px; padding: 14px 16px; }
+.agTitle { font-weight: 700; font-size: 17px; }
+.agPrayerLight { font-size: 13px; color: var(--prayer-faint); }
+.agLineStrong { flex: 1; border-top: 2px solid var(--prayer); }
+.agLineLight { flex: 1; border-top: 1px dashed rgba(106, 98, 184, 0.45); }
+.agDrive { color: var(--muted); font-size: 14px; }
+.driveText { display: flex; gap: 6px; align-items: center; margin-left: 4px; }
+
+.compact { padding: 3px 9px; display: flex; gap: 6px; align-items: baseline; flex-wrap: nowrap; }
+.compact .eventTitle { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.compact .eventTime { white-space: nowrap; flex: none; }
