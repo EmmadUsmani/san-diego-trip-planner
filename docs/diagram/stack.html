@@ -46,7 +46,7 @@
 
   <div class="title">
     <h1>SD-TRIP-PLANNER · SYSTEM ARCHITECTURE</h1>
-    <p>TECH STACK REFERENCE SHEET · ASSEMBLY OVERVIEW · ALL DIMENSIONS NTS</p>
+    <p>TECH STACK REFERENCE SHEET · ALL DIMENSIONS NTS</p>
   </div>
   <div class="stamp">RELEASED<small>REV B · DEPLOYED 2026-10-28</small></div>
 
@@ -88,7 +88,7 @@
 
   <!-- 100 CLIENT -->
   <div class="box" style="left:100px;top:230px;width:560px;height:480px">
-    <div class="hd"><b>ASSY 100 · CLIENT (BROWSER SPA)</b><span>src/</span></div>
+    <div class="hd"><b>CLIENT (BROWSER SPA)</b><span>src/</span></div>
     <div class="rows">
       <div class="row"><span class="n">101</span><span class="p">React 19 + Vite</span><span class="f">UI runtime · bundler</span></div>
       <div class="row"><span class="n">102</span><span class="p">TanStack Router</span><span class="f">typed routes + zod search params</span></div>
@@ -103,7 +103,7 @@
 
   <!-- 200 EDGE -->
   <div class="box" style="left:920px;top:230px;width:582px;height:480px">
-    <div class="hd"><b>ASSY 200 · CLOUDFLARE WORKER (EDGE)</b><span>worker/</span></div>
+    <div class="hd"><b>CLOUDFLARE WORKER (EDGE)</b><span>worker/</span></div>
     <div class="rows">
       <div class="row"><span class="n">201</span><span class="p">Workers runtime</span><span class="f">workerd · V8 isolates · free plan</span></div>
       <div class="row"><span class="n">202</span><span class="p">Static Assets</span><span class="f">serves SPA · fallback to index</span></div>
@@ -118,7 +118,7 @@
 
   <!-- 300 DATA -->
   <div class="box" style="left:1640px;top:230px;width:662px;height:300px">
-    <div class="hd"><b>ASSY 300 · PERSISTENCE</b><span>db/</span></div>
+    <div class="hd"><b>PERSISTENCE</b><span>db/</span></div>
     <div class="rows">
       <div class="row"><span class="n">301</span><span class="p">Cloudflare D1</span><span class="f">SQLite · sd-trip-planner</span></div>
       <div class="row"><span class="n">302</span><span class="p">Drizzle ORM</span><span class="f">typed schema &amp; queries</span></div>
@@ -129,7 +129,7 @@
 
   <!-- 500 EXTERNAL -->
   <div class="box" style="left:1640px;top:600px;width:662px;height:360px">
-    <div class="hd"><b>ASSY 500 · EXTERNAL SERVICES (FREE)</b><span>HTTPS</span></div>
+    <div class="hd"><b>EXTERNAL SERVICES (FREE)</b><span>HTTPS</span></div>
     <div class="rows">
       <div class="row"><span class="n">501</span><span class="p">Open-Meteo</span><span class="f">daily + hourly forecast · unixtime</span></div>
       <div class="row"><span class="n">502</span><span class="p">OSRM</span><span class="f">road distance &amp; time · cached legs</span></div>
@@ -142,7 +142,7 @@
 
   <!-- 400 SHARED -->
   <div class="box cols2" style="left:100px;top:782px;width:1402px;height:216px">
-    <div class="hd"><b>ASSY 400 · SHARED DOMAIN (PURE TYPESCRIPT · NO I/O)</b><span>shared/</span></div>
+    <div class="hd"><b>SHARED DOMAIN (PURE TYPESCRIPT · NO I/O)</b><span>shared/</span></div>
     <div class="rows">
       <div class="row"><span class="n">401</span><span class="p">time</span><span class="f">America/Los_Angeles · DST ends Sun 2 AM</span></div>
       <div class="row"><span class="n">402</span><span class="p">prayers</span><span class="f">adhan · ISNA · Fajr / Dhuhr / Maghrib</span></div>
@@ -155,7 +155,7 @@
 
   <!-- 600 TOOLCHAIN -->
   <div class="box cols2" style="left:100px;top:1030px;width:1402px;height:250px">
-    <div class="hd"><b>ASSY 600 · TOOLCHAIN &amp; QUALITY ASSURANCE</b><span>repo root</span></div>
+    <div class="hd"><b>TOOLCHAIN &amp; QUALITY ASSURANCE</b><span>repo root</span></div>
     <div class="rows">
       <div class="row"><span class="n">601</span><span class="p">pnpm</span><span class="f">single package · no workspaces</span></div>
       <div class="row"><span class="n">602</span><span class="p">TypeScript 5.9 strict</span><span class="f">app / worker / shared tsconfigs</span></div>
