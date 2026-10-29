@@ -19,12 +19,30 @@ export interface TravelEstimate {
   minutes: number;
 }
 
-/** Heuristic drive estimate: straight-line x 1.3; 25 mph <3 mi, 35 mph <15 mi, else 55 mph; +3 min. */
+/**
+ * Road-distance factor over straight-line miles. Calibrated against OSRM on the seed itinerary:
+ * short urban hops wind more (~1.3-1.4), long freeway drives are nearly direct (~1.1).
+ */
+export function roadFactor(straightMiles: number): number {
+  if (straightMiles < 5) return 1.4;
+  if (straightMiles < 20) return ROAD_FACTOR;
+  if (straightMiles >= 100) return 1.12;
+  return ROAD_FACTOR - ((straightMiles - 20) / 80) * (ROAD_FACTOR - 1.12);
+}
+
+/** Average speed (mph) by road distance: city streets, arterials, mixed, freeway. */
+export function speedMph(roadMiles: number): number {
+  if (roadMiles < 3) return 24;
+  if (roadMiles < 15) return 38;
+  if (roadMiles < 40) return 46;
+  return 54;
+}
+
+/** Heuristic drive estimate: straight-line x distance-banded road factor, banded speed, +2 min. */
 export function heuristicTravel(a: LatLng, b: LatLng): TravelEstimate {
   const straight = haversineMiles(a, b);
-  const road = straight * ROAD_FACTOR;
-  const mph = road < 3 ? 25 : road < 15 ? 35 : 55;
-  return { miles: round1(road), minutes: Math.round((road / mph) * 60 + 3) };
+  const road = straight * roadFactor(straight);
+  return { miles: round1(road), minutes: Math.round((road / speedMph(road)) * 60 + 2) };
 }
 
 /** Straight-line miles + heuristic drive time (for the map Measure tool). */

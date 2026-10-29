@@ -1,4 +1,5 @@
 import { writeFileSync } from "node:fs";
+import { seedLegs } from "./seed-legs";
 import { seedPlaces, seedEvents, seedSettings } from "./seed-data";
 
 const q = (v: unknown): string => {
@@ -22,6 +23,11 @@ for (const e of seedEvents) {
     `INSERT INTO events (id,place_id,title,kind,start,end,skipped,charge_to_pct,notes) VALUES (${[
       e.id, e.placeId, e.title, e.kind, e.start, e.end, e.skipped, e.chargeToPct, e.notes,
     ].map(q).join(",")});`,
+  );
+}
+for (const l of seedLegs) {
+  lines.push(
+    `INSERT INTO travel_legs (from_place_id,to_place_id,minutes,miles,source) VALUES (${[l.fromPlaceId, l.toPlaceId, l.minutes, l.miles, "osrm"].map(q).join(",")});`,
   );
 }
 for (const [k, v] of Object.entries(seedSettings)) {
