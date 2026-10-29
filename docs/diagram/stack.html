@@ -8,12 +8,12 @@
   :root { --paper:#F3F0E6; --ink:#1B2430; --ink2:#4A5563; --blue:#1F4E8C; --red:#B4441A; --grid:rgba(31,78,140,.07); }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--paper); }
-  .sheet { position:relative; width:2600px; height:1520px; background:
+  .sheet { position:relative; width:2500px; height:1530px; background:
       linear-gradient(var(--grid) 1px, transparent 1px) 0 0/20px 20px,
       linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/20px 20px, var(--paper);
     color:var(--ink); font-family:'IBM Plex Mono', monospace; overflow:hidden; }
   .frame-o { position:absolute; inset:24px; border:2px solid var(--ink); }
-  .frame-i { position:absolute; inset:60px; border:3px solid var(--ink); }
+  .frame-i { position:absolute; inset:40px; border:3px solid var(--ink); }
   .zone { position:absolute; font:600 15px 'IBM Plex Mono'; color:var(--ink2); }
   .box { position:absolute; border:2px solid var(--ink); background:rgba(243,240,230,.92); }
   .box .hd { display:flex; justify-content:space-between; align-items:baseline; padding:10px 16px; border-bottom:2px solid var(--ink); background:var(--ink); color:var(--paper); }
@@ -41,7 +41,6 @@
 </head>
 <body>
 <div class="sheet" id="sheet">
-  <div class="frame-o"></div>
   <div class="frame-i"></div>
 
   <div class="title">
@@ -49,7 +48,7 @@
     <p>TECH STACK REFERENCE SHEET · ALL DIMENSIONS NTS</p>
   </div>
 
-  <svg width="2600" height="1520" style="position:absolute;inset:0" aria-hidden="true">
+  <svg width="2500" height="1530" style="position:absolute;inset:0" aria-hidden="true">
     <defs>
       <marker id="a" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0,1 L11,6 L0,11 z" fill="#1B2430"/></marker>
       <marker id="ab" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0,1 L11,6 L0,11 z" fill="#1F4E8C"/></marker>
