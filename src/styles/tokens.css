@@ -1,0 +1,59 @@
+/* Design tokens from design/canvas/project/Kit.dc.html. Use these vars; don't hard-code colors. */
+:root {
+  --font-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --font-text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --page: #f7f6f3;
+  --card: #ffffff;
+  --hairline: #ecEAE6;
+  --ink: #1f2328;
+  --muted: #5f656d;
+  --link: #2c6e91;
+  --link-hover: #1f5370;
+  --chip-off: #efede9;
+  --border: #dcd9d3;
+
+  /* categories: fill + text */
+  --activity: #d9f2ea;
+  --activity-ink: #3e4a45;
+  --food: #ffe3d3;
+  --food-ink: #5c4033;
+  --booked: #fff0c2;
+  --booked-ink: #5a4a1a;
+  --booked-icon: #8a6a00;
+  --fixed: #1f2328;
+  --fixed-ink: #ffffff;
+  --fixed-sub: #c9cdd2;
+  --prayer: #7b6fdb;
+  --prayer-pill: #ece9fb;
+  --prayer-pill-ink: #4a3fb0;
+  --prayer-faint: #6a62b8;
+  --sky: #dcebff;
+  --sky-ink: #24518f;
+  --rain-rgb: 76, 141, 235; /* rgba(var(--rain-rgb), 0.06..0.24) by probability */
+  --sunset: #ff7a59; /* tiny highlights only, never text */
+  --sunshine: #ffb547;
+  --low: #c2410c; /* low battery */
+
+  --avatar-e-bg: #ffe3d3;
+  --avatar-e-ink: #8a3a14;
+  --avatar-o-bg: #d9f2ea;
+  --avatar-o-ink: #1c6b50;
+
+  --radius-card: 20px;
+  --radius-block: 12px;
+  --pad-card: 24px;
+  --gap: 16px;
+  --page-max: 1360px;
+  --page-pad: 40px;
+  --header-h: 72px;
+  --tabbar-h: 64px;
+  --shadow-pill: 0 1px 2px rgba(31, 35, 40, 0.06);
+}
+
+@media (max-width: 719px) {
+  :root {
+    --page-pad: 16px;
+    --pad-card: 18px;
+  }
+}
