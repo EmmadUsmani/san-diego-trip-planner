@@ -10,3 +10,4 @@ playwright-report/
 *.tsbuildinfo
 .claude/worktrees/
 /screenshots/
+.secrets.local
