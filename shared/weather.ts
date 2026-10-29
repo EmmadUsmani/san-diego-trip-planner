@@ -87,7 +87,9 @@ export function parseOpenMeteo(r: OpenMeteoResponse, fetchedAt: string): Weather
     byDay.set(d, { date: d, code: null, summary: "Unknown", hiF: null, loF: null, precipMax: null, hourly: [] });
   }
   r.daily.time.forEach((t, i) => {
-    const day = byDay.get(laDateKey(t * 1000));
+    // Open-Meteo stamps daily rows at local midnight using the offset at the start of the range,
+    // so after DST ends a "midnight" lands at 11 PM the previous day. Key by local noon instead.
+    const day = byDay.get(laDateKey(t * 1000 + 12 * 3600 * 1000));
     if (!day) return;
     day.code = r.daily.weather_code[i] ?? null;
     day.summary = weatherSummary(day.code);

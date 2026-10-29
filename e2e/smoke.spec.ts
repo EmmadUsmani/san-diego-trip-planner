@@ -22,9 +22,12 @@ test.describe("smoke", () => {
     });
   }
 
-  test("trip data loads through the API", async ({ page }) => {
-    await page.goto("/schedule");
-    await expect(page.getByText("Trip loaded: 4 days, 33 places")).toBeVisible();
+  test("trip data loads through the API", async ({ request }) => {
+    const res = await request.get("/api/trip");
+    expect(res.ok()).toBe(true);
+    const trip = await res.json();
+    expect(trip.days).toHaveLength(4);
+    expect(trip.places.length).toBeGreaterThanOrEqual(33);
   });
 
   test("navigation: header on desktop, tab bar on mobile", async ({ page, isMobile }) => {

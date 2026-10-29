@@ -31,6 +31,26 @@ describe("weather parsing", () => {
     expect(r.days[2]!.hourly.map((h) => h.hour)).toEqual([0]);
     expect(r.days[1]!.precipMax).toBe(87);
   });
+  it("maps daily rows to the right day when Open-Meteo uses a fixed pre-DST offset", () => {
+    // Real Open-Meteo output: every daily stamp is local midnight at UTC-7, even after the fall-back.
+    const time = [1793430000, 1793516400, 1793602800, 1793689200];
+    const w = parseOpenMeteo(
+      {
+        hourly: { time: [], precipitation_probability: [], temperature_2m: [], weather_code: [] },
+        daily: {
+          time,
+          weather_code: [3, 63, 1, 1],
+          temperature_2m_max: [71, 69, 79, 80],
+          temperature_2m_min: [63, 61, 64, 67],
+          precipitation_probability_max: [62, 85, 9, 6],
+        },
+      },
+      "2026-10-28T00:00:00Z",
+    );
+    expect(w.days.map((d) => d.precipMax)).toEqual([62, 85, 9, 6]);
+    expect(w.days.map((d) => d.hiF)).toEqual([71, 69, 79, 80]);
+  });
+
   it("labels", () => {
     expect(weatherSummary(95)).toBe("Thunderstorm");
     expect(weatherSummary(null)).toBe("Unknown");
