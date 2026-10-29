@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>STP-001 System Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F3F0E6; --ink:#1B2430; --ink2:#4A5563; --blue:#1F4E8C; --red:#B4441A; --grid:rgba(31,78,140,.07); }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); }
+  .sheet { position:relative; width:2600px; height:1520px; background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/20px 20px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/20px 20px, var(--paper);
+    color:var(--ink); font-family:'IBM Plex Mono', monospace; overflow:hidden; }
+  .frame-o { position:absolute; inset:24px; border:2px solid var(--ink); }
+  .frame-i { position:absolute; inset:60px; border:3px solid var(--ink); }
+  .zone { position:absolute; font:600 15px 'IBM Plex Mono'; color:var(--ink2); }
+  .box { position:absolute; border:2px solid var(--ink); background:rgba(243,240,230,.92); }
+  .box .hd { display:flex; justify-content:space-between; align-items:baseline; padding:10px 16px; border-bottom:2px solid var(--ink); background:var(--ink); color:var(--paper); }
+  .box .hd b { font:700 22px 'IBM Plex Sans Condensed'; letter-spacing:.04em; }
+  .box .hd span { font:500 14px 'IBM Plex Mono'; opacity:.8; }
+  .rows { padding:6px 16px 10px; }
+  .row { display:grid; grid-template-columns:62px 1fr 1.05fr; gap:12px; padding:7px 0; border-bottom:1px dashed rgba(27,36,48,.25); font-size:15px; align-items:baseline; }
+  .row:last-child { border-bottom:0; }
+  .row .n { color:var(--blue); font-weight:600; }
+  .row .p { font:600 18px 'IBM Plex Sans Condensed'; letter-spacing:.02em; }
+  .row .f { color:var(--ink2); font-size:14px; }
+  .cols2 .rows { display:grid; grid-template-columns:1fr 1fr; column-gap:32px; }
+  .lbl { position:absolute; font:500 13px 'IBM Plex Mono'; color:var(--blue); background:var(--paper); padding:2px 6px; border:1px solid var(--blue); white-space:nowrap; }
+  .lbl.red { color:var(--red); border-color:var(--red); }
+  .title { position:absolute; left:100px; top:92px; }
+  .title h1 { margin:0; font:700 56px/1 'IBM Plex Sans Condensed'; letter-spacing:.03em; }
+  .title p { margin:10px 0 0; font:500 17px 'IBM Plex Mono'; color:var(--ink2); letter-spacing:.06em; }
+  table { border-collapse:collapse; width:100%; }
+  td { border:1.5px solid var(--ink); padding:6px 10px; font-size:14px; vertical-align:top; }
+  td small { display:block; font-size:11px; color:var(--ink2); letter-spacing:.08em; }
+  td b { font:600 17px 'IBM Plex Sans Condensed'; }
+  .stamp { position:absolute; right:300px; top:96px; border:3px solid var(--red); color:var(--red); padding:8px 18px; font:700 22px 'IBM Plex Sans Condensed'; letter-spacing:.12em; transform:rotate(-4deg); }
+  .stamp small { display:block; font:500 12px 'IBM Plex Mono'; letter-spacing:.08em; }
+</style>
+</head>
+<body>
+<div class="sheet" id="sheet">
+  <div class="frame-o"></div>
+  <div class="frame-i"></div>
+
+  <div class="title">
+    <h1>SD-TRIP-PLANNER · SYSTEM ARCHITECTURE</h1>
+    <p>TECH STACK REFERENCE SHEET · ASSEMBLY OVERVIEW · ALL DIMENSIONS NTS</p>
+  </div>
+  <div class="stamp">RELEASED<small>REV B · DEPLOYED 2026-10-28</small></div>
+
+  <svg width="2600" height="1520" style="position:absolute;inset:0" aria-hidden="true">
+    <defs>
+      <marker id="a" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0,1 L11,6 L0,11 z" fill="#1B2430"/></marker>
+      <marker id="ab" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0,1 L11,6 L0,11 z" fill="#1F4E8C"/></marker>
+      <marker id="ar" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M0,1 L11,6 L0,11 z" fill="#B4441A"/></marker>
+    </defs>
+    <!-- client <-> edge -->
+    <path d="M662 395 H918" stroke="#1B2430" stroke-width="3" marker-end="url(#a)" fill="none"/>
+    <path d="M918 500 H662" stroke="#1B2430" stroke-width="3" marker-end="url(#a)" fill="none"/>
+    <path d="M918 620 H662" stroke="#1F4E8C" stroke-width="2.5" stroke-dasharray="10 7" marker-end="url(#ab)" fill="none"/>
+    <!-- edge -> d1 -->
+    <path d="M1502 380 H1638" stroke="#1B2430" stroke-width="3" marker-end="url(#a)" fill="none"/>
+    <!-- edge -> external -->
+    <path d="M1502 640 H1638" stroke="#B4441A" stroke-width="2.5" stroke-dasharray="14 5 3 5" marker-end="url(#ar)" fill="none"/>
+    <!-- client -> tiles (direct) -->
+    <path d="M380 228 V196 H2420 V880 H2302" stroke="#B4441A" stroke-width="2.5" stroke-dasharray="14 5 3 5" marker-end="url(#ar)" fill="none"/>
+    <!-- shared -> client / edge -->
+    <path d="M380 780 V712" stroke="#1F4E8C" stroke-width="2.5" stroke-dasharray="10 7" marker-end="url(#ab)" fill="none"/>
+    <path d="M1211 780 V712" stroke="#1F4E8C" stroke-width="2.5" stroke-dasharray="10 7" marker-end="url(#ab)" fill="none"/>
+    <!-- toolchain -> deploy -->
+    <path d="M1502 1158 H1570 V560 H1502" stroke="#1B2430" stroke-width="2" fill="none"/>
+    <path d="M1502 1164 H1576 V566 H1502" stroke="#1B2430" stroke-width="2" fill="none" marker-end="url(#a)"/>
+    <!-- dimension line across client width -->
+    
+  </svg>
+
+  <div class="lbl" style="left:676px;top:362px">HTTPS /api/*  (hc&lt;Api&gt;)</div>
+  <div class="lbl" style="left:676px;top:467px">STATIC ASSETS · SPA</div>
+  <div class="lbl" style="left:676px;top:587px">type Api · TYPE-ONLY</div>
+  <div class="lbl" style="left:1512px;top:347px">D1 BINDING</div>
+  <div class="lbl red" style="left:1512px;top:607px">fetch()</div>
+  <div class="lbl red" style="left:1600px;top:180px">MAP TILES · DIRECT FROM BROWSER</div>
+  <div class="lbl" style="left:392px;top:730px">import @shared</div>
+  <div class="lbl" style="left:1223px;top:730px">import @shared</div>
+  <div class="lbl" style="left:1584px;top:920px;transform:rotate(-90deg);transform-origin:left top">WRANGLER DEPLOY</div>
+
+  <!-- 100 CLIENT -->
+  <div class="box" style="left:100px;top:230px;width:560px;height:480px">
+    <div class="hd"><b>ASSY 100 · CLIENT (BROWSER SPA)</b><span>src/</span></div>
+    <div class="rows">
+      <div class="row"><span class="n">101</span><span class="p">React 19 + Vite</span><span class="f">UI runtime · bundler</span></div>
+      <div class="row"><span class="n">102</span><span class="p">TanStack Router</span><span class="f">typed routes + zod search params</span></div>
+      <div class="row"><span class="n">103</span><span class="p">TanStack Query</span><span class="f">server state · cache · mutations</span></div>
+      <div class="row"><span class="n">104</span><span class="p">Hono RPC client</span><span class="f">hc&lt;Api&gt; · end-to-end types</span></div>
+      <div class="row"><span class="n">105</span><span class="p">dnd-kit</span><span class="f">schedule drag &amp; drop · 15-min snap</span></div>
+      <div class="row"><span class="n">106</span><span class="p">MapLibre GL</span><span class="f">vector map · routes · measure</span></div>
+      <div class="row"><span class="n">107</span><span class="p">CSS Modules + tokens</span><span class="f">Bricolage Grotesque · Figtree</span></div>
+      <div class="row"><span class="n">108</span><span class="p">Responsive shell</span><span class="f">desktop 1440 · mobile tab bar &lt;720</span></div>
+    </div>
+  </div>
+
+  <!-- 200 EDGE -->
+  <div class="box" style="left:920px;top:230px;width:582px;height:480px">
+    <div class="hd"><b>ASSY 200 · CLOUDFLARE WORKER (EDGE)</b><span>worker/</span></div>
+    <div class="rows">
+      <div class="row"><span class="n">201</span><span class="p">Workers runtime</span><span class="f">workerd · V8 isolates · free plan</span></div>
+      <div class="row"><span class="n">202</span><span class="p">Static Assets</span><span class="f">serves SPA · fallback to index</span></div>
+      <div class="row"><span class="n">203</span><span class="p">Hono</span><span class="f">router · middleware · /api/*</span></div>
+      <div class="row"><span class="n">204</span><span class="p">zod validators</span><span class="f">every route input validated</span></div>
+      <div class="row"><span class="n">205</span><span class="p">Auth</span><span class="f">shared passphrase · signed cookie 90 d</span></div>
+      <div class="row"><span class="n">206</span><span class="p">Routes</span><span class="f">trip · places · events · legs · weather · settings</span></div>
+      <div class="row"><span class="n">207</span><span class="p">Cache API</span><span class="f">weather cached ~1 h</span></div>
+      <div class="row"><span class="n">208</span><span class="p">Rules engine</span><span class="f">locked (check-in/out) · booked (skippable)</span></div>
+    </div>
+  </div>
+
+  <!-- 300 DATA -->
+  <div class="box" style="left:1640px;top:230px;width:662px;height:300px">
+    <div class="hd"><b>ASSY 300 · PERSISTENCE</b><span>db/</span></div>
+    <div class="rows">
+      <div class="row"><span class="n">301</span><span class="p">Cloudflare D1</span><span class="f">SQLite · sd-trip-planner</span></div>
+      <div class="row"><span class="n">302</span><span class="p">Drizzle ORM</span><span class="f">typed schema &amp; queries</span></div>
+      <div class="row"><span class="n">303</span><span class="p">drizzle-kit</span><span class="f">SQL migrations → wrangler apply</span></div>
+      <div class="row"><span class="n">304</span><span class="p">Tables</span><span class="f">places · events · travel_legs · settings</span></div>
+    </div>
+  </div>
+
+  <!-- 500 EXTERNAL -->
+  <div class="box" style="left:1640px;top:600px;width:662px;height:360px">
+    <div class="hd"><b>ASSY 500 · EXTERNAL SERVICES (FREE)</b><span>HTTPS</span></div>
+    <div class="rows">
+      <div class="row"><span class="n">501</span><span class="p">Open-Meteo</span><span class="f">daily + hourly forecast · unixtime</span></div>
+      <div class="row"><span class="n">502</span><span class="p">OSRM</span><span class="f">road distance &amp; time · cached legs</span></div>
+      <div class="row"><span class="n">503</span><span class="p">Nominatim (OSM)</span><span class="f">geocode on place create</span></div>
+      <div class="row"><span class="n">504</span><span class="p">OpenFreeMap</span><span class="f">vector tiles · positron style</span></div>
+      <div class="row"><span class="n">505</span><span class="p">Google Fonts</span><span class="f">Bricolage Grotesque · Figtree</span></div>
+      <div class="row"><span class="n">506</span><span class="p">GitHub</span><span class="f">source · EmmadUsmani/san-diego-trip-planner</span></div>
+    </div>
+  </div>
+
+  <!-- 400 SHARED -->
+  <div class="box cols2" style="left:100px;top:782px;width:1402px;height:216px">
+    <div class="hd"><b>ASSY 400 · SHARED DOMAIN (PURE TYPESCRIPT · NO I/O)</b><span>shared/</span></div>
+    <div class="rows">
+      <div class="row"><span class="n">401</span><span class="p">time</span><span class="f">America/Los_Angeles · DST ends Sun 2 AM</span></div>
+      <div class="row"><span class="n">402</span><span class="p">prayers</span><span class="f">adhan · ISNA · Fajr / Dhuhr / Maghrib</span></div>
+      <div class="row"><span class="n">403</span><span class="p">travel</span><span class="f">OSRM-calibrated heuristic fallback</span></div>
+      <div class="row"><span class="n">404</span><span class="p">range</span><span class="f">Model 3 Std · 69.5 kWh · 24 kWh/100 mi</span></div>
+      <div class="row"><span class="n">405</span><span class="p">schedule</span><span class="f">day buckets · legs · ordering</span></div>
+      <div class="row"><span class="n">406</span><span class="p">schemas</span><span class="f">drizzle-zod · shared types</span></div>
+    </div>
+  </div>
+
+  <!-- 600 TOOLCHAIN -->
+  <div class="box cols2" style="left:100px;top:1030px;width:1402px;height:250px">
+    <div class="hd"><b>ASSY 600 · TOOLCHAIN &amp; QUALITY ASSURANCE</b><span>repo root</span></div>
+    <div class="rows">
+      <div class="row"><span class="n">601</span><span class="p">pnpm</span><span class="f">single package · no workspaces</span></div>
+      <div class="row"><span class="n">602</span><span class="p">TypeScript 5.9 strict</span><span class="f">app / worker / shared tsconfigs</span></div>
+      <div class="row"><span class="n">603</span><span class="p">ESLint</span><span class="f">boundary: shared ↛ src, worker</span></div>
+      <div class="row"><span class="n">604</span><span class="p">Vitest</span><span class="f">unit · domain logic · DST · range</span></div>
+      <div class="row"><span class="n">605</span><span class="p">vitest-pool-workers</span><span class="f">API + D1 integration in workerd</span></div>
+      <div class="row"><span class="n">606</span><span class="p">Playwright</span><span class="f">E2E · desktop 1440 + mobile 390</span></div>
+      <div class="row"><span class="n">607</span><span class="p">@cloudflare/vite-plugin</span><span class="f">local dev in real runtime + D1</span></div>
+      <div class="row"><span class="n">608</span><span class="p">Wrangler</span><span class="f">migrations · secrets · deploy</span></div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="box" style="left:100px;top:1312px;width:1402px;height:126px">
+    <div class="hd" style="padding:6px 16px"><b style="font-size:18px">LINE LEGEND</b><span>NOTES</span></div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:16px;font-size:14px;align-items:center">
+      <div style="display:flex;gap:10px;align-items:center"><svg width="70" height="12" aria-hidden="true"><path d="M2 6 H68" stroke="#1B2430" stroke-width="3"/></svg>runtime request / data</div>
+      <div style="display:flex;gap:10px;align-items:center"><svg width="70" height="12" aria-hidden="true"><path d="M2 6 H68" stroke="#1F4E8C" stroke-width="2.5" stroke-dasharray="10 7"/></svg>compile-time import / types</div>
+      <div style="display:flex;gap:10px;align-items:center"><svg width="70" height="12" aria-hidden="true"><path d="M2 6 H68" stroke="#B4441A" stroke-width="2.5" stroke-dasharray="14 5 3 5"/></svg>external HTTPS</div>
+      <div style="display:flex;gap:10px;align-items:center"><svg width="70" height="12" aria-hidden="true"><path d="M2 3 H68 M2 9 H68" stroke="#1B2430" stroke-width="2"/></svg>build &amp; deploy</div>
+    </div>
+  </div>
+
+  <!-- SPEC TABLE -->
+  <div class="box" style="left:1640px;top:996px;width:662px;height:196px">
+    <div class="hd" style="padding:6px 16px"><b style="font-size:18px">PERFORMANCE / LIMITS</b><span>MEASURED</span></div>
+    <table style="border:0">
+      <tr><td><small>PLAN</small><b>Cloudflare Free</b></td><td><small>REQUESTS / DAY</small><b>100,000</b></td></tr>
+      <tr><td><small>WORKER UPLOAD (GZIP)</small><b>182.8 KiB</b></td><td><small>STARTUP TIME</small><b>27 ms</b></td></tr>
+      <tr><td><small>UNIT + INTEGRATION TESTS</small><b>115 passing</b></td><td><small>E2E RUNS (2 VIEWPORTS)</small><b>94 · 0 failing</b></td></tr>
+    </table>
+  </div>
+
+  <!-- TITLE BLOCK -->
+  <div class="box" style="left:1640px;top:1216px;width:662px;height:222px;background:var(--paper)">
+    <table style="height:100%">
+      <tr><td colspan="2"><small>TITLE</small><b style="font-size:22px">SD TRIP PLANNER — TECH STACK</b></td><td><small>DWG NO.</small><b>STP-001</b></td></tr>
+      <tr><td><small>PROJECT</small><b>La Jolla / San Diego · Oct 31 – Nov 3</b></td><td><small>DRAWN</small><b>Claude (Opus 5.5)</b></td><td><small>REV</small><b style="color:var(--red)">B</b></td></tr>
+      <tr><td><small>LIVE</small><b style="font-size:14px">sd-trip-planner.…workers.dev</b></td><td><small>DATE</small><b>2026-10-28</b></td><td><small>SHEET</small><b>1 OF 1</b></td></tr>
+    </table>
+  </div>
+</div>
+</body>
+</html>

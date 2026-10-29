@@ -4,6 +4,12 @@ A shared trip planner for a La Jolla / San Diego trip (Sat Oct 31 – Tue Nov 3,
 
 **Live:** https://sd-trip-planner.san-diego-trip-planner.workers.dev (anyone can view; editing needs the shared passphrase)
 
+## Architecture
+
+![System architecture / tech stack reference sheet](docs/diagram/stack.png)
+
+Source: [`docs/diagram/stack.html`](docs/diagram/stack.html) (rendered to PNG with Playwright).
+
 ## Screenshots
 
 | Overview | Schedule (week) |
